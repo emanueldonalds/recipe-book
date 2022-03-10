@@ -1,5 +1,5 @@
 # Recipe book
-This is a recipe book web app project that is minimalistic, quick and simple to use both on desktop and mobile devices.
+This project is a recipe book web app that is minimalistic, quick and simple to use both on desktop and mobile devices.
 
 ## Why?
 Because it's fun.
