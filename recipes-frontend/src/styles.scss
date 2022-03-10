@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./material-custom-theme.scss";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+.bg {
+    background-color: $dark
+}
+
+.content {
+    margin-top: 3em;
+}
+
+.centered {
+    margin: 0 auto;
+    float: none;
+}
+
+.btn-search {
+    background-color: $gray-900;
+    border-color: $gray-700;
+}
+
+.form-control,
+.form-control:active,
+.form-control:focus,
+.form-control:focus:active {
+  background-color: $gray-800 !important;
+  border-color: $gray-700;
+  color: white;
+}
+
+h1, h2 {
+  padding-top: 1em;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+textarea {
+  min-height: 10em;
+}

@@ -1,0 +1,14 @@
+<div class="content">
+    <button class="ms-auto btn-search input-group-text btn-dark" routerLink="new-recipe">Nytt recept</button>
+
+</div>
+<div class="content">
+    <div [hidden]="recipes.length > 0" class="text-center">
+        <div class="centered spinner-border text-light" role="status">
+            <span class="sr-only"></span>
+        </div>
+    </div>
+    <div *ngFor="let recipe of recipes">
+        <a type="button" class="btn btn-dark d-flex" routerLink="recipes/{{recipe.id}}">{{recipe.name}}</a>
+    </div>
+</div>

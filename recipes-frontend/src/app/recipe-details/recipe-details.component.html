@@ -1,0 +1,19 @@
+<div class="content">
+
+    <button class="btn-search input-group-text btn-dark" routerLink="/">Tillbaka</button>
+
+    <h1>{{recipe.name}}</h1>
+    <p>Författare: Emanuel Donalds</p>
+
+    <h2>Ingredienser</h2>
+
+    <ul>
+        <li *ngFor="let ingredient of recipe.ingredients">
+            {{ingredient.name}} {{ingredient.quantity.value}} {{ingredient.quantity.unit}}
+        </li>
+    </ul>
+
+    <h2>Instruktioner</h2>
+    <p>{{recipe.instructions}}</p>
+
+</div>
