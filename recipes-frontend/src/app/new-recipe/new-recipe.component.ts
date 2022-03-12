@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Ingredient } from '../models/ingredient';
 import { Recipe } from '../models/recipe';
+import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component';
 
 @Component({
   selector: 'app-new-recipe',
@@ -14,13 +17,27 @@ export class NewRecipeComponent implements OnInit {
     ingredients: []
   }
 
-  units = [{value: 'MILLILITER', display: 'ml'},{value: 'DECILITER', display: 'dl'}]
+  ingredients: Ingredient[] = [];
 
-  constructor() { 
+  constructor(private dialog: MatDialog) {
 
   }
 
   ngOnInit(): void {
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(IngredientDialogComponent, {
+      width: '40rem',
+    });
+
+    dialogRef.afterClosed().subscribe(ingredient => {
+      if (ingredient) {
+        console.log("Ingredient name: " + ingredient.name);
+        console.log("Ingredient q: " + ingredient.quantity.value);
+        console.log("Ingredient q u : " + ingredient.quantity.unit);
+        this.ingredients.push(ingredient);
+      }
+    });
+  }
 }
