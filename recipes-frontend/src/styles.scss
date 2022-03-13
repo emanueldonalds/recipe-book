@@ -2,6 +2,17 @@
 @import "./material-custom-theme.scss";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+a:hover {
+  color: #f44336;
+}
+
+
+.narrow {
+  max-width: 5em;
+  min-width: 1em;
+  display: inline-block;
+}
+
 .bg {
     background-color: $dark
 }
@@ -35,8 +46,4 @@ h1, h2 {
 
 .mat-form-field {
   width: 100%;
-}
-
-textarea {
-  min-height: 10em;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Ingredient } from '../models/ingredient';
+import { Quantity } from '../models/quantity';
 import { Recipe } from '../models/recipe';
 import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component';
 
@@ -10,6 +11,8 @@ import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog
   styleUrls: ['./new-recipe.component.scss']
 })
 export class NewRecipeComponent implements OnInit {
+  units = new Map([[ 'MILLILITER', 'ml'], ['DECILITER', 'dl']]);
+
   recipe: Recipe = {
     id: 0,
     name: '',
@@ -24,6 +27,15 @@ export class NewRecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let quantity: Quantity = {
+      value: 2,
+      unit: "MILLILITER"
+    }
+    let ingredient: Ingredient = {
+      name: "Meat",
+      quantity: quantity
+    }
+    this.ingredients.push(ingredient);
   }
 
   openDialog(): void {
@@ -39,5 +51,9 @@ export class NewRecipeComponent implements OnInit {
         this.ingredients.push(ingredient);
       }
     });
+  }
+
+  toDisplayValue(unit: string) {
+    return this.units.get(unit);
   }
 }
