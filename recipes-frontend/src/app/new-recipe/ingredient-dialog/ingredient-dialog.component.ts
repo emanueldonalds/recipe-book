@@ -1,8 +1,10 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Ingredient } from 'src/app/models/ingredient';
 import { Quantity } from 'src/app/models/quantity';
+import { IngredientDialogResponse } from '../ingredient-dialog-response';
 
 @Component({
   selector: 'app-ingredient-dialog',
@@ -12,10 +14,14 @@ import { Quantity } from 'src/app/models/quantity';
 export class IngredientDialogComponent implements OnInit {
   units = [{ value: 'MILLILITER', display: 'ml' }, { value: 'DECILITER', display: 'dl' }]
 
-  form = new FormGroup({ name: new FormControl(), quantity: new FormControl(), unit: new FormControl() });
+  form = new FormGroup({ 
+    name: new FormControl(),
+    quantity: new FormControl(), 
+    unit: new FormControl() });
 
   editMode: boolean;
 
+  ingredients: Ingredient[] | undefined;
   ingredientToEdit: Ingredient | undefined;
 
   constructor(public dialogRef: MatDialogRef<IngredientDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { 
@@ -25,6 +31,7 @@ export class IngredientDialogComponent implements OnInit {
         this.form.controls.name.setValue(this.ingredientToEdit.name);
         this.form.controls.quantity.setValue(this.ingredientToEdit.quantity.value);
         this.form.controls.unit.setValue(this.ingredientToEdit.quantity.unit);
+        this.ingredients = data.ingredients;
       }
       else {
         this.editMode = false;
@@ -43,7 +50,8 @@ export class IngredientDialogComponent implements OnInit {
       name: this.form.get('name')?.value,
       quantity: quantity
     }
-    this.dialogRef.close(ingredient);
+    console.log("Ingredient: " + ingredient.name)
+    this.dialogRef.close(new IngredientDialogResponse(ingredient, false));
   }
 
   edit() {
@@ -53,5 +61,10 @@ export class IngredientDialogComponent implements OnInit {
       this.ingredientToEdit.quantity.unit = this.form.controls.unit.value;
     }
     this.dialogRef.close();
+  }
+
+  remove() {
+    this.ingredients = this.ingredients?.filter(i => i !== this.ingredientToEdit);
+    this.dialogRef.close(new IngredientDialogResponse(this.ingredientToEdit as Ingredient, true));
   }
 }

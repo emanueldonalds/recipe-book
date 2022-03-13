@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Ingredient } from '../models/ingredient';
 import { Quantity } from '../models/quantity';
 import { Recipe } from '../models/recipe';
+import { IngredientDialogResponse } from './ingredient-dialog-response';
 import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component';
 
 @Component({
@@ -33,15 +34,24 @@ export class NewRecipeComponent implements OnInit {
     this.ingredients.push(ingredient);
   }
 
-  openEditDialog(ingredient1: Ingredient): void {
+  openEditDialog(ingredientToEdit: Ingredient): void {
     const dialogRef = this.dialog.open(IngredientDialogComponent, {
       width: '40rem',
-      data: { ingredient: ingredient1 }
+      data: {
+        ingredient: ingredientToEdit,
+        ingredients: this.ingredients
+      }
     });
 
-    dialogRef.afterClosed().subscribe(ingredient => {
-      if (ingredient) {
-        this.ingredients.push(ingredient);
+    dialogRef.afterClosed().subscribe(response => {
+      if (response) {
+        let dialogResponse = response as IngredientDialogResponse;
+        if (dialogResponse.shouldBeDeleted) {
+          this.ingredients = this.ingredients.filter(i => i !== dialogResponse.ingredient);
+        }
+        else {
+          this.ingredients.push(dialogResponse.ingredient);
+        }
       }
     });
   }
@@ -51,14 +61,18 @@ export class NewRecipeComponent implements OnInit {
       width: '40rem',
     });
 
-    dialogRef.afterClosed().subscribe(ingredient => {
-      if (ingredient) {
-        this.ingredients.push(ingredient);
+    dialogRef.afterClosed().subscribe(response => {
+      if (response) {
+        let dialogResponse = response as IngredientDialogResponse;
+        this.ingredients.push(dialogResponse.ingredient);
       }
     });
   }
 
-  toDisplayValue(unit: string) {
-    return this.units.get(unit);
+  toDisplayValue(unit: string | undefined) {
+    if (unit) {
+      return this.units.get(unit);
+    }
+    return '';
   }
 }
