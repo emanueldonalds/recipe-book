@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Ingredient } from '../models/ingredient';
 import { Quantity } from '../models/quantity';
@@ -11,14 +12,8 @@ import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog
   styleUrls: ['./new-recipe.component.scss']
 })
 export class NewRecipeComponent implements OnInit {
-  units = new Map([[ 'MILLILITER', 'ml'], ['DECILITER', 'dl']]);
-
-  recipe: Recipe = {
-    id: 0,
-    name: '',
-    instructions: '',
-    ingredients: []
-  }
+  units = new Map([['MILLILITER', 'ml'], ['DECILITER', 'dl']]);
+  recipeForm = new FormGroup({ name: new FormControl(), instructions: new FormControl() })
 
   ingredients: Ingredient[] = [];
 
@@ -38,16 +33,26 @@ export class NewRecipeComponent implements OnInit {
     this.ingredients.push(ingredient);
   }
 
-  openDialog(): void {
+  openEditDialog(ingredient1: Ingredient): void {
+    const dialogRef = this.dialog.open(IngredientDialogComponent, {
+      width: '40rem',
+      data: { ingredient: ingredient1 }
+    });
+
+    dialogRef.afterClosed().subscribe(ingredient => {
+      if (ingredient) {
+        this.ingredients.push(ingredient);
+      }
+    });
+  }
+
+  openCreateDialog(): void {
     const dialogRef = this.dialog.open(IngredientDialogComponent, {
       width: '40rem',
     });
 
     dialogRef.afterClosed().subscribe(ingredient => {
       if (ingredient) {
-        console.log("Ingredient name: " + ingredient.name);
-        console.log("Ingredient q: " + ingredient.quantity.value);
-        console.log("Ingredient q u : " + ingredient.quantity.unit);
         this.ingredients.push(ingredient);
       }
     });

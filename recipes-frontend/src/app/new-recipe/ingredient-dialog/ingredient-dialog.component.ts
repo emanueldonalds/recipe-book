@@ -14,13 +14,27 @@ export class IngredientDialogComponent implements OnInit {
 
   form = new FormGroup({ name: new FormControl(), quantity: new FormControl(), unit: new FormControl() });
 
-  constructor(public dialogRef: MatDialogRef<IngredientDialogComponent>) { }
+  editMode: boolean;
+
+  ingredientToEdit: Ingredient | undefined;
+
+  constructor(public dialogRef: MatDialogRef<IngredientDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { 
+      this.ingredientToEdit = data?.ingredient;
+      if (this.ingredientToEdit) {
+        this.editMode = true;
+        this.form.controls.name.setValue(this.ingredientToEdit.name);
+        this.form.controls.quantity.setValue(this.ingredientToEdit.quantity.value);
+        this.form.controls.unit.setValue(this.ingredientToEdit.quantity.unit);
+      }
+      else {
+        this.editMode = false;
+      }
+  }
 
   ngOnInit(): void {
   }
 
   add() {
-    console.log("Form: " + this.form.get('name')?.value);
     let quantity: Quantity = {
       value: this.form.get('quantity')?.value,
       unit: this.form.get('unit')?.value
@@ -32,4 +46,12 @@ export class IngredientDialogComponent implements OnInit {
     this.dialogRef.close(ingredient);
   }
 
+  edit() {
+    if (this.ingredientToEdit) {
+      this.ingredientToEdit.name = this.form.controls.name.value;
+      this.ingredientToEdit.quantity.value = this.form.controls.quantity.value;
+      this.ingredientToEdit.quantity.unit = this.form.controls.unit.value;
+    }
+    this.dialogRef.close();
+  }
 }

@@ -1,51 +1,47 @@
 <div class="content">
-    <div class="col-md-4">
+    <form [formGroup]="recipeForm" class="">
         <button class="btn-search input-group-text btn-dark" routerLink="/">Tillbaka</button>
+        <div class="col-md-4 centered">
 
-        <h1 class="mat-h1">Nytt recept</h1>
+            <h1 class="mat-h1">Nytt recept</h1>
 
-        <mat-form-field class="">
-            <mat-label>Portioner</mat-label>
-            <mat-select formControlName="unit">
-              <mat-option >
-                1
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+            <mat-form-field>
+                <mat-label>Receptets namn</mat-label>
+                <input matInput formControlName="name" placeholder="">
+            </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Receptets namn</mat-label>
-            <input matInput>
-        </mat-form-field>
+            <mat-form-field>
+                <mat-label>Instruktioner</mat-label>
+                <textarea matInput formControlName="instructions" cdkTextareaAutosize placeholder=""></textarea>
+            </mat-form-field>
 
-        <mat-form-field>
-            <mat-label>Instruktioner</mat-label>
-            <textarea cdkTextareaAutosize matInput placeholder=""></textarea>
-        </mat-form-field>
+            <div class="ingredients">
+                <span class="input-heading mat-h3">Ingredienser</span>
+                <div class="list">
+                    <ul role="list">
+                        <li *ngFor="let ingredient of ingredients" class="li mat-h3" role="listitem">
+                            <a mat-button class="w-100" (click)="openEditDialog(ingredient)">
+                                <span fxLayout="row">
+                                    <div>
+                                        {{ingredient.name}}
+                                    </div>
+                                    <div class="right-align">
+                                        <span class="narrow">{{ingredient.quantity.value}}</span>
+                                        <span class="narrow">{{this.toDisplayValue(ingredient.quantity.unit)}}</span>
+                                    </div>
+                                </span>
+                            </a>
+                        </li>
+                        <li role="li mat-h3" role="listitem">
+                            <a mat-button style="text-align:left" class="input-heading w-100 mat-h3"
+                                (click)="openCreateDialog()">Lägg till ingrediens</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-        <span class="input-heading mat-h3">Ingredienser</span>
-        <ul role="list">
-            <li *ngFor="let ingredient of ingredients" class="li mat-h3" role="listitem">
-                <a mat-button class="w-100">
-                <span fxLayout="row">
-                    <div >
-                        {{ingredient.name}}
-                    </div>
-                    <div class="right-align">
-                        <span class="narrow">{{ingredient.quantity.value}}</span>
-                        <span class="narrow">{{this.toDisplayValue(ingredient.quantity.unit)}}</span>
-                    </div>
-                </span>
-                </a>
+        </div>
 
-            </li>
-            <li role="li mat-h3" role="listitem">
-                <a mat-button class="w-100 mat-h4" (click)="openDialog()">Lägg till ingrediens</a>
-            </li>
-        </ul>
-
-    </div>
-
-    <button class="ms-auto btn-search input-group-text btn-dark" routerLink="/">Spara nytt recept</button>
-
+        <button class="ms-auto btn-search input-group-text btn-dark" routerLink="/">Spara nytt recept</button>
+    </form>
 </div>
