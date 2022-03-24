@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Ingredient } from '../models/ingredient';
 import { Quantity } from '../models/quantity';
 import { Recipe } from '../models/recipe';
+import { RecipeService } from '../services/recipe.service';
 import { IngredientDialogResponse } from './ingredient-dialog-response';
 import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component';
 
@@ -18,7 +19,7 @@ export class NewRecipeComponent implements OnInit {
 
   ingredients: Ingredient[] = [];
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private recipeService: RecipeService) {
 
   }
 
@@ -74,5 +75,15 @@ export class NewRecipeComponent implements OnInit {
       return this.units.get(unit);
     }
     return '';
+  }
+
+  onSubmit() {
+    let recipe: Recipe = {
+      id: undefined,
+      name: this.recipeForm.value.name,
+      instructions: this.recipeForm.value.instructions,
+      ingredients: this.ingredients
+    }
+    this.recipeService.createRecipe(recipe);
   }
 }

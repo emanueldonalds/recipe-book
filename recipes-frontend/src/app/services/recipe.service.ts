@@ -20,4 +20,15 @@ export class RecipeService {
   getRecipe(id: string): Observable<Recipe> {
     return this.http.get<Recipe>(this.recipesUrl + "/" + id);
   }
+
+  createRecipe(newRecipe: Recipe) {
+    const headers = {'content-type': 'application/json'}  
+    const body = JSON.stringify(newRecipe);
+    console.log(body);
+    
+    return this.http.post(this.recipesUrl, body, {'headers': headers}).subscribe(data => {
+      console.log(data);
+      
+    });
+  }
 }

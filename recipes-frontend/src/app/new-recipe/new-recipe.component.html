@@ -1,5 +1,5 @@
 <div class="content">
-    <form [formGroup]="recipeForm" class="">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="">
         <button class="btn-search input-group-text btn-dark" routerLink="/">Tillbaka</button>
         <div class="col-md-4 centered">
 
@@ -42,6 +42,6 @@
 
         </div>
 
-        <button class="ms-auto btn-search input-group-text btn-dark" routerLink="/">Spara nytt recept</button>
+        <button class="ms-auto btn-search input-group-text btn-dark" type="submit">Spara nytt recept</button>
     </form>
 </div>
