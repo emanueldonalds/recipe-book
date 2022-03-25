@@ -4,11 +4,13 @@
     <div fxLayout="row">
       <mat-form-field>
         <mat-label>Ingrediens</mat-label>
-        <input matInput formControlName="name">
+        <input matInput formControlName="name" required>
+        <mat-error *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)">{{getNameErrorMessage()}}</mat-error>
       </mat-form-field>
       <mat-form-field class="narrow">
         <mat-label>Mängd</mat-label>
         <input matInput formControlName="quantity">
+        <mat-error *ngIf="form.controls.quantity.invalid && (form.controls.quantity.dirty || form.controls.quantity.touched)">Must be a number</mat-error>
       </mat-form-field>
       <mat-form-field class="narrow">
         <mat-label>Enhet</mat-label>

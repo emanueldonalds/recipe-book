@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Ingredient } from 'src/app/models/ingredient';
 import { Quantity } from 'src/app/models/quantity';
+import { getInvalidCharactersErrorMessage, invalidCharactersValidator } from '../custom-validators';
 import { IngredientDialogResponse } from '../ingredient-dialog-response';
 
 @Component({
@@ -15,8 +16,8 @@ export class IngredientDialogComponent implements OnInit {
   units = [{ value: 'MILLILITER', display: 'ml' }, { value: 'DECILITER', display: 'dl' }]
 
   form = new FormGroup({ 
-    name: new FormControl(),
-    quantity: new FormControl(), 
+    name: new FormControl('', [Validators.required, invalidCharactersValidator()]),
+    quantity: new FormControl('', [Validators.pattern('[0-9]*')]), 
     unit: new FormControl() });
 
   editMode: boolean;
@@ -42,6 +43,10 @@ export class IngredientDialogComponent implements OnInit {
   }
 
   add() {
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     let quantity: Quantity = {
       value: this.form.get('quantity')?.value,
       unit: this.form.get('unit')?.value
@@ -55,6 +60,10 @@ export class IngredientDialogComponent implements OnInit {
   }
 
   edit() {
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     if (this.ingredientToEdit) {
       this.ingredientToEdit.name = this.form.controls.name.value;
       this.ingredientToEdit.quantity.value = this.form.controls.quantity.value;
@@ -67,4 +76,15 @@ export class IngredientDialogComponent implements OnInit {
     this.ingredients = this.ingredients?.filter(i => i !== this.ingredientToEdit);
     this.dialogRef.close(new IngredientDialogResponse(this.ingredientToEdit as Ingredient, true));
   }
+
+  getNameErrorMessage() {
+    if (this.form.controls.name.hasError('required')) {
+      return "Name is required"
+    }
+    if (this.form.controls.name.hasError('invalidCharacters')) {
+      return getInvalidCharactersErrorMessage();
+    }
+    return "";
+  }
+
 }
