@@ -8,13 +8,17 @@
             <mat-form-field>
                 <mat-label>Receptets namn</mat-label>
                 <input matInput formControlName="name" required>
-                <mat-error *ngIf="recipeForm.controls.name.invalid && (recipeForm.controls.name.dirty || recipeForm.controls.name.touched)">{{getNameErrorMessage()}}</mat-error>
+                <mat-error
+                    *ngIf="recipeForm.controls.name.invalid && (recipeForm.controls.name.dirty || recipeForm.controls.name.touched)">
+                    {{getNameErrorMessage()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Instruktioner</mat-label>
                 <textarea matInput formControlName="instructions" cdkTextareaAutosize></textarea>
-                <mat-error *ngIf="recipeForm.controls.instructions.invalid && (recipeForm.controls.instructions.dirty || recipeForm.controls.instructions.touched)">{{getInstructionsErrorMessage()}}</mat-error>
+                <mat-error
+                    *ngIf="recipeForm.controls.instructions.invalid && (recipeForm.controls.instructions.dirty || recipeForm.controls.instructions.touched)">
+                    {{getInstructionsErrorMessage()}}</mat-error>
             </mat-form-field>
 
             <div class="ingredients">
@@ -28,8 +32,9 @@
                                         {{ingredient.name}}
                                     </div>
                                     <div class="right-align">
-                                        <span class="narrow">{{ingredient?.quantity?.value}}</span>
-                                        <span class="narrow">{{this.toDisplayValue(ingredient?.quantity?.unit)}}</span>
+                                        <span class="narrow"
+                                            style="margin-right: 0.5rem;">{{ingredient?.quantity?.value}}</span>
+                                        <span class="narrow">{{ingredient?.quantity?.unit}}</span>
                                     </div>
                                 </span>
                             </a>

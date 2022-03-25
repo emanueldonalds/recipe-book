@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Ingredient } from 'src/app/models/ingredient';
 import { Quantity } from 'src/app/models/quantity';
+import { UnitService } from 'src/app/services/unit.service';
 import { getInvalidCharactersErrorMessage, invalidCharactersValidator } from '../custom-validators';
 import { IngredientDialogResponse } from '../ingredient-dialog-response';
 
@@ -13,33 +14,37 @@ import { IngredientDialogResponse } from '../ingredient-dialog-response';
   styleUrls: ['./ingredient-dialog.component.scss']
 })
 export class IngredientDialogComponent implements OnInit {
-  units = [{ value: 'MILLILITER', display: 'ml' }, { value: 'DECILITER', display: 'dl' }]
+  units: string[]
 
-  form = new FormGroup({ 
+  form = new FormGroup({
     name: new FormControl('', [Validators.required, invalidCharactersValidator()]),
-    quantity: new FormControl('', [Validators.pattern('[0-9]*')]), 
-    unit: new FormControl() });
+    quantity: new FormControl('', [Validators.pattern('^[+-]?([0-9]*[.])?[0-9]+$')]),
+    unit: new FormControl()
+  });
 
   editMode: boolean;
 
   ingredients: Ingredient[] | undefined;
   ingredientToEdit: Ingredient | undefined;
 
-  constructor(public dialogRef: MatDialogRef<IngredientDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { 
-      this.ingredientToEdit = data?.ingredient;
-      if (this.ingredientToEdit) {
-        this.editMode = true;
-        this.form.controls.name.setValue(this.ingredientToEdit.name);
-        this.form.controls.quantity.setValue(this.ingredientToEdit.quantity.value);
-        this.form.controls.unit.setValue(this.ingredientToEdit.quantity.unit);
-        this.ingredients = data.ingredients;
-      }
-      else {
-        this.editMode = false;
-      }
+  constructor(public dialogRef: MatDialogRef<IngredientDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private unitService: UnitService) {
+    this.ingredientToEdit = data?.ingredient;
+    if (this.ingredientToEdit) {
+      this.editMode = true;
+      this.form.controls.name.setValue(this.ingredientToEdit.name);
+      this.form.controls.quantity.setValue(this.ingredientToEdit.quantity.value);
+      this.form.controls.unit.setValue(this.ingredientToEdit.quantity.unit);
+      this.ingredients = data.ingredients;
+    }
+    else {
+      this.editMode = false;
+    }
+    this.units = [];
   }
 
   ngOnInit(): void {
+    this.unitService.getUnits().subscribe(units => { this.units = units });
+
   }
 
   add() {
@@ -47,6 +52,7 @@ export class IngredientDialogComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
+
     let quantity: Quantity = {
       value: this.form.get('quantity')?.value,
       unit: this.form.get('unit')?.value
@@ -55,7 +61,6 @@ export class IngredientDialogComponent implements OnInit {
       name: this.form.get('name')?.value,
       quantity: quantity
     }
-    console.log("Ingredient: " + ingredient.name)
     this.dialogRef.close(new IngredientDialogResponse(ingredient, false));
   }
 

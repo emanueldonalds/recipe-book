@@ -16,7 +16,6 @@ import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog
   styleUrls: ['./new-recipe.component.scss']
 })
 export class NewRecipeComponent implements OnInit {
-  units = new Map([['MILLILITER', 'ml'], ['DECILITER', 'dl']]);
 
   recipeForm = new FormGroup({
     name: new FormControl('', [Validators.required, invalidCharactersValidator()]),
@@ -25,12 +24,12 @@ export class NewRecipeComponent implements OnInit {
 
   ingredients: Ingredient[] = [];
 
-  constructor(private dialog: MatDialog, private recipeService: RecipeService, private router: Router) {  }
+  constructor(private dialog: MatDialog, private recipeService: RecipeService, private router: Router) { }
 
   ngOnInit(): void {
     let quantity: Quantity = {
       value: 2,
-      unit: "MILLILITER"
+      unit: 'mg'
     }
     let ingredient: Ingredient = {
       name: "Meat",
@@ -74,13 +73,6 @@ export class NewRecipeComponent implements OnInit {
     });
   }
 
-  toDisplayValue(unit: string | undefined) {
-    if (unit) {
-      return this.units.get(unit);
-    }
-    return '';
-  }
-
   async onSubmit() {
     if (!this.recipeForm.valid) {
       this.recipeForm.markAllAsTouched();
@@ -95,7 +87,6 @@ export class NewRecipeComponent implements OnInit {
     let id;
     let createdRecipe: Recipe = await this.recipeService.createRecipe(recipe).toPromise();;
     id = createdRecipe.id;
-    console.log("Created recipe ID: " + id);
     this.router.navigate(['/recipes', id]);
   }
 
@@ -108,7 +99,7 @@ export class NewRecipeComponent implements OnInit {
     }
     return "";
   }
-  
+
   getInstructionsErrorMessage() {
     if (this.recipeForm.controls.instructions.hasError('invalidCharacters')) {
       return getInvalidCharactersErrorMessage();

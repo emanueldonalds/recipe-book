@@ -1,33 +1,33 @@
+<form [formGroup]="form">
+  <div fxLayout="row">
+    <mat-form-field>
+      <mat-label>Ingrediens</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)">
+        {{getNameErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="narrow">
+      <mat-label>Mängd</mat-label>
+      <input matInput formControlName="quantity">
+      <mat-error
+        *ngIf="form.controls.quantity.invalid && (form.controls.quantity.dirty || form.controls.quantity.touched)">
+        Must be a number</mat-error>
+    </mat-form-field>
+    <mat-form-field class="narrow">
+      <mat-label>Enhet</mat-label>
+      <mat-select formControlName="unit">
+        <mat-option *ngFor="let unit of units" [value]="unit">
+          {{unit}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-button (click)="this.dialogRef.close()">Avbryt</button>
 
-  
-  <form [formGroup]="form">
-    <div fxLayout="row">
-      <mat-form-field>
-        <mat-label>Ingrediens</mat-label>
-        <input matInput formControlName="name" required>
-        <mat-error *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)">{{getNameErrorMessage()}}</mat-error>
-      </mat-form-field>
-      <mat-form-field class="narrow">
-        <mat-label>Mängd</mat-label>
-        <input matInput formControlName="quantity">
-        <mat-error *ngIf="form.controls.quantity.invalid && (form.controls.quantity.dirty || form.controls.quantity.touched)">Must be a number</mat-error>
-      </mat-form-field>
-      <mat-form-field class="narrow">
-        <mat-label>Enhet</mat-label>
-        <mat-select formControlName="unit">
-          <mat-option *ngFor="let unit of units" [value]="unit.value">
-            {{unit.display}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <button mat-button (click)="this.dialogRef.close()">Avbryt</button>
+    <button *ngIf="editMode" mat-button color="warn" (click)="remove()">Ta bort</button>
 
-      <button *ngIf="editMode" mat-button color="warn" (click)="remove()">Ta bort</button>
-
-      <button *ngIf="!editMode" mat-button (click)="add()">Lägg till</button>
-      <button *ngIf="editMode" mat-button (click)="edit()">Redigera</button>
-    </div>
-  </form>
-
+    <button *ngIf="!editMode" mat-button (click)="add()">Lägg till</button>
+    <button *ngIf="editMode" mat-button (click)="edit()">Redigera</button>
+  </div>
+</form>
