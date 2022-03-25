@@ -1,5 +1,5 @@
 <div class="content">
-    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" class="">
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
         <button class="btn-search input-group-text btn-dark" routerLink="/">Tillbaka</button>
         <div class="col-md-4 centered">
 
@@ -7,12 +7,14 @@
 
             <mat-form-field>
                 <mat-label>Receptets namn</mat-label>
-                <input matInput formControlName="name" placeholder="">
+                <input matInput formControlName="name" required>
+                <mat-error *ngIf="recipeForm.controls.name.invalid && (recipeForm.controls.name.dirty || recipeForm.controls.name.touched)">{{getNameErrorMessage()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Instruktioner</mat-label>
-                <textarea matInput formControlName="instructions" cdkTextareaAutosize placeholder=""></textarea>
+                <textarea matInput formControlName="instructions" cdkTextareaAutosize></textarea>
+                <mat-error *ngIf="recipeForm.controls.instructions.invalid && (recipeForm.controls.instructions.dirty || recipeForm.controls.instructions.touched)">{{getInstructionsErrorMessage()}}</mat-error>
             </mat-form-field>
 
             <div class="ingredients">

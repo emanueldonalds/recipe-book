@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Ingredient } from '../models/ingredient';
 import { Quantity } from '../models/quantity';
 import { Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
+import { getInvalidCharactersErrorMessage, invalidCharactersValidator } from './custom-validators';
 import { IngredientDialogResponse } from './ingredient-dialog-response';
 import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component';
 
@@ -16,13 +17,15 @@ import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog
 })
 export class NewRecipeComponent implements OnInit {
   units = new Map([['MILLILITER', 'ml'], ['DECILITER', 'dl']]);
-  recipeForm = new FormGroup({ name: new FormControl(), instructions: new FormControl() })
+
+  recipeForm = new FormGroup({
+    name: new FormControl('', [Validators.required, invalidCharactersValidator()]),
+    instructions: new FormControl('', [invalidCharactersValidator()])
+  });
 
   ingredients: Ingredient[] = [];
 
-  constructor(private dialog: MatDialog, private recipeService: RecipeService, private router: Router) {
-
-  }
+  constructor(private dialog: MatDialog, private recipeService: RecipeService, private router: Router) {  }
 
   ngOnInit(): void {
     let quantity: Quantity = {
@@ -79,6 +82,10 @@ export class NewRecipeComponent implements OnInit {
   }
 
   async onSubmit() {
+    if (!this.recipeForm.valid) {
+      this.recipeForm.markAllAsTouched();
+      return;
+    }
     let recipe: Recipe = {
       id: undefined,
       name: this.recipeForm.value.name,
@@ -89,7 +96,24 @@ export class NewRecipeComponent implements OnInit {
     let createdRecipe: Recipe = await this.recipeService.createRecipe(recipe).toPromise();;
     id = createdRecipe.id;
     console.log("Created recipe ID: " + id);
-    
     this.router.navigate(['/recipes', id]);
   }
+
+  getNameErrorMessage() {
+    if (this.recipeForm.controls.name.hasError('required')) {
+      return "Name is required"
+    }
+    if (this.recipeForm.controls.name.hasError('invalidCharacters')) {
+      return getInvalidCharactersErrorMessage();
+    }
+    return "";
+  }
+  
+  getInstructionsErrorMessage() {
+    if (this.recipeForm.controls.instructions.hasError('invalidCharacters')) {
+      return getInvalidCharactersErrorMessage();
+    }
+    return "";
+  }
+
 }
