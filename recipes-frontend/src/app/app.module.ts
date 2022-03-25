@@ -14,7 +14,12 @@ import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list'
+import { MatListModule } from '@angular/material/list';
+import { IngredientDialogComponent } from './new-recipe/ingredient-dialog/ingredient-dialog.component'
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,7 @@ import { MatListModule } from '@angular/material/list'
     RecipesComponent,
     RecipeDetailsComponent,
     NewRecipeComponent,
+    IngredientDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,11 @@ import { MatListModule } from '@angular/material/list'
     ReactiveFormsModule,
     MatSelectModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+    MatButtonModule,
+    MatDialogModule,
+    FlexLayoutModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
