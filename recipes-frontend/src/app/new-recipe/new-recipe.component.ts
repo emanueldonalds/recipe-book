@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Ingredient } from '../models/ingredient';
 import { Quantity } from '../models/quantity';
 import { Recipe } from '../models/recipe';
@@ -19,7 +20,7 @@ export class NewRecipeComponent implements OnInit {
 
   ingredients: Ingredient[] = [];
 
-  constructor(private dialog: MatDialog, private recipeService: RecipeService) {
+  constructor(private dialog: MatDialog, private recipeService: RecipeService, private router: Router) {
 
   }
 
@@ -77,13 +78,18 @@ export class NewRecipeComponent implements OnInit {
     return '';
   }
 
-  onSubmit() {
+  async onSubmit() {
     let recipe: Recipe = {
       id: undefined,
       name: this.recipeForm.value.name,
       instructions: this.recipeForm.value.instructions,
       ingredients: this.ingredients
     }
-    this.recipeService.createRecipe(recipe);
+    let id;
+    let createdRecipe: Recipe = await this.recipeService.createRecipe(recipe).toPromise();;
+    id = createdRecipe.id;
+    console.log("Created recipe ID: " + id);
+    
+    this.router.navigate(['/recipes', id]);
   }
 }

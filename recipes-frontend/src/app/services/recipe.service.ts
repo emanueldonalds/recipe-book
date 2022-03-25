@@ -21,14 +21,11 @@ export class RecipeService {
     return this.http.get<Recipe>(this.recipesUrl + "/" + id);
   }
 
-  createRecipe(newRecipe: Recipe) {
+  createRecipe(newRecipe: Recipe): Observable<any> {
     const headers = {'content-type': 'application/json'}  
     const body = JSON.stringify(newRecipe);
     console.log(body);
     
-    return this.http.post(this.recipesUrl, body, {'headers': headers}).subscribe(data => {
-      console.log(data);
-      
-    });
+    return this.http.post(this.recipesUrl, body, {'headers': headers});
   }
 }
