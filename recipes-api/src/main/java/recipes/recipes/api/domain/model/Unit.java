@@ -7,5 +7,5 @@ public enum Unit {
     GRAM,
     MILLIGRAM,
     KILOGRAM,
-    PCS
+    PIECES
 }
