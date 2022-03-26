@@ -1,14 +1,14 @@
 <div class="content">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <button class="btn-search input-group-text btn-dark" routerLink="/{{id}}">Avbryt</button>
+        <button class="btn-search input-group-text btn-dark remove" (click)="openDeleteDialog()">Ta bort recept</button>
+    </div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <button class="btn-search input-group-text btn-dark" routerLink="/">Alla recept</button>
         <div class="col-md-4 centered">
-
-            <h1 class="mat-h1">Nytt recept</h1>
-
+            <h1 class="mat-h1">Redigera recept</h1>
             <app-recipe-name-input [form]="form"></app-recipe-name-input>
             <app-recipe-ingredients-input [ingredients]="ingredients"></app-recipe-ingredients-input>
             <app-recipe-instructions-input [form]="form"></app-recipe-instructions-input>
-
         </div>
         <button class="ms-auto btn-search input-group-text btn-dark" type="submit">Spara</button>
     </form>

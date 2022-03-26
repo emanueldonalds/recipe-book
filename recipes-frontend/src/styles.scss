@@ -2,6 +2,14 @@
 @import "./material-custom-theme.scss";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+.remove {
+  color: #f44336;
+}
+
+.remove:hover {
+  color: #ff6f65;
+}
+
 html {
   word-wrap: break-word;
 }
@@ -50,4 +58,8 @@ h2 {
 
 .mat-form-field {
   width: 100%;
+}
+
+.content {
+  margin-bottom: 1rem;
 }

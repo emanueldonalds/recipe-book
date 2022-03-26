@@ -22,15 +22,6 @@ export class NewRecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let quantity: Quantity = {
-      value: 2,
-      unit: 'mg'
-    }
-    let ingredient: Ingredient = {
-      name: "Meat",
-      quantity: quantity
-    }
-    this.ingredients.push(ingredient);
   }
 
   onSubmit() {

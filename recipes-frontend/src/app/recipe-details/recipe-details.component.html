@@ -1,6 +1,9 @@
 <div class="content">
 
-    <button class="btn-search input-group-text btn-dark" routerLink="/">Alla recept</button>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <button class="btn-search input-group-text btn-dark" routerLink="/">Alla recept</button>
+        <button class="btn-search input-group-text btn-dark" routerLink="/{{recipe.id}}/edit">Redigera</button>
+    </div>
 
     <h1>{{recipe.name}}</h1>
     <p>Författare: Emanuel Donalds</p>
@@ -31,5 +34,4 @@
     <h2>Instruktioner</h2>
     <div innerText="{{recipe.instructions}}"></div>
 
-    <button class="ms-auto btn-search input-group-text btn-dark" routerLink="/{{recipe.id}}/edit">Redigera</button>
 </div>
