@@ -7,5 +7,10 @@ public enum Unit {
     GRAM,
     MILLIGRAM,
     KILOGRAM,
-    PIECES
+    PIECES,
+    NONE;
+
+    public static Unit of(String string) {
+        return string == null ? Unit.NONE : Unit.valueOf(string);
+    }
 }

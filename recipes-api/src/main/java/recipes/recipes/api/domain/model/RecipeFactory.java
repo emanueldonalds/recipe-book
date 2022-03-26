@@ -31,6 +31,6 @@ public final class RecipeFactory {
     }
 
     private static Quantity mapQuantity(QuantityDTO quantityDTO) {
-        return new Quantity(quantityDTO.getValue(), Unit.valueOf(quantityDTO.getUnit()));
+        return new Quantity(quantityDTO.getValue(), Unit.of(quantityDTO.getUnit()));
     }
 }

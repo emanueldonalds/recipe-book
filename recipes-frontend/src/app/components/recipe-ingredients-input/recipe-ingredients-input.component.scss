@@ -1,0 +1,29 @@
+.ingredients {
+    padding-top: 1rem;
+}
+
+ul {
+    padding-left: 0 !important;
+}
+
+li {
+    list-style-type: none;
+    margin: 0 !important;
+}
+
+.list {
+    margin-top: 0.5rem;
+}
+
+.right-align {
+    margin-left: auto; 
+    margin-right: 0;
+}
+
+a:hover {
+    color: #f44336;
+}
+
+.add-ingredient {
+    font-weight: normal;
+}

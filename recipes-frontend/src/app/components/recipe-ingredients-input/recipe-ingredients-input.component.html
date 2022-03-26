@@ -1,0 +1,24 @@
+<div class="ingredients">
+    <span class="input-heading mat-h3">Ingredienser</span>
+    <div class="list">
+        <ul role="list">
+            <li *ngFor="let ingredient of ingredients" class="li mat-h3" role="listitem">
+                <a mat-button class="w-100" (click)="openEditDialog(ingredient)">
+                    <span fxLayout="row">
+                        <div>
+                            {{ingredient.name}}
+                        </div>
+                        <div class="right-align">
+                            <span class="narrow" style="margin-right: 0.5rem;">{{ingredient?.quantity?.value}}</span>
+                            <span class="narrow">{{ingredient?.quantity?.unit}}</span>
+                        </div>
+                    </span>
+                </a>
+            </li>
+            <li role="li" role="listitem">
+                <a mat-button style="text-align:left" class="w-100 add-ingredient"
+                    (click)="openCreateDialog()">Lägg till ingrediens</a>
+            </li>
+        </ul>
+    </div>
+</div>

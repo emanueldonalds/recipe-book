@@ -41,6 +41,17 @@ export class RecipeService {
     return this.http.post(this.recipesUrl, body, { 'headers': headers });
   }
 
+  updateRecipe(recipeToUpdate: Recipe): Observable<any> {
+    const headers = { 'content-type': 'application/json' }
+    recipeToUpdate.ingredients.forEach(ingredient => {
+      if (ingredient.quantity && ingredient.quantity.unit) {
+        ingredient.quantity.unit = this.unitService.toUnitKey(ingredient.quantity.unit);
+      }
+    })
+    const body = JSON.stringify(recipeToUpdate);
+    return this.http.put(this.recipesUrl + '/' + recipeToUpdate.id, body, { 'headers': headers });
+  }
+
   mapRecipe(recipe: Recipe): Recipe {
     recipe.ingredients?.forEach(i => {
       if (i.quantity && i.quantity.unit) {

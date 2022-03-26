@@ -15,12 +15,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { IngredientDialogComponent } from './new-recipe/ingredient-dialog/ingredient-dialog.component'
+import { IngredientDialogComponent } from './components/recipe-ingredients-input/ingredient-dialog/ingredient-dialog.component'
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
+import { RecipeNameComponent } from './components/recipe-name-input/recipe-name-input.component';
+import { RecipeIngredientsInputComponent } from './components/recipe-ingredients-input/recipe-ingredients-input.component';
+import { RecipeInstructionsInputComponent } from './components/recipe-instructions-input/recipe-instructions-input.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,11 @@ import { MatCardModule } from '@angular/material/card';
     RecipeDetailsComponent,
     NewRecipeComponent,
     IngredientDialogComponent,
+    EditRecipeComponent,
+    RecipeNameComponent,
+    RecipeIngredientsInputComponent,
+    RecipeInstructionsInputComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,5 @@
 <div class="content">
-
-    <div *ngIf="loading">
-        <app-spinner></app-spinner>
-    </div>
-
-    <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <button class="btn-search input-group-text btn-dark" routerLink="/">Tillbaka</button>
         <div class="col-md-4 centered">
 
@@ -15,6 +10,6 @@
             <app-recipe-instructions-input [form]="form"></app-recipe-instructions-input>
 
         </div>
-        <button class="ms-auto btn-search input-group-text btn-dark" type="submit">Spara nytt recept</button>
+        <button class="ms-auto btn-search input-group-text btn-dark" type="submit">Spara</button>
     </form>
 </div>

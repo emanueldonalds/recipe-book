@@ -1,0 +1,9 @@
+<form [formGroup]="form">
+    <mat-form-field>
+        <mat-label>Instruktioner</mat-label>
+        <textarea matInput formControlName="instructions" cdkTextareaAutosize></textarea>
+        <mat-error
+            *ngIf="form.controls.instructions.invalid && (form.controls.instructions.dirty || form.controls.instructions.touched)">
+            {{getInstructionsErrorMessage()}}</mat-error>
+    </mat-form-field>
+</form>
