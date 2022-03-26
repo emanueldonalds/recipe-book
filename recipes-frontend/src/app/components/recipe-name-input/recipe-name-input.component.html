@@ -1,0 +1,8 @@
+<form [formGroup]="form">
+    <mat-form-field>
+        <mat-label>Receptets namn</mat-label>
+        <input matInput formControlName="name" required>
+        <mat-error *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)">
+            {{getNameErrorMessage()}}</mat-error>
+    </mat-form-field>
+</form>

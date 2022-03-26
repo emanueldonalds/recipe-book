@@ -1,12 +1,11 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Ingredient } from 'src/app/models/ingredient';
 import { Quantity } from 'src/app/models/quantity';
 import { UnitService } from 'src/app/services/unit.service';
-import { getInvalidCharactersErrorMessage, invalidCharactersValidator } from '../custom-validators';
-import { IngredientDialogResponse } from '../ingredient-dialog-response';
+import { getInvalidCharactersErrorMessage, invalidCharactersValidator } from '../../custom-validators';
+import { IngredientDialogResponse } from './ingredient-dialog-response';
 
 @Component({
   selector: 'app-ingredient-dialog',

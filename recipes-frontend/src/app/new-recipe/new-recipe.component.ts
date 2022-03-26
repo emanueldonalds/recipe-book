@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Ingredient } from '../models/ingredient';
 import { Quantity } from '../models/quantity';
 import { Recipe } from '../models/recipe';
+import { RecipeFormService } from '../services/recipe-form.service';
 import { RecipeService } from '../services/recipe.service';
-import { getInvalidCharactersErrorMessage, invalidCharactersValidator } from './custom-validators';
-import { IngredientDialogResponse } from './ingredient-dialog-response';
-import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog.component';
 
 @Component({
   selector: 'app-new-recipe',
@@ -16,22 +13,13 @@ import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog
   styleUrls: ['./new-recipe.component.scss']
 })
 export class NewRecipeComponent implements OnInit {
-
-  recipeForm = new FormGroup({
-    name: new FormControl('', [
-      Validators.required,
-      Validators.maxLength(64),
-      invalidCharactersValidator()
-    ]),
-    instructions: new FormControl('', [
-      Validators.maxLength(10000),
-      invalidCharactersValidator()
-    ])
-  });
-
+  form: FormGroup;
   ingredients: Ingredient[] = [];
+  loading: boolean = false;
 
-  constructor(private dialog: MatDialog, private recipeService: RecipeService, private router: Router) { }
+  constructor(private recipeService: RecipeService, private router: Router, private recipeFormService: RecipeFormService) {
+    this.form = recipeFormService.getRecipeForm();
+  }
 
   ngOnInit(): void {
     let quantity: Quantity = {
@@ -45,79 +33,20 @@ export class NewRecipeComponent implements OnInit {
     this.ingredients.push(ingredient);
   }
 
-  openEditDialog(ingredientToEdit: Ingredient): void {
-    const dialogRef = this.dialog.open(IngredientDialogComponent, {
-      width: '40rem',
-      data: {
-        ingredient: ingredientToEdit,
-        ingredients: this.ingredients
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(response => {
-      if (response) {
-        let dialogResponse = response as IngredientDialogResponse;
-        if (dialogResponse.shouldBeDeleted) {
-          this.ingredients = this.ingredients.filter(i => i !== dialogResponse.ingredient);
-        }
-        else {
-          this.ingredients.push(dialogResponse.ingredient);
-        }
-      }
-    });
-  }
-
-  openCreateDialog(): void {
-    const dialogRef = this.dialog.open(IngredientDialogComponent, {
-      width: '40rem',
-    });
-
-    dialogRef.afterClosed().subscribe(response => {
-      if (response) {
-        let dialogResponse = response as IngredientDialogResponse;
-        this.ingredients.push(dialogResponse.ingredient);
-      }
-    });
-  }
-
-  async onSubmit() {
-    if (!this.recipeForm.valid) {
-      this.recipeForm.markAllAsTouched();
+  onSubmit() {
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
       return;
     }
+    this.loading = true;
     let recipe: Recipe = {
       id: undefined,
-      name: this.recipeForm.value.name,
-      instructions: this.recipeForm.value.instructions,
+      name: this.form.value.name,
+      instructions: this.form.value.instructions,
       ingredients: this.ingredients
     }
-    let id;
-    let createdRecipe: Recipe = await this.recipeService.createRecipe(recipe).toPromise();;
-    id = createdRecipe.id;
-    this.router.navigate(['/recipes', id]);
+    this.recipeService.createRecipe(recipe).subscribe(createdRecipe => {
+      this.router.navigate(['/', createdRecipe.id]);
+    });
   }
-
-  getNameErrorMessage() {
-    if (this.recipeForm.controls.name.hasError('required')) {
-      return "Name is required"
-    }
-    if (this.recipeForm.controls.name.hasError('maxlength')) {
-      return "Max 64 characters"
-    }
-    if (this.recipeForm.controls.name.hasError('invalidCharacters')) {
-      return getInvalidCharactersErrorMessage();
-    }
-    return "";
-  }
-
-  getInstructionsErrorMessage() {
-    if (this.recipeForm.controls.instructions.hasError('maxlength')) {
-      return "Max 10000 characters"
-    }
-    if (this.recipeForm.controls.instructions.hasError('invalidCharacters')) {
-      return getInvalidCharactersErrorMessage();
-    }
-    return "";
-  }
-
 }

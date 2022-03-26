@@ -36,11 +36,11 @@ public final class RecipeDTO implements Serializable {
         for (Ingredient ingredient : recipe.getIngredients()) {
 
             final QuantityDTO quantity = new QuantityDTO(
-                    ingredient.getQuantity().getValue(),
-                    ingredient.getQuantity().getUnit().name());
+                    ingredient.quantity().value(),
+                    ingredient.quantity().unit().name());
 
             final IngredientDTO ingredientDTO = new IngredientDTO(
-                    ingredient.getName(), quantity);
+                    ingredient.name(), quantity);
             ingredientsDTO.add(ingredientDTO);
         }
 

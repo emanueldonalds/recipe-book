@@ -25,7 +25,9 @@ export class UnitService {
     return this.http.get<string[]>(this.unitsUrl).pipe(map(response => {
       let units: any[] = [];
       response.forEach(unit => {
-        units.push(this.toUnitValue(unit));
+        if (unit !== "NONE") {
+          units.push(this.toUnitValue(unit));
+        }
       });
       return units;
     }));
