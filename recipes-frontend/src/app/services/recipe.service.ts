@@ -31,25 +31,30 @@ export class RecipeService {
   }
 
   createRecipe(newRecipe: Recipe): Observable<any> {
-    const headers = { 'content-type': 'application/json' }
     newRecipe.ingredients.forEach(ingredient => {
       if (ingredient.quantity && ingredient.quantity.unit) {
         ingredient.quantity.unit = this.unitService.toUnitKey(ingredient.quantity.unit);
       }
     })
+    const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(newRecipe);
     return this.http.post(this.recipesUrl, body, { 'headers': headers });
   }
 
   updateRecipe(recipeToUpdate: Recipe): Observable<any> {
-    const headers = { 'content-type': 'application/json' }
     recipeToUpdate.ingredients.forEach(ingredient => {
       if (ingredient.quantity && ingredient.quantity.unit) {
         ingredient.quantity.unit = this.unitService.toUnitKey(ingredient.quantity.unit);
       }
     })
+    const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(recipeToUpdate);
     return this.http.put(this.recipesUrl + '/' + recipeToUpdate.id, body, { 'headers': headers });
+  }
+
+  deleteRecipe(id: string): Observable<any> {
+    const headers = { 'content-type': 'application/json' }
+    return this.http.delete(this.recipesUrl + '/' + id, { 'headers': headers });
   }
 
   mapRecipe(recipe: Recipe): Recipe {

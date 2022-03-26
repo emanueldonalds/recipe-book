@@ -24,9 +24,7 @@
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <button mat-button (click)="this.dialogRef.close()">Avbryt</button>
-
     <button *ngIf="editMode" mat-button color="warn" (click)="remove()">Ta bort</button>
-
     <button *ngIf="!editMode" mat-button (click)="add()">Lägg till</button>
     <button *ngIf="editMode" mat-button (click)="edit()">Redigera</button>
   </div>

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ingredient } from '../models/ingredient';
 import { Recipe } from '../models/recipe';
 import { RecipeFormService } from '../services/recipe-form.service';
 import { RecipeService } from '../services/recipe.service';
+import { DeleteRecipeDialog } from './delete-recipe-dialog/delete-recipe-dialog.component';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -20,7 +22,8 @@ export class EditRecipeComponent implements OnInit {
     private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute,
-    private recipeFormService: RecipeFormService) {
+    private recipeFormService: RecipeFormService,
+    private dialog: MatDialog) {
       this.form = recipeFormService.getRecipeForm();
   }
 
@@ -47,6 +50,16 @@ export class EditRecipeComponent implements OnInit {
     }
     this.recipeService.updateRecipe(recipe).subscribe(() => {
       this.router.navigate(['/', this.id]);
+    });
+  }
+
+  openDeleteDialog(): void {
+    const dialogRef = this.dialog.open(DeleteRecipeDialog, {
+      autoFocus: false,
+      data: {
+        id: this.id,
+        name: this.form.controls.name.value
+      }
     });
   }
 }
