@@ -7,13 +7,25 @@
 
     <h2>Ingredienser</h2>
 
-    <ul>
-        <li *ngFor="let ingredient of recipe.ingredients">
-            {{ingredient.name}} {{ingredient.quantity.value}} {{ingredient.quantity.unit}}
-        </li>
-    </ul>
+    <div class="ingredients">
+        <div class="list col-md-4">
+            <ul role="list">
+                <li *ngFor="let ingredient of recipe.ingredients" class="li mat-h3" role="listitem">
+                    <span fxLayout="row">
+                        <div>
+                            {{ingredient.name}}
+                        </div>
+                        <div class="right-align" fxLayout="row">
+                            <span class="narrow" style="margin-right: 0.5rem;">{{ingredient?.quantity?.value}}</span>
+                            <span class="narrow">{{ingredient?.quantity?.unit}}</span>
+                        </div>
+                    </span>
+                </li>
+
+            </ul>
+        </div>
+    </div>
 
     <h2>Instruktioner</h2>
-    <p>{{recipe.instructions}}</p>
-
+    <div innerText="{{recipe.instructions}}"></div>
 </div>

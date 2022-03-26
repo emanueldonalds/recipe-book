@@ -1,0 +1,23 @@
+ul {
+    list-style: none;
+
+    padding-left: 0 !important;
+}
+
+li {
+    list-style-type: none;
+    margin: 0 !important;
+}
+
+.list {
+    margin-top: 0.5rem;
+}
+
+.right-align {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+a:hover {
+    color: #f44336;
+}

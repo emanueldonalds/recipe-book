@@ -16,7 +16,7 @@ export class UnitService {
     ["GRAM", "g"],
     ["MILLIGRAM", "mg"],
     ["KILOGRAM", "kg"],
-    ["PIECES", "bitar"],
+    ["PIECES", "st"],
   ]);
 
   constructor(private http: HttpClient) { }

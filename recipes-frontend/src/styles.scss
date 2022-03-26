@@ -2,10 +2,13 @@
 @import "./material-custom-theme.scss";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
+html {
+  word-wrap: break-word;
+}
+
 a:hover {
   color: #f44336;
 }
-
 
 .narrow {
   max-width: 5em;
@@ -14,21 +17,21 @@ a:hover {
 }
 
 .bg {
-    background-color: $dark
+  background-color: $dark;
 }
 
 .content {
-    margin-top: 3em;
+  margin-top: 3em;
 }
 
 .centered {
-    margin: 0 auto;
-    float: none;
+  margin: 0 auto;
+  float: none;
 }
 
 .btn-search {
-    background-color: $gray-900;
-    border-color: $gray-700;
+  background-color: $gray-900;
+  border-color: $gray-700;
 }
 
 .form-control,
@@ -40,7 +43,8 @@ a:hover {
   color: white;
 }
 
-h1, h2 {
+h1,
+h2 {
   padding-top: 1em;
 }
 

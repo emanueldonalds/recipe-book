@@ -18,8 +18,15 @@ import { IngredientDialogComponent } from './ingredient-dialog/ingredient-dialog
 export class NewRecipeComponent implements OnInit {
 
   recipeForm = new FormGroup({
-    name: new FormControl('', [Validators.required, invalidCharactersValidator()]),
-    instructions: new FormControl('', [invalidCharactersValidator()])
+    name: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(64),
+      invalidCharactersValidator()
+    ]),
+    instructions: new FormControl('', [
+      Validators.maxLength(10000),
+      invalidCharactersValidator()
+    ])
   });
 
   ingredients: Ingredient[] = [];
@@ -94,6 +101,9 @@ export class NewRecipeComponent implements OnInit {
     if (this.recipeForm.controls.name.hasError('required')) {
       return "Name is required"
     }
+    if (this.recipeForm.controls.name.hasError('maxlength')) {
+      return "Max 64 characters"
+    }
     if (this.recipeForm.controls.name.hasError('invalidCharacters')) {
       return getInvalidCharactersErrorMessage();
     }
@@ -101,6 +111,9 @@ export class NewRecipeComponent implements OnInit {
   }
 
   getInstructionsErrorMessage() {
+    if (this.recipeForm.controls.instructions.hasError('maxlength')) {
+      return "Max 10000 characters"
+    }
     if (this.recipeForm.controls.instructions.hasError('invalidCharacters')) {
       return getInvalidCharactersErrorMessage();
     }
