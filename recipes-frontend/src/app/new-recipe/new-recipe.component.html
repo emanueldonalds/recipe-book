@@ -13,14 +13,6 @@
                     {{getNameErrorMessage()}}</mat-error>
             </mat-form-field>
 
-            <mat-form-field>
-                <mat-label>Instruktioner</mat-label>
-                <textarea matInput formControlName="instructions" cdkTextareaAutosize></textarea>
-                <mat-error
-                    *ngIf="recipeForm.controls.instructions.invalid && (recipeForm.controls.instructions.dirty || recipeForm.controls.instructions.touched)">
-                    {{getInstructionsErrorMessage()}}</mat-error>
-            </mat-form-field>
-
             <div class="ingredients">
                 <span class="input-heading mat-h3">Ingredienser</span>
                 <div class="list">
@@ -46,6 +38,16 @@
                     </ul>
                 </div>
             </div>
+
+            <mat-form-field>
+                <mat-label>Instruktioner</mat-label>
+                <textarea matInput formControlName="instructions" cdkTextareaAutosize></textarea>
+                <mat-error
+                    *ngIf="recipeForm.controls.instructions.invalid && (recipeForm.controls.instructions.dirty || recipeForm.controls.instructions.touched)">
+                    {{getInstructionsErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+
 
         </div>
 

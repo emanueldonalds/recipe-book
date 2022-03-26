@@ -11,7 +11,7 @@
       <input matInput formControlName="quantity">
       <mat-error
         *ngIf="form.controls.quantity.invalid && (form.controls.quantity.dirty || form.controls.quantity.touched)">
-        Must be a number</mat-error>
+        {{getQuantityErrorMessage()}}</mat-error>
     </mat-form-field>
     <mat-form-field class="narrow">
       <mat-label>Enhet</mat-label>

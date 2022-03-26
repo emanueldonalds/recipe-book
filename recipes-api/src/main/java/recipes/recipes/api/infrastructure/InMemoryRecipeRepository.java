@@ -21,7 +21,7 @@ public class InMemoryRecipeRepository implements RecipeRepository {
 
     private void seed() {
         List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(new Ingredient("Apples", new Quantity(1, Unit.PCS)));
+        ingredients.add(new Ingredient("Apples", new Quantity(1, Unit.PIECES)));
         ingredients.add(new Ingredient("Bananas", new Quantity(1337, Unit.MILLIGRAM)));
         String instructions = """
                 Do this:
@@ -35,7 +35,7 @@ public class InMemoryRecipeRepository implements RecipeRepository {
         recipes.add(new Recipe(UUID.randomUUID(), "Banana thing", instructions, ingredients));
 
         ingredients = new ArrayList<>();
-        ingredients.add(new Ingredient("Beans", new Quantity(1, Unit.PCS)));
+        ingredients.add(new Ingredient("Beans", new Quantity(1, Unit.PIECES)));
         ingredients.add(new Ingredient("Salad", new Quantity(1337, Unit.MILLIGRAM)));
         ingredients.add(new Ingredient("Brownies", new Quantity(1337, Unit.MILLIGRAM)));
         instructions = """

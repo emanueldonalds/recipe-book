@@ -17,8 +17,15 @@ export class IngredientDialogComponent implements OnInit {
   units: string[]
 
   form = new FormGroup({
-    name: new FormControl('', [Validators.required, invalidCharactersValidator()]),
-    quantity: new FormControl('', [Validators.pattern('^[+-]?([0-9]*[.])?[0-9]+$')]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(34),
+      invalidCharactersValidator()
+    ]),
+    quantity: new FormControl('', [
+      Validators.pattern('^[+-]?([0-9]*[.])?[0-9]+$'),
+      Validators.maxLength(5)
+    ]),
     unit: new FormControl()
   });
 
@@ -86,10 +93,23 @@ export class IngredientDialogComponent implements OnInit {
     if (this.form.controls.name.hasError('required')) {
       return "Name is required"
     }
+    if (this.form.controls.name.hasError('maxlength')) {
+      return "Max 34 characters"
+    }
     if (this.form.controls.name.hasError('invalidCharacters')) {
       return getInvalidCharactersErrorMessage();
     }
     return "";
+  }
+
+  getQuantityErrorMessage() {
+    if (this.form.controls.quantity.hasError('regexp')) {
+      return "Must be a number";
+    }
+    if (this.form.controls.quantity.hasError('maxlength')) {
+      return "Max 5 characters";
+    }
+    return "";  
   }
 
 }
