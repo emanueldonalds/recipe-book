@@ -28,6 +28,8 @@ public final class RecipeDTO implements Serializable {
 
     private String instructions;
 
+    private long servings;
+
     private List<IngredientDTO> ingredients;
 
     public static RecipeDTO create(final Recipe recipe) {
@@ -44,7 +46,11 @@ public final class RecipeDTO implements Serializable {
             ingredientsDTO.add(ingredientDTO);
         }
 
-        return new RecipeDTO(recipe.getId().toString(), recipe.getName(), recipe.getInstructions(), ingredientsDTO);
+        return new RecipeDTO(recipe.getId().toString(),
+                             recipe.getName(),
+                             recipe.getInstructions(),
+                             recipe.getservings(),
+                             ingredientsDTO);
     }
 
 }

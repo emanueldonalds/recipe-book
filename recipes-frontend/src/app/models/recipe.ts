@@ -5,16 +5,18 @@ export interface Recipe {
     name: string;
     instructions: string,
     ingredients: Ingredient[];
+    servings: number;
 }
 
-export function copyOf(recipe: Recipe): Recipe {
+export function copyOf(other: Recipe): Recipe {
     let copy: Recipe = {
-        id: recipe.id,
-        name: recipe.name,
-        instructions: recipe.instructions,
-        ingredients: []
+        id: other.id,
+        name: other.name,
+        instructions: other.instructions,
+        ingredients: [],
+        servings: other.servings
     }
-    recipe.ingredients.forEach(ingredient => {
+    other.ingredients.forEach(ingredient => {
         copy.ingredients.push({
             name: ingredient.name, 
             quantity: {

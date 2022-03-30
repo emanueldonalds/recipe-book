@@ -17,7 +17,9 @@ export class NewRecipeComponent implements OnInit {
   ingredients: Ingredient[] = [];
   loading: boolean = false;
 
-  constructor(private recipeService: RecipeService, private router: Router, private recipeFormService: RecipeFormService) {
+  constructor(private recipeService: RecipeService,
+     private router: Router, 
+     private recipeFormService: RecipeFormService) {
     this.form = recipeFormService.getRecipeForm();
   }
 
@@ -34,10 +36,24 @@ export class NewRecipeComponent implements OnInit {
       id: undefined,
       name: this.form.value.name,
       instructions: this.form.value.instructions,
-      ingredients: this.ingredients
+      ingredients: this.ingredients,
+      servings: this.form.value.servings
     }
     this.recipeService.createRecipe(copyOf(recipe)).subscribe(createdRecipe => {
       this.router.navigate(['/', createdRecipe.id]);
     });
+  }
+
+  getservingsErrorMessage() {
+    if (this.form.controls.servings.hasError('min')) {
+      return "Must be 1 or more"
+    }
+    if (this.form.controls.servings.hasError('max')) {
+      return "Max 100"
+    }
+    if (this.form.controls.servings.hasError('pattern')) {
+      return "Must be a number"
+    }
+    return "";
   }
 }

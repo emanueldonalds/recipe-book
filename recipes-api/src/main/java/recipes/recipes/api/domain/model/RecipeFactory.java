@@ -21,6 +21,7 @@ public final class RecipeFactory {
                 id,
                 recipeDTO.getName(),
                 recipeDTO.getInstructions(),
+                recipeDTO.getservings(),
                 ingredients);
     }
 

@@ -10,10 +10,11 @@ export class RecipeFormService {
   constructor() { }
 
   getRecipeForm(): FormGroup {
-    return this.getRecipeFormPopulated('', '');
+    return this.getRecipeFormPopulated('', '', 4);
   }
 
-  getRecipeFormPopulated(nameValue: string, instructionsValue: string): FormGroup {
+  getRecipeFormPopulated(
+    nameValue: string, instructionsValue: string, servingsValue: number): FormGroup {
     return new FormGroup({
       name: new FormControl(nameValue, [
         Validators.required,
@@ -23,6 +24,11 @@ export class RecipeFormService {
       instructions: new FormControl(instructionsValue, [
         Validators.maxLength(10000),
         invalidCharactersValidator()
+      ]),
+      servings: new FormControl(servingsValue, [
+        Validators.min(1),
+        Validators.max(100),
+        Validators.pattern(/^-?(0|[1-9]\d*)?$/)
       ])
     });
   }

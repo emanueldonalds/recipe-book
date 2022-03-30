@@ -20,8 +20,11 @@
                                 {{ingredient.name}}
                             </div>
                             <div class="right-align" fxLayout="row">
-                                <span class="narrow"
-                                    style="margin-right: 0.5rem;">{{ingredient?.quantity?.value}}</span>
+                                <span class="narrow" style="margin-right: 0.5rem;">
+                                    <span *ngIf="ingredient && ingredient.quantity && ingredient.quantity.value && ingredient.quantity.value     > 0">
+                                        {{ingredient?.quantity?.value}}
+                                    </span>
+                                </span>
                                 <span class="narrow">{{ingredient?.quantity?.unit}}</span>
                             </div>
                         </span>

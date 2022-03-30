@@ -30,7 +30,8 @@ export class EditRecipeComponent implements OnInit {
   ngOnInit(): void {
     this.id = String(this.route.snapshot.paramMap.get('id'));
     this.recipeService.getRecipe(this.id).subscribe(recipe => {
-      this.form = this.recipeFormService.getRecipeFormPopulated(recipe.name, recipe.instructions);
+      this.form = this.recipeFormService.getRecipeFormPopulated(
+        recipe.name, recipe.instructions, recipe.servings);
       recipe.ingredients.forEach(ingredient => {
         this.ingredients.push(ingredient);
       });
@@ -46,7 +47,8 @@ export class EditRecipeComponent implements OnInit {
       id: this.id,
       name: this.form.value.name,
       instructions: this.form.value.instructions,
-      ingredients: this.ingredients
+      ingredients: this.ingredients,
+      servings: this.form.value.servings
     }
     this.recipeService.updateRecipe(copyOf(recipe)).subscribe(() => {
       this.router.navigate(['/', this.id]);

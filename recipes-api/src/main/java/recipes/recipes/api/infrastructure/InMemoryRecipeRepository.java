@@ -32,7 +32,7 @@ public class InMemoryRecipeRepository implements RecipeRepository {
                                 
                 Dinner is served!
                 """;
-        recipes.add(new Recipe(UUID.randomUUID(), "Banana thing", instructions, ingredients));
+        recipes.add(new Recipe(UUID.randomUUID(), "Banana thing", instructions, 4, ingredients));
 
         ingredients = new ArrayList<>();
         ingredients.add(new Ingredient("Beans", new Quantity(1, Unit.PIECES)));
@@ -44,7 +44,7 @@ public class InMemoryRecipeRepository implements RecipeRepository {
                 Beans go in a bowl and the salad is served in a separate plate with a few brownies on the side. No one 
                 dislikes this delicious meal not even kids.
                 """;
-        recipes.add(new Recipe(UUID.randomUUID(), "Some bean food", instructions, ingredients));
+        recipes.add(new Recipe(UUID.randomUUID(), "Some bean food", instructions, 4, ingredients));
     }
 
 
@@ -62,10 +62,8 @@ public class InMemoryRecipeRepository implements RecipeRepository {
 
     @Override
     public Recipe addRecipe(Recipe recipe) {
-        final Recipe newRecipe =
-                new Recipe(UUID.randomUUID(), recipe.getName(), recipe.getInstructions(), recipe.getIngredients());
-        recipes.add(newRecipe);
-        return newRecipe;
+        recipes.add(recipe);
+        return recipe;
     }
 
     @Override

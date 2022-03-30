@@ -11,6 +11,14 @@
             <h1 class="mat-h1">Nytt recept</h1>
 
             <app-recipe-name-input [form]="form"></app-recipe-name-input>
+
+            <mat-form-field class="number-input">
+                <mat-label>Portioner</mat-label>
+                <input matInput formControlName="servings" required>
+                <mat-error *ngIf="form.controls.servings.invalid && (form.controls.servings.dirty || form.controls.servings.touched)">
+                    {{getservingsErrorMessage()}}</mat-error>
+            </mat-form-field>
+
             <app-recipe-ingredients-input [ingredients]="ingredients"></app-recipe-ingredients-input>
             <app-recipe-instructions-input [form]="form"></app-recipe-instructions-input>
 
