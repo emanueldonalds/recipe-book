@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ingredient } from '../models/ingredient';
-import { Recipe } from '../models/recipe';
+import { copyOf, Recipe } from '../models/recipe';
 import { RecipeFormService } from '../services/recipe-form.service';
 import { RecipeService } from '../services/recipe.service';
 import { DeleteRecipeDialog } from './delete-recipe-dialog/delete-recipe-dialog.component';
@@ -48,7 +48,7 @@ export class EditRecipeComponent implements OnInit {
       instructions: this.form.value.instructions,
       ingredients: this.ingredients
     }
-    this.recipeService.updateRecipe(recipe).subscribe(() => {
+    this.recipeService.updateRecipe(copyOf(recipe)).subscribe(() => {
       this.router.navigate(['/', this.id]);
     });
   }

@@ -12,7 +12,7 @@
         <h2>Ingredienser</h2>
 
         <div class="ingredients">
-            <div class="list col-md-4">
+            <div class="list">
                 <ul role="list">
                     <li *ngFor="let ingredient of recipe.ingredients" class="li mat-h3" role="listitem">
                         <span fxLayout="row">
@@ -31,7 +31,9 @@
         </div>
     </div>
 
-    <h2>Instruktioner</h2>
-    <div innerText="{{recipe.instructions}}"></div>
+    <span *ngIf="recipe.instructions">
+        <h2>Instruktioner</h2>
+        <div innerText="{{recipe.instructions}}"></div>
+    </span>
 
 </div>

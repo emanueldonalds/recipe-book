@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Ingredient } from '../models/ingredient';
 import { Quantity } from '../models/quantity';
-import { Recipe } from '../models/recipe';
+import { copyOf, Recipe } from '../models/recipe';
 import { RecipeFormService } from '../services/recipe-form.service';
 import { RecipeService } from '../services/recipe.service';
 
@@ -36,7 +36,7 @@ export class NewRecipeComponent implements OnInit {
       instructions: this.form.value.instructions,
       ingredients: this.ingredients
     }
-    this.recipeService.createRecipe(recipe).subscribe(createdRecipe => {
+    this.recipeService.createRecipe(copyOf(recipe)).subscribe(createdRecipe => {
       this.router.navigate(['/', createdRecipe.id]);
     });
   }
