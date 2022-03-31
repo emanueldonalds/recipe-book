@@ -1,5 +1,6 @@
 package recipes.recipes.api.application.service;
 
+import org.springframework.stereotype.Service;
 import recipes.recipes.api.domain.model.Ingredient;
 import recipes.recipes.api.domain.model.Quantity;
 import recipes.recipes.api.domain.model.Recipe;
@@ -10,6 +11,7 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ServingService {
     public Recipe calculate(Recipe recipe, long servings) {
         long originalServings = recipe.getServings();
