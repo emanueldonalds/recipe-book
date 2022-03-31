@@ -2,6 +2,7 @@ package recipes.recipes.api.domain.model;
 
 import lombok.Data;
 
+import java.util.List;
 import java.util.UUID;
 
 /**

@@ -53,7 +53,7 @@ public class AWSDynamoDBRecipeRepository implements RecipeRepository {
 
     public Recipe addRecipe(Recipe recipe) {
         try {
-            dynamoDBMapper.save(RecipeDTO.create(recipe));
+            dynamoDBMapper.save(RecipeDTO.from(recipe));
         } catch (AmazonClientException e) {
             log.error(e.getMessage(), e);
         }
@@ -63,7 +63,7 @@ public class AWSDynamoDBRecipeRepository implements RecipeRepository {
     @Override
     public Recipe updateRecipe(Recipe recipe) {
         try {
-            dynamoDBMapper.save(RecipeDTO.create(recipe));
+            dynamoDBMapper.save(RecipeDTO.from(recipe));
         } catch (AmazonClientException e) {
             log.error(e.getMessage(), e);
         }
@@ -73,7 +73,7 @@ public class AWSDynamoDBRecipeRepository implements RecipeRepository {
     @Override
     public void deleteRecipe(Recipe recipe) {
         try {
-            dynamoDBMapper.delete(RecipeDTO.create(recipe));
+            dynamoDBMapper.delete(RecipeDTO.from(recipe));
         } catch (AmazonClientException e) {
             log.error(e.getMessage(), e);
         }

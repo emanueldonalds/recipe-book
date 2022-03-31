@@ -32,7 +32,7 @@ public final class RecipeDTO implements Serializable {
 
     private List<IngredientDTO> ingredients;
 
-    public static RecipeDTO create(final Recipe recipe) {
+    public static RecipeDTO from(final Recipe recipe) {
         final List<IngredientDTO> ingredientsDTO = new ArrayList<>();
 
         for (Ingredient ingredient : recipe.getIngredients()) {
@@ -49,7 +49,7 @@ public final class RecipeDTO implements Serializable {
         return new RecipeDTO(recipe.getId().toString(),
                              recipe.getName(),
                              recipe.getInstructions(),
-                             recipe.getservings(),
+                             recipe.getServings(),
                              ingredientsDTO);
     }
 

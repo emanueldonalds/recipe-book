@@ -8,6 +8,7 @@ import java.util.UUID;
 public interface RecipeService {
     List<Recipe> getRecipes();
     Recipe getRecipe(UUID id) throws RecipeNotFoundException;
+    Recipe getRecipe(UUID id, long servings) throws RecipeNotFoundException;
     Recipe addRecipe(Recipe recipe);
     Recipe updateRecipe(Recipe recipe) throws RecipeNotFoundException;
     void deleteRecipe(UUID id) throws RecipeNotFoundException;

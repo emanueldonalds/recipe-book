@@ -3,6 +3,7 @@ package recipes.recipes.api.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import recipes.recipes.api.application.service.ServingService;
 import recipes.recipes.api.domain.model.Recipe;
 import recipes.recipes.api.domain.model.RecipeRepository;
 import recipes.recipes.api.domain.model.RecipeService;
@@ -15,10 +16,12 @@ import java.util.UUID;
 public class DefaultRecipeService implements RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final ServingService servingService;
 
     @Autowired
-    public DefaultRecipeService(RecipeRepository recipeRepository) {
+    public DefaultRecipeService(RecipeRepository recipeRepository, ServingService servingService) {
         this.recipeRepository = recipeRepository;
+        this.servingService = servingService;
     }
 
     @Override
@@ -30,6 +33,14 @@ public class DefaultRecipeService implements RecipeService {
     public Recipe getRecipe(UUID id) throws RecipeNotFoundException {
         return recipeRepository.findRecipe(id).orElseThrow(() ->
                 new RecipeNotFoundException("Could not find recipe with ID " + id.toString()));
+    }
+
+    @Override
+    public Recipe getRecipe(UUID id, long servings) throws RecipeNotFoundException {
+        return recipeRepository.findRecipe(id)
+                .map(recipe -> servingService.calculate(recipe, servings))
+                .orElseThrow(() ->
+                        new RecipeNotFoundException("Could not find recipe with ID " + id.toString()));
     }
 
     @Override
