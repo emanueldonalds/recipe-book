@@ -21,7 +21,16 @@ public final class RecipeFactory {
                 id,
                 recipeDTO.getName(),
                 recipeDTO.getInstructions(),
-                recipeDTO.getservings(),
+                recipeDTO.getServings(),
+                ingredients);
+    }
+
+    public static Recipe create(Recipe recipe, long servings, List<Ingredient> ingredients) {
+        return new Recipe(
+                recipe.getId(),
+                recipe.getName(),
+                recipe.getInstructions(),
+                servings,
                 ingredients);
     }
 

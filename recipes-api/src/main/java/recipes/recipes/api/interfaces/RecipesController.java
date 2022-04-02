@@ -24,22 +24,26 @@ public class RecipesController {
     public ResponseEntity<List<RecipeDTO>> getRecipes() {
         return new ResponseEntity<>(
                 recipeService.getRecipes().stream()
-                        .map(RecipeDTO::create)
+                        .map(RecipeDTO::from)
                         .collect(Collectors.toList()),
                 HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RecipeDTO> getRecipe(@PathVariable("id") final UUID id) throws RecipeNotFoundException {
+    public ResponseEntity<RecipeDTO> getRecipe(@PathVariable("id") UUID id,
+                                               @RequestParam(required = false) Float servings)
+            throws RecipeNotFoundException {
         return new ResponseEntity<>(
-                RecipeDTO.create(recipeService.getRecipe(id)),
+                servings == null
+                        ? RecipeDTO.from(recipeService.getRecipe(id))
+                        : RecipeDTO.from(recipeService.getRecipe(id, servings.longValue())),
                 HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<RecipeDTO> createRecipe(@RequestBody final RecipeDTO recipeDTO) {
         return new ResponseEntity<>(
-                RecipeDTO.create(recipeService.addRecipe(RecipeFactory.create(recipeDTO))),
+                RecipeDTO.from(recipeService.addRecipe(RecipeFactory.create(recipeDTO))),
                 HttpStatus.CREATED);
     }
 
@@ -47,7 +51,7 @@ public class RecipesController {
     public ResponseEntity<RecipeDTO> updateRecipe(@PathVariable final UUID id, @RequestBody final RecipeDTO recipeDTO)
             throws RecipeNotFoundException {
         return new ResponseEntity<>(
-                RecipeDTO.create(recipeService.updateRecipe(RecipeFactory.create(id, recipeDTO))),
+                RecipeDTO.from(recipeService.updateRecipe(RecipeFactory.create(id, recipeDTO))),
                 HttpStatus.OK);
     }
 

@@ -11,7 +11,7 @@ import { UnitService } from './unit.service';
 })
 export class RecipeService {
 
-  private recipesUrl = "http://localhost:8080/recipes"; //TODO this must be configured based on environment
+  private recipesUrl = "http://localhost:8555/recipes"; //TODO this must be configured based on environment
 
   constructor(private http: HttpClient, private unitService: UnitService) { }
 
@@ -26,6 +26,12 @@ export class RecipeService {
 
   getRecipe(id: string): Observable<Recipe> {
     return this.http.get<Recipe>(this.recipesUrl + "/" + id).pipe(map(response => {
+      return this.mapRecipe(response);
+    }));
+  }
+
+  getRecipeForServings(id: string, servings: number): Observable<Recipe> {
+    return this.http.get<Recipe>(this.recipesUrl + "/" + id + "?servings=" + servings).pipe(map(response => {
       return this.mapRecipe(response);
     }));
   }

@@ -27,6 +27,7 @@ import { RecipeIngredientsInputComponent } from './components/recipe-ingredients
 import { RecipeInstructionsInputComponent } from './components/recipe-instructions-input/recipe-instructions-input.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { DeleteRecipeDialog } from './edit-recipe/delete-recipe-dialog/delete-recipe-dialog.component';
+import { ServingsInputComponent } from './components/servings-input/servings-input.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { DeleteRecipeDialog } from './edit-recipe/delete-recipe-dialog/delete-re
     RecipeInstructionsInputComponent,
     SpinnerComponent,
     DeleteRecipeDialog,
+    ServingsInputComponent,
   ],
   imports: [
     BrowserModule,
