@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UnitService {
-  private unitsUrl = "http://localhost:8080/units";
+  private unitsUrl = "http://localhost:8555/units";
 
   private unitsMap: Map<string, string> = new Map([
     ["LITER", "l"],

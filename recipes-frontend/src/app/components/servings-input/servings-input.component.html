@@ -1,0 +1,8 @@
+<form [formGroup]="form">
+    <mat-form-field class="number-input">
+        <mat-label>Portioner</mat-label>
+        <mat-select formControlName="servings">
+            <mat-option *ngFor="let option of servingOptions" [value]="option">{{option}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>

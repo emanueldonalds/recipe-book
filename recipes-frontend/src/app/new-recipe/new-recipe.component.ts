@@ -43,17 +43,4 @@ export class NewRecipeComponent implements OnInit {
       this.router.navigate(['/', createdRecipe.id]);
     });
   }
-
-  getservingsErrorMessage() {
-    if (this.form.controls.servings.hasError('min')) {
-      return "Must be 1 or more"
-    }
-    if (this.form.controls.servings.hasError('max')) {
-      return "Max 100"
-    }
-    if (this.form.controls.servings.hasError('pattern')) {
-      return "Must be a number"
-    }
-    return "";
-  }
 }
