@@ -1,5 +1,5 @@
 spring:
   profiles:
-    active: local
+    active: aws
 
 server.port: 8555

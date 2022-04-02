@@ -4,14 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import recipes.recipes.api.domain.model.RecipeFactory;
 import recipes.recipes.api.domain.model.RecipeService;
 import recipes.recipes.api.domain.model.dto.RecipeDTO;
 import recipes.recipes.api.domain.model.exception.RecipeNotFoundException;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/recipes")
@@ -22,11 +20,7 @@ public class RecipesController {
 
     @GetMapping
     public ResponseEntity<List<RecipeDTO>> getRecipes() {
-        return new ResponseEntity<>(
-                recipeService.getRecipes().stream()
-                        .map(RecipeDTO::from)
-                        .collect(Collectors.toList()),
-                HttpStatus.OK);
+        return new ResponseEntity<>(recipeService.getRecipes(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -35,24 +29,20 @@ public class RecipesController {
             throws RecipeNotFoundException {
         return new ResponseEntity<>(
                 servings == null
-                        ? RecipeDTO.from(recipeService.getRecipe(id))
-                        : RecipeDTO.from(recipeService.getRecipe(id, servings.longValue())),
+                        ? recipeService.getRecipe(id)
+                        : recipeService.getRecipe(id, servings.longValue()),
                 HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<RecipeDTO> createRecipe(@RequestBody final RecipeDTO recipeDTO) {
-        return new ResponseEntity<>(
-                RecipeDTO.from(recipeService.addRecipe(RecipeFactory.create(recipeDTO))),
-                HttpStatus.CREATED);
+        return new ResponseEntity<>(recipeService.addRecipe(recipeDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<RecipeDTO> updateRecipe(@PathVariable final UUID id, @RequestBody final RecipeDTO recipeDTO)
             throws RecipeNotFoundException {
-        return new ResponseEntity<>(
-                RecipeDTO.from(recipeService.updateRecipe(RecipeFactory.create(id, recipeDTO))),
-                HttpStatus.OK);
+        return new ResponseEntity<>(recipeService.updateRecipe(recipeDTO.toBuilder().id(id).build()), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

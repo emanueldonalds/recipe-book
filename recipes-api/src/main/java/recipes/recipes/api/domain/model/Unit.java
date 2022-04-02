@@ -1,5 +1,7 @@
 package recipes.recipes.api.domain.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
+
 public enum Unit {
     LITER,
     MILLILITER,

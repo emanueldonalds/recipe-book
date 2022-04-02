@@ -10,8 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
-import recipes.recipes.api.domain.model.Recipe;
-import recipes.recipes.api.domain.model.RecipeFactory;
 import recipes.recipes.api.domain.model.RecipeRepository;
 import recipes.recipes.api.domain.model.dto.RecipeDTO;
 
@@ -19,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Repository
 @Profile("aws")
@@ -34,12 +31,10 @@ public class AWSDynamoDBRecipeRepository implements RecipeRepository {
         this.dynamoDBMapper = new DynamoDBMapper(client);
     }
 
-    public List<Recipe> getRecipes() {
-        final List<Recipe> recipes = new ArrayList<>();
+    public List<RecipeDTO> getRecipes() {
+        final List<RecipeDTO> recipes = new ArrayList<>();
         try {
-            recipes.addAll(dynamoDBMapper.scan(RecipeDTO.class, new DynamoDBScanExpression()).stream()
-                    .map(RecipeFactory::create)
-                    .collect(Collectors.toList()));
+            recipes.addAll(dynamoDBMapper.scan(RecipeDTO.class, new DynamoDBScanExpression()));
         } catch (AmazonClientException e) {
             log.error(e.getMessage(), e);
         }
@@ -47,13 +42,13 @@ public class AWSDynamoDBRecipeRepository implements RecipeRepository {
     }
 
     @Override
-    public Optional<Recipe> findRecipe(UUID id) {
-        return Optional.ofNullable(dynamoDBMapper.load(RecipeDTO.class, id.toString())).map(RecipeFactory::create);
+    public Optional<RecipeDTO> findRecipe(UUID id) {
+        return Optional.ofNullable(dynamoDBMapper.load(RecipeDTO.class, id));
     }
 
-    public Recipe addRecipe(Recipe recipe) {
+    public RecipeDTO addRecipe(RecipeDTO recipe) {
         try {
-            dynamoDBMapper.save(RecipeDTO.from(recipe));
+            dynamoDBMapper.save(recipe);
         } catch (AmazonClientException e) {
             log.error(e.getMessage(), e);
         }
@@ -61,9 +56,9 @@ public class AWSDynamoDBRecipeRepository implements RecipeRepository {
     }
 
     @Override
-    public Recipe updateRecipe(Recipe recipe) {
+    public RecipeDTO updateRecipe(RecipeDTO recipe) {
         try {
-            dynamoDBMapper.save(RecipeDTO.from(recipe));
+            dynamoDBMapper.save(recipe);
         } catch (AmazonClientException e) {
             log.error(e.getMessage(), e);
         }
@@ -71,9 +66,9 @@ public class AWSDynamoDBRecipeRepository implements RecipeRepository {
     }
 
     @Override
-    public void deleteRecipe(Recipe recipe) {
+    public void deleteRecipe(RecipeDTO recipe) {
         try {
-            dynamoDBMapper.delete(RecipeDTO.from(recipe));
+            dynamoDBMapper.delete(recipe);
         } catch (AmazonClientException e) {
             log.error(e.getMessage(), e);
         }
