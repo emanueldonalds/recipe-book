@@ -35,7 +35,8 @@ export class RecipesComponent implements OnInit {
   }
 
   filterRecipes() {
-    this.filteredRecipes = this.recipes.filter(recipe => recipe.name.includes(this.search));
+    this.filteredRecipes = this.recipes.filter(recipe => 
+      recipe.name.toLowerCase().includes(this.search.toLocaleLowerCase()));
   }
 
 }
