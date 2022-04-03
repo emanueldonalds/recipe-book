@@ -28,6 +28,8 @@ import { RecipeInstructionsInputComponent } from './components/recipe-instructio
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { DeleteRecipeDialog } from './edit-recipe/delete-recipe-dialog/delete-recipe-dialog.component';
 import { ServingsInputComponent } from './components/servings-input/servings-input.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { OrderByPipe } from './pipes/order-by-pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { ServingsInputComponent } from './components/servings-input/servings-inp
     SpinnerComponent,
     DeleteRecipeDialog,
     ServingsInputComponent,
+    SearchBarComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
