@@ -1,0 +1,8 @@
+<form (ngSubmit)="search()" id="search-form">
+    <div class="input-group mb-2">
+        <input type="text" class="form-control" aria-label="Search" aria-describedby="search" name="search" [(ngModel)]="searchValue" (keyup)="immediateSearch()">
+        <div class="input-group-append">
+            <button class="btn-search input-group-text btn-dark" id="search" type="submit">Slå upp</button>
+        </div>
+    </div>
+</form>

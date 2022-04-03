@@ -19,9 +19,17 @@ a:hover {
 }
 
 .narrow {
-  max-width: 5em;
-  min-width: 1em;
+  max-width: 5rem;
+  min-width: 2rem;
   display: inline-block;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .bg {
