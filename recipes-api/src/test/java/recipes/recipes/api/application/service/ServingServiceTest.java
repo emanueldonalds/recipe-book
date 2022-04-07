@@ -24,7 +24,7 @@ class ServingServiceTest {
     void unevenQuantity_isRoundedToPrecisionOfOne() {
         RecipeDTO recipe = recipe(6, 16);
         RecipeDTO calculatedRecipe = new ServingService().calculate(recipe, 17);
-        Assertions.assertThat(calculatedRecipe.getIngredients().get(333).getQuantity().getValue()).isEqualTo(6.4f);
+        Assertions.assertThat(calculatedRecipe.getIngredients().get(0).getQuantity().getValue()).isEqualTo(6.4f);
     }
 
     private RecipeDTO recipe(int quantityValue, long servings) {
