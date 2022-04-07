@@ -16,6 +16,11 @@ bold="\e[1m"
 uline="\e[4m"
 reset="\e[0m"
 
+info() {
+    echo -e "[${green}INFO${reset}]" $1
+}
+
+
 while read oldrev newrev ref
 do
         # only checking out the master (or whatever branch you would like to deploy)
