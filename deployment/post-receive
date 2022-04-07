@@ -18,7 +18,7 @@ uline="\e[4m"
 reset="\e[0m"
 
 stage() {
-    echo -e "[${purple}INFO${reset}]${green}" $1 "${reset}"
+    echo -e "[${purple}STAGE${reset}]${green}" $1 "${reset}"
 }
 
 info() {
@@ -36,6 +36,7 @@ do
 
         stage "Clean"
         $GRADLE clean
+        stage "Clean done"
 
         stage "Test"
         $GRADLE test
@@ -45,9 +46,11 @@ do
             info "Test failed"
             break;
         fi
+        stage "Test done"
 
         stage "Build"
         $GRADLE bootJar
+        stage "Build done"
 
         stage "Deploy"
         cp /home/pi/deploy-folder/recipes-api/build/libs/recipes-api.jar /home/pi/server
@@ -58,8 +61,7 @@ do
         info "Starting new process"
         sudo systemctl start recipes-api-service.service
 
-
-        info  "Deploy finished"
+        stage "Deploy done"
         else
             info "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
         fi
