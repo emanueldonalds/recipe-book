@@ -37,12 +37,13 @@ Reboot the RPI.
 
 The RPI now requires SSH authentication to connect.
 
-The setup script creates a bare Git repository called recipes-api.git in the home folder, on your project repo, add the RPI bar Git repository as a new remote "production".
+The setup script creates bare Git repositories in the RPI home folder. On your project repo, add the RPI bare Git repositories as new remotes.
 
-`git remote add production pi@<your-public-ip>:recipes-api.git`
-
+`git remote add prod-recipes-api pi@<your-public-ip>:recipes-api.git`
+`git remote add prod-recipes-frontend pi@<your-public-ip>:recipes-frontend.git`
 
 # How to deploy
-Deploy by pushing master to the production remote
+Deploy by pushing master to the prod remotes
 
-`git push production master`
+`git push prod-recipes-api master`
+`git push prod-recipes-frontend master`

@@ -1,16 +1,7 @@
 #!/bin/bash
 
-red="\e[0;91m"
 blue="\e[0;94m"
-expand_bg="\e[K"
-blue_bg="\e[0;104m${expand_bg}"
-green_bg="\e[0;102m${expand_bg}"
-green="\e[0;92m"
 yellow="\e[1;33m"
-purple="\e[35m"
-white="\e[0;97m"
-bold="\e[1m"
-uline="\e[4m"
 reset="\e[0m"
 
 info() {
@@ -24,6 +15,9 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk version
 sdk install java 17.0.1-librca
 sdk install gradle 7.4.2
+
+sudo curl -fsSL https://deb.nodesource.com/setup_17.x | bash -
+sudo apt-get install -y nodejs
 
 if [[ ! -f "/home/pi/.ssh/authorized_keys" ]]
 then
@@ -58,9 +52,31 @@ else
     info "Directory recipes-api-server already exists"
 fi
 
+if [[ ! -d "/home/pi/recipes-frontend.git" ]]
+then
+    info "Initializing Recipes frontend Git project"
+    mkdir /home/pi/recipes-frontend-deploy-folder
+    git init --bare /home/pi/recipes-frontend.git
+else
+    info "Recipes frontend Git project already initialized"
+fi
+
+if [[ ! -d "/home/pi/recipes-frontend-server" ]]
+then
+    info "Creating recipes-frontend-server directory"
+	mkdir /home/pi/recipes-frontend-server
+else
+    info "Directory recipes-frontend-server already exists"
+fi
+
 cp recipes-api/post-receive /home/pi/recipes-api.git/hooks/post-receive
 chmod +x /home/pi/recipes-api.git/hooks/post-receive
 sudo cp recipes-api/recipes-api-service.service /usr/lib/systemd/system
+
+cp recipes-frontend/post-receive /home/pi/recipes-frontend.git/hooks/post-receive
+chmod +x /home/pi/recipes-frontend.git/hooks/post-receive
+sudo cp recipes-frontend/recipes-frontend-service.service /usr/lib/systemd/system
+
 sudo systemctl daemon-reload
 
 info "Setup done!"

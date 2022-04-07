@@ -1,0 +1,9 @@
+[Unit]
+Description=Recipes front-end service
+
+[Service]
+ExecStart=
+User=pi
+
+[Install]
+WantedBy=multi-user.target

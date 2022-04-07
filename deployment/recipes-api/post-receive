@@ -2,7 +2,7 @@
 TARGET="/home/pi/recipes-api-deploy-folder"
 GIT_DIR="/home/pi/recipes-api.git"
 BRANCH="master"
-GRADLE="/home/pi/.sdkman/candidates/gradle/7.4.2/bin/gradle"
+#GRADLE="/home/pi/.sdkman/candidates/gradle/7.4.2/bin/gradle"
 
 blue="\e[0;94m"
 green="\e[0;92m"
@@ -22,13 +22,13 @@ while read oldrev newrev ref
 do
     if [ "$ref" = "refs/heads/$BRANCH" ];
     then
-        info "Deploying ${BRANCH} branch to production..."
+        info "Deploying Recipes API to production"
         git --work-tree=$TARGET --git-dir=$GIT_DIR checkout -f $BRANCH
         source "$HOME/.sdkman/bin/sdkman-init.sh"
         cd /home/pi/recipes-api-deploy-folder/recipes-api
 
-        stage "Clean"
-        $GRADLE clean
+        stage "Build"
+        gradle clean
         gradle_return_code=$?
         if [ $gradle_return_code == 1 ];
         then
@@ -36,8 +36,16 @@ do
             break;
         fi
 
+        gradle build
+        gradle_return_code=$?
+        if [ $gradle_return_code == 1 ];
+        then
+            info "Build failed"
+            break;
+        fi
+
         stage "Test"
-        $GRADLE test
+        gradle test
         gradle_return_code=$?
         if [ $gradle_return_code == 1 ];
         then
@@ -45,12 +53,12 @@ do
             break;
         fi
 
-        stage "Build"
-        $GRADLE bootJar
+        stage "Package"
+        gradle bootJar
         gradle_return_code=$?
         if [ $gradle_return_code == 1 ];
         then
-            info "Build failed"
+            info "Package failed"
             break;
         fi
 
