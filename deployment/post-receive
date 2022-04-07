@@ -58,7 +58,7 @@ do
         info "Starting new process"
         sudo systemctl start recipes-api-service.service
 
-        stage "Deploy done"
+        stage "Deploy done!"
         else
             info "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
         fi
