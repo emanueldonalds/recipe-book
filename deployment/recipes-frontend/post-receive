@@ -28,11 +28,19 @@ do
 
         stage "Build"
         npm install
+        ng build
 
-        #stage "Test"
-        #stage "Package"
-        #stage "Deploy"
-        #stage "Deploy done!"
+        stage "Deploy"
+        rm -r /home/pi/recipes-frontend-deploy-folder/*
+        cp -R /home/pi/recipes-frontend-deploy-folder/dist /home/pi/recipes-frontend-server
+
+        info "Stopping old process"
+        sudo systemctl stop recipes-frontend-service.service
+
+        info "Starting new process"
+        sudo systemctl start recipes-frontend-service.service
+
+        stage "Deploy done!"
         else
             info "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
     fi

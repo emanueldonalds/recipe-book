@@ -33,7 +33,7 @@ do
         if [ $gradle_return_code == 1 ];
         then
             info "Clean failed"
-            break;
+            exit 1
         fi
 
         gradle build
@@ -41,7 +41,7 @@ do
         if [ $gradle_return_code == 1 ];
         then
             info "Build failed"
-            break;
+            exit 1
         fi
 
         stage "Test"
@@ -50,7 +50,7 @@ do
         if [ $gradle_return_code == 1 ];
         then
             info "Test failed"
-            break;
+            exit 1
         fi
 
         stage "Package"
@@ -59,7 +59,7 @@ do
         if [ $gradle_return_code == 1 ];
         then
             info "Package failed"
-            break;
+            exit 1
         fi
 
         stage "Deploy"
@@ -75,7 +75,7 @@ do
         if [ $gradle_return_code == 1 ];
         then
             info "Deploy failed"
-            break;
+            exit 1
         else
             stage "Deploy done!"
         fi

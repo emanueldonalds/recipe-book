@@ -30,6 +30,7 @@ import { DeleteRecipeDialog } from './edit-recipe/delete-recipe-dialog/delete-re
 import { ServingsInputComponent } from './components/servings-input/servings-input.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { OrderByPipe } from './pipes/order-by-pipe';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { OrderByPipe } from './pipes/order-by-pipe';
     DeleteRecipeDialog,
     ServingsInputComponent,
     SearchBarComponent,
-    OrderByPipe
+    OrderByPipe,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
