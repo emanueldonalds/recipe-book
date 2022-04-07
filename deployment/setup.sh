@@ -25,7 +25,6 @@ fi
 cp post-receive /home/pi/project.git/hooks/post-receive
 chmod +x /home/pi/project.git/hooks/post-receive
 
-
 sudo apt install -y git
 sudo apt install zip
 curl -s "https://get.sdkman.io" | bash
