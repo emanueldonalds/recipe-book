@@ -18,10 +18,13 @@ bold="\e[1m"
 uline="\e[4m"
 reset="\e[0m"
 
-info() {
-    echo -e "[${yellow}INFO${reset}]${purple}" $1 "${reset}"
+stage() {
+	echo -e "[${purple}INFO${reset}]${green}" $1 "${reset}"
 }
 
+info() {
+	echo -e "[${yellow}INFO${reset}]${blue}" $1 "${reset}"
+}
 
 while read oldrev newrev ref
 do
@@ -33,10 +36,10 @@ do
                 source "$HOME/.sdkman/bin/sdkman-init.sh"
                 cd /home/pi/deploy-folder/recipes-api
 
-		info "Clean"
+		stage "Clean"
 		$GRADLE clean
 
-		info "Test"
+		stage "Test"
                 $GRADLE test
 		gradle_return_code=$?
 		if [ $gradle_return_code == 1 ];
@@ -45,12 +48,16 @@ do
 			break;
 		fi
 
-		info "Build"
+		stage "Build"
 		$GRADLE bootJar
 
-		info "Deploy"
+		stage "Deploy"
 		cp /home/pi/deploy-folder/recipes-api/build/libs/recipes-api.jar /home/pi/server
+
+		info "Stopping old process"
 		sudo systemctl stop recipes-api-service.service
+
+		info "Starting new process"
 		sudo systemctl start recipes-api-service.service
 
 
