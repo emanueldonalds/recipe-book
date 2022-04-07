@@ -19,9 +19,12 @@ then
     echo "Initializing git project"
     mkdir /home/pi/deploy-folder
     git init --bare project.git
-    cp post-receive /home/pi/project.git/hooks/post-receive
     chmod +x /home/pi/project.git/hooks/post-receive
 fi
+
+cp post-receive /home/pi/project.git/hooks/post-receive
+chmod +x /home/pi/project.git/hooks/post-receive
+
 
 sudo apt install -y git
 sudo apt install zip
