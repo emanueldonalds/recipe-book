@@ -7,10 +7,7 @@ import recipes.recipes.api.domain.model.dto.IngredientDTO;
 import recipes.recipes.api.domain.model.dto.QuantityDTO;
 import recipes.recipes.api.domain.model.dto.RecipeDTO;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Repository
 @Profile("local")
@@ -23,31 +20,46 @@ public class InMemoryRecipeRepository implements RecipeRepository {
     }
 
     private void seed() {
-        List<IngredientDTO> ingredients = new ArrayList<>();
-        ingredients.add(new IngredientDTO("Apples", new QuantityDTO(1, Unit.PIECES)));
-        ingredients.add(new IngredientDTO("Bananas", new QuantityDTO(1337, Unit.MILLIGRAM)));
         String instructions = """
-                Do this:
-                                
-                Take the banana, splice it with a knife.
-                                
-                Eat the apple.
-                                
-                Dinner is served!
+                Sätt ugnen på 150°C.
+                
+                Skala vitlöksklyftorna och hacka grovt. Plocka örterna och hacka grovt. Blanda vitlöken med örterna, 2 tsk flingsalt och ½ tsk peppar (för 4-6 port).
+               
+                Ta bort nätet från lammsteken och vik ut steken. Massera in ört- och kryddblandningen på lammstekens insida och vik ihop den. Bind ihop med steksnöre.
+                Krydda utsidan av steken med ½ tsk salt och 2 krm peppar (för 4-6 port) runt om. Bryn steken i rapsolja i en stekpanna tills den får fin färg runt om. Lägg steken på ett ugnsgaller med en plåt under. Ställ in i mitten av ugnen ca 1 timme eller tills innertemperaturen är 63°C.
+                
+                Ta ut steken och täck med folie och låt vila ca 10 minuter. Ta bort snöret och skiva upp. Lägg på ett fat och ringla över olivolja och strö över flingsalt.
+                
+                Koka upp skyn som blir över och pressa ner 1–2 msk citronjuice (för 4-6 port). Servera till lammsteken.
                 """;
-        recipes.add(new RecipeDTO(UUID.randomUUID(), "Banana thing", instructions, 4, ingredients));
 
-        ingredients = new ArrayList<>();
-        ingredients.add(new IngredientDTO("Beans", new QuantityDTO(1, Unit.PIECES)));
-        ingredients.add(new IngredientDTO("Salad", new QuantityDTO(1337, Unit.MILLIGRAM)));
-        ingredients.add(new IngredientDTO("Brownies", new QuantityDTO(1337, Unit.MILLIGRAM)));
-        instructions = """
-                This is very simple just follow this instruction:
-                                
-                Beans go in a bowl and the salad is served in a separate plate with a few brownies on the side. No one 
-                dislikes this delicious meal not even kids.
-                """;
-        recipes.add(new RecipeDTO(UUID.randomUUID(), "Some bean food", instructions, 4, ingredients));
+        List<IngredientDTO> ingredients = new ArrayList<>();
+        ingredients.add(new IngredientDTO("Kött", new QuantityDTO(1, Unit.PIECES)));
+        ingredients.add(new IngredientDTO("Sallad", new QuantityDTO(700, Unit.MILLIGRAM)));
+        ingredients.add(new IngredientDTO("Salt", new QuantityDTO(0, Unit.NONE)));
+        ingredients.add(new IngredientDTO("Kryddor", new QuantityDTO(1, Unit.NONE)));
+        ingredients.add(new IngredientDTO("Bananer", new QuantityDTO(6, Unit.MILLIGRAM)));
+        ingredients.add(new IngredientDTO("Korv", new QuantityDTO(32, Unit.LITER)));
+        ingredients.add(new IngredientDTO("Potatis", new QuantityDTO(1.5f, Unit.PIECES)));
+        ingredients.add(new IngredientDTO("Tomat", new QuantityDTO(50, Unit.MILLIGRAM)));
+        ingredients.add(new IngredientDTO("Gurka", new QuantityDTO(0, Unit.NONE)));
+        ingredients.add(new IngredientDTO("Choklad", new QuantityDTO(1, Unit.NONE)));
+        ingredients.add(new IngredientDTO("Uranium-235", new QuantityDTO(5, Unit.MILLIGRAM)));
+        ingredients.add(new IngredientDTO("Kyckling", new QuantityDTO(23.3f, Unit.LITER)));
+
+        Random rnd = new Random();
+        for (int i = 0; i < 100; i++) {
+            recipes.add(RecipeDTO.builder()
+                    .id(UUID.randomUUID())
+                            .instructions(instructions)
+                            .name("Recept " + (char)('A' + rnd.nextInt(26)) + " " + i)
+                            .servings(4)
+                            .ingredients(ingredients)
+                    .build());
+        }
+
+        Collections.shuffle(recipes);
+
     }
 
 
