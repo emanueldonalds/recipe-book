@@ -36,8 +36,17 @@ do
 
 		info "Clean"
 		$GRADLE clean
+
 		info "Test"
                 $GRADLE test
+		gradle_return_code=$?
+		echo "Return code " $gradle_return_code
+		if [ $gradle_return_code == 1 ];
+		then
+			info "Test failed"
+			break;
+		fi
+
 		info "Build"
 		$GRADLE bootJar
 
