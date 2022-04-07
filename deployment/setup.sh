@@ -8,33 +8,36 @@ info() {
     echo -e "[${yellow}INFO${reset}]${blue}" $1 "${reset}"
 }
 
-sudo apt install -y git
-sudo apt install zip
-curl -s "https://get.sdkman.io" | bash
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-sdk version
-sdk install java 17.0.1-librca
-sdk install gradle 7.4.2
+if [ $1 != "s" ]
+then
+#sudo apt install -y git
+#sudo apt install zip
+#curl -s "https://get.sdkman.io" | bash
+#source "$HOME/.sdkman/bin/sdkman-init.sh"
+#sdk version
+#sdk install java 17.0.1-librca
+#sdk install gradle 7.4.2
 
 
 # Install NodeJS https://github.com/nodesource/distributions/blob/master/README.md#debinstall
 
-KEYRING=/usr/share/keyrings/nodesource.gpg
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | sudo tee "$KEYRING" >/dev/null
-gpg --no-default-keyring --keyring "$KEYRING" --list-keys
-VERSION=node_17.8.0
-KEYRING=/usr/share/keyrings/nodesource.gpg
-DISTRO="$(lsb_release -s -c)"
-echo "deb [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-echo "deb-src [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
-sudo apt-get update
-sudo apt-get install -y nodejs
-sudo apt-get install -y npm
-sudo npm cache clean -f
-sudo npm install -g n
-sudo n stable
+#KEYRING=/usr/share/keyrings/nodesource.gpg
+#curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | sudo tee "$KEYRING" >/dev/null
+#gpg --no-default-keyring --keyring "$KEYRING" --list-keys
+#VERSION=node_17.8.0
+#KEYRING=/usr/share/keyrings/nodesource.gpg
+#DISTRO="$(lsb_release -s -c)"
+#echo "deb [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+#echo "deb-src [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
+#sudo apt-get update
+#sudo apt-get install -y nodejs
+#sudo apt-get install -y npm
+#sudo npm cache clean -f
+#sudo npm install -g n
+#sudo n stable
 
-sudo npm install -g @angular/cli
+#sudo npm install -g @angular/cli
+fi
 
 if [[ ! -f "/home/pi/.ssh/authorized_keys" ]]
 then
