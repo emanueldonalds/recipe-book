@@ -4,6 +4,18 @@ GIT_DIR="/home/pi/project.git"
 BRANCH="master"
 GRADLE="/home/pi/.sdkman/candidates/gradle/7.4.2/bin/gradle"
 
+red="\e[0;91m"
+blue="\e[0;94m"
+expand_bg="\e[K"
+blue_bg="\e[0;104m${expand_bg}"
+red_bg="\e[0;101m${expand_bg}"
+green_bg="\e[0;102m${expand_bg}"
+green="\e[0;92m"
+white="\e[0;97m"
+bold="\e[1m"
+uline="\e[4m"
+reset="\e[0m"
+
 while read oldrev newrev ref
 do
         # only checking out the master (or whatever branch you would like to deploy)
@@ -17,9 +29,14 @@ do
                 cd /home/pi/deploy-folder/recipes-api
                 $GRADLE clean
                 $GRADLE test
+		$GRADLE bootJar
 
                 echo "Deploy finished"
         else
                 echo "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
         fi
 done
+
+info(text) {
+    echo -e "[${green}INFO${reset}] " + $1
+}
