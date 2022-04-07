@@ -14,16 +14,22 @@ then
     sed -i -e 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 fi
 
-if [[ ! -f "/home/pi/project.git/description" ]]
+if [[ ! -d "/home/pi/project.git" ]]
 then
     echo "Initializing git project"
     mkdir /home/pi/deploy-folder
-    git init --bare project.git
-    chmod +x /home/pi/project.git/hooks/post-receive
+    git init --bare /home/pi/project.git
+fi
+
+if [[ ! -d "/home/pi/server" ]]
+then
+	mkdir /home/pi/server
 fi
 
 cp post-receive /home/pi/project.git/hooks/post-receive
 chmod +x /home/pi/project.git/hooks/post-receive
+sudo cp recipes-api-service.service /usr/lib/systemd/system
+sudo systemctl daemon-reload
 
 sudo apt install -y git
 sudo apt install zip

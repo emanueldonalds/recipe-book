@@ -1,0 +1,9 @@
+[Unit]
+Description=Recipes API service
+
+[Service]
+ExecStart=/home/pi/.sdkman/candidates/java/current/bin/java -jar /server/recipes-api.jar
+User=pi
+
+[Install]
+WantedBy=multi-user.target
