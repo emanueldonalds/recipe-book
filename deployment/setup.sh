@@ -8,16 +8,34 @@ info() {
     echo -e "[${yellow}INFO${reset}]${blue}" $1 "${reset}"
 }
 
-sudo apt install -y git
-sudo apt install zip
-curl -s "https://get.sdkman.io" | bash
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-sdk version
-sdk install java 17.0.1-librca
-sdk install gradle 7.4.2
+#sudo apt install -y git
+#sudo apt install zip
+#curl -s "https://get.sdkman.io" | bash
+#source "$HOME/.sdkman/bin/sdkman-init.sh"
+#sdk version
+#sdk install java 17.0.1-librca
+#sdk install gradle 7.4.2
 
-sudo curl -fsSL https://deb.nodesource.com/setup_17.x | bash -
+
+# Install NodeJS https://github.com/nodesource/distributions/blob/master/README.md#debinstall
+
+KEYRING=/usr/share/keyrings/nodesource.gpg
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | sudo tee "$KEYRING" >/dev/null
+gpg --no-default-keyring --keyring "$KEYRING" --list-keys
+# Replace with the branch of Node.js or io.js you want to install: node_6.x, node_8.x, etc...
+VERSION=node_8.x
+# Replace with the keyring above, if different
+KEYRING=/usr/share/keyrings/nodesource.gpg
+# The below command will set this correctly, but if lsb_release isn't available, you can set it manually:
+# - For Debian distributions: jessie, sid, etc...
+# - For Ubuntu distributions: xenial, bionic, etc...
+# - For Debian or Ubuntu derived distributions your best option is to use the codename corresponding to the upstream release your distribution is based off. This is an advanced scenario and unsupported if your distribution is not listed as supported per earlier in this README.
+DISTRO="$(lsb_release -s -c)"
+echo "deb [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+echo "deb-src [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
+sudo apt-get update
 sudo apt-get install -y nodejs
+sudo apt-get install -y npm
 
 if [[ ! -f "/home/pi/.ssh/authorized_keys" ]]
 then
