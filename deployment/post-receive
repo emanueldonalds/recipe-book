@@ -18,51 +18,50 @@ uline="\e[4m"
 reset="\e[0m"
 
 stage() {
-	echo -e "[${purple}INFO${reset}]${green}" $1 "${reset}"
+    echo -e "[${purple}INFO${reset}]${green}" $1 "${reset}"
 }
 
 info() {
-	echo -e "[${yellow}INFO${reset}]${blue}" $1 "${reset}"
+    echo -e "[${yellow}INFO${reset}]${blue}" $1 "${reset}"
 }
 
 while read oldrev newrev ref
 do
-        # only checking out the master (or whatever branch you would like to deploy)
-        if [ "$ref" = "refs/heads/$BRANCH" ];
+    # only checking out the master (or whatever branch you would like to deploy)
+    if [ "$ref" = "refs/heads/$BRANCH" ];
+    then
+        info "Deploying ${BRANCH} branch to production..."
+        git --work-tree=$TARGET --git-dir=$GIT_DIR checkout -f $BRANCH
+        source "$HOME/.sdkman/bin/sdkman-init.sh"
+        cd /home/pi/deploy-folder/recipes-api
+
+        stage "Clean"
+        $GRADLE clean
+
+        stage "Test"
+        $GRADLE test
+        gradle_return_code=$?
+        if [ $gradle_return_code == 1 ];
         then
-                info "Deploying ${BRANCH} branch to production..."
-                git --work-tree=$TARGET --git-dir=$GIT_DIR checkout -f $BRANCH
-                source "$HOME/.sdkman/bin/sdkman-init.sh"
-                cd /home/pi/deploy-folder/recipes-api
+            info "Test failed"
+        break;
+        fi
 
-		stage "Clean"
-		$GRADLE clean
+        stage "Build"
+        $GRADLE bootJar
 
-		stage "Test"
-                $GRADLE test
-		gradle_return_code=$?
-		if [ $gradle_return_code == 1 ];
-		then
-			info "Test failed"
-			break;
-		fi
+        stage "Deploy"
+        cp /home/pi/deploy-folder/recipes-api/build/libs/recipes-api.jar /home/pi/server
 
-		stage "Build"
-		$GRADLE bootJar
+        info "Stopping old process"
+        sudo systemctl stop recipes-api-service.service
 
-		stage "Deploy"
-		cp /home/pi/deploy-folder/recipes-api/build/libs/recipes-api.jar /home/pi/server
-
-		info "Stopping old process"
-		sudo systemctl stop recipes-api-service.service
-
-		info "Starting new process"
-		sudo systemctl start recipes-api-service.service
+        info "Starting new process"
+        sudo systemctl start recipes-api-service.service
 
 
-                info  "Deploy finished"
+        info  "Deploy finished"
         else
                 info "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
         fi
 done
-
