@@ -17,10 +17,8 @@ info() {
     echo -e "[${yellow}INFO${reset}]${blue}" $1 "${reset}"
 }
 
-while read oldrev newrev ref
-do
-    if [ "$ref" = "refs/heads/$BRANCH" ];
-    then
+while read oldrev newrev ref; do
+    if [ "$ref" = "refs/heads/$BRANCH" ]; then
         info "Deploying Recipes frontend to production"
         git --work-tree=$TARGET --git-dir=$GIT_DIR checkout -f $BRANCH
         cd /home/pi/recipes-frontend-deploy-folder/recipes-frontend
@@ -30,17 +28,16 @@ do
         ng build
 
         stage "Deploy"
-        rm -r /home/pi/recipes-frontend-deploy-folder/*
-        cp -R /home/pi/recipes-frontend-deploy-folder/dist /home/pi/recipes-frontend-server
-
         info "Stopping old process"
         sudo systemctl stop recipes-frontend-service.service
+        rm -r /home/pi/recipes-frontend-server/*
+        cp -R /home/pi/recipes-frontend-deploy-folder/dist /home/pi/recipes-frontend-server
 
         info "Starting new process"
         sudo systemctl start recipes-frontend-service.service
 
         stage "Deploy done!"
-        else
-            info "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
+    else
+        info "Ref $ref received. Doing nothing: only the ${BRANCH} branch may be deployed on this server."
     fi
 done
