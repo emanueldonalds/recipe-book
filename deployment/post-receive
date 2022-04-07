@@ -36,7 +36,6 @@ do
 
         stage "Clean"
         $GRADLE clean
-        stage "Clean done"
 
         stage "Test"
         $GRADLE test
@@ -46,11 +45,9 @@ do
             info "Test failed"
             break;
         fi
-        stage "Test done"
 
         stage "Build"
         $GRADLE bootJar
-        stage "Build done"
 
         stage "Deploy"
         cp /home/pi/deploy-folder/recipes-api/build/libs/recipes-api.jar /home/pi/server
