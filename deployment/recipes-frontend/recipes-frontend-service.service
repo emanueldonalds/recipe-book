@@ -2,7 +2,7 @@
 Description=Recipes front-end service
 
 [Service]
-ExecStart=node /home/pi/recipes-frontend-server/app.js
+ExecStart=node /home/pi/recipes-frontend-deploy-folder/recipes-frontend/dist/app.js
 User=pi
 
 [Install]
