@@ -19,7 +19,7 @@ then
     sdk install gradle 7.4.2
 
 
-     Install NodeJS https://github.com/nodesource/distributions/blob/master/README.md#debinstall
+    #Install NodeJS https://github.com/nodesource/distributions/blob/master/README.md#debinstall
 
     KEYRING=/usr/share/keyrings/nodesource.gpg
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | sudo tee "$KEYRING" >/dev/null
