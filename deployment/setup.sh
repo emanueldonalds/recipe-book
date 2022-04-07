@@ -83,14 +83,6 @@ else
     info "Recipes frontend Git project already initialized"
 fi
 
-if [[ ! -d "/home/pi/recipes-frontend-server" ]]
-then
-    info "Creating recipes-frontend-server directory"
-	mkdir /home/pi/recipes-frontend-server
-else
-    info "Directory recipes-frontend-server already exists"
-fi
-
 cp recipes-api/post-receive /home/pi/recipes-api.git/hooks/post-receive
 chmod +x /home/pi/recipes-api.git/hooks/post-receive
 sudo cp recipes-api/recipes-api-service.service /usr/lib/systemd/system
