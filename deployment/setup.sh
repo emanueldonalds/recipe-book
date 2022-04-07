@@ -30,8 +30,11 @@ echo "deb-src [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO m
 sudo apt-get update
 sudo apt-get install -y nodejs
 sudo apt-get install -y npm
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
 
-npm install -g @angular/cli
+sudo npm install -g @angular/cli
 
 if [[ ! -f "/home/pi/.ssh/authorized_keys" ]]
 then
