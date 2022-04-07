@@ -8,7 +8,7 @@ info() {
     echo -e "[${yellow}INFO${reset}]${blue}" $1 "${reset}"
 }
 
-if [ $1 != "s" ]
+if [ ! "$1" = "s" ]
 then
     sudo apt install -y git
     sudo apt install zip
