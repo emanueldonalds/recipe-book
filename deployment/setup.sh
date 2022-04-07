@@ -37,6 +37,8 @@ then
     sudo n stable
 
     sudo npm install -g @angular/cli
+    sudo npm install -g express
+
 fi
 
 if [[ ! -f "/home/pi/.ssh/authorized_keys" ]]
