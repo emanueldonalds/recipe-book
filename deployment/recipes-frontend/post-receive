@@ -31,7 +31,7 @@ while read oldrev newrev ref; do
         info "Stopping old process"
         sudo systemctl stop recipes-frontend-service.service
         rm -r /home/pi/recipes-frontend-server/*
-        cp -R /home/pi/recipes-frontend-deploy-folder/dist /home/pi/recipes-frontend-server
+        cp -R /home/pi/recipes-frontend-deploy-folder/recipes-frontend/dist /home/pi/recipes-frontend-server
 
         info "Starting new process"
         sudo systemctl start recipes-frontend-service.service
