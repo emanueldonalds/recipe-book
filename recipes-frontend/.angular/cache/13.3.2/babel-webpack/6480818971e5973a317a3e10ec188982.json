@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class IngredientDialogResponse {\n  constructor(ingredient, shouldBeDeleted) {\n    this.shouldBeDeleted = false;\n    this.ingredient = ingredient;\n    this.shouldBeDeleted = shouldBeDeleted;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
