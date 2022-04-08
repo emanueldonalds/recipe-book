@@ -24,8 +24,12 @@ then
     info "Installing Java 17"
     sdk install java 17.0.1-librca
 
+<<<<<<< HEAD
     info "Installing Gradle 7.4.2"
     sdk install gradle 7.4.2
+=======
+    #Install NodeJS https://github.com/nodesource/distributions/blob/master/README.md#debinstall
+>>>>>>> 8ba9de9f1349206735a7464a595a58fbbb897d42
 
     # Install NodeJS https://github.com/nodesource/distributions/blob/master/README.md#debinstall
     info "Installing NodeJS"
@@ -46,8 +50,13 @@ then
 
     info "Installing Angular"
     sudo npm install -g @angular/cli
+<<<<<<< HEAD
 else
     info "Quick setup"
+=======
+    sudo npm install -g express
+
+>>>>>>> 8ba9de9f1349206735a7464a595a58fbbb897d42
 fi
 
 if [[ ! -f "/home/pi/.ssh/authorized_keys" ]]
