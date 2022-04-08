@@ -92,13 +92,15 @@ else
     info "Recipes frontend Git project already initialized"
 fi
 
+info "Copying post-recieve files"
 cp recipes-api/post-receive /home/pi/recipes-api.git/hooks/post-receive
 chmod +x /home/pi/recipes-api.git/hooks/post-receive
-sudo cp recipes-api/recipes-api-service.service /usr/lib/systemd/system
+sudo cp recipes-api/recipes-api.service /usr/lib/systemd/system
 
+info "Copying systemd service files"
 cp recipes-frontend/post-receive /home/pi/recipes-frontend.git/hooks/post-receive
 chmod +x /home/pi/recipes-frontend.git/hooks/post-receive
-sudo cp recipes-frontend/recipes-frontend-service.service /usr/lib/systemd/system
+sudo cp recipes-frontend/recipes-frontend.service /usr/lib/systemd/system
 
 sudo systemctl daemon-reload
 

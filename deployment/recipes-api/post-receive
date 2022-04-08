@@ -66,10 +66,10 @@ do
         cp /home/pi/recipes-api-deploy-folder/recipes-api/build/libs/recipes-api.jar /home/pi/recipes-api-server
 
         info "Stopping old process"
-        sudo systemctl stop recipes-api-service.service
+        sudo systemctl stop recipes-api.service
 
         info "Starting new process"
-        sudo systemctl start recipes-api-service.service
+        sudo systemctl start recipes-api.service
 
         gradle_return_code=$?
         if [ $gradle_return_code == 1 ];

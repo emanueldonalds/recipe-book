@@ -29,10 +29,10 @@ while read oldrev newrev ref; do
 
         stage "Deploy"
         info "Stopping old process"
-        sudo systemctl stop recipes-frontend-service.service
+        sudo systemctl stop recipes-frontend.service
 
         info "Starting new process"
-        sudo systemctl start recipes-frontend-service.service
+        sudo systemctl start recipes-frontend.service
 
         stage "Deploy done!"
     else
