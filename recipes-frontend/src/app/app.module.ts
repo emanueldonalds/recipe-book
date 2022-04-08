@@ -31,6 +31,7 @@ import { ServingsInputComponent } from './components/servings-input/servings-inp
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { OrderByPipe } from './pipes/order-by-pipe';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -48,8 +49,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ServingsInputComponent,
     SearchBarComponent,
     OrderByPipe,
-    NotFoundComponent
-  ],
+    NotFoundComponent  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -65,8 +65,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatDialogModule,
     FlexLayoutModule,
     MatIconModule,
-    MatCardModule
-  ],
+    MatCardModule,
+    DragDropModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
