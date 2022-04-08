@@ -1,6 +1,6 @@
 #!/bin/bash
 
-blue="\e[0;94m"
+blue="\e[0;36m"
 yellow="\e[1;33m"
 reset="\e[0m"
 
