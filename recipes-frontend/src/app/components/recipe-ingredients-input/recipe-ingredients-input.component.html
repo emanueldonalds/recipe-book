@@ -2,7 +2,7 @@
     <span class="input-heading mat-h3">Ingredienser</span>
     <div class="list">
         <ul cdkDropList (cdkDropListDropped)="drop($event)" role="list">
-            <li cdkDrag cdkDragLockAxis="y" *ngFor="let ingredient of ingredients" class="li mat-h3" role="listitem">
+            <li cdkDrag dragRefConfig="dragConfig" cdkDragLockAxis="y" *ngFor="let ingredient of ingredients" class="li mat-h3" role="listitem">
                 <a mat-button class="w-100" (click)="openEditDialog(ingredient)">
                     <span fxLayout="row">
                         {{ingredient.name}}
@@ -11,8 +11,10 @@
                                 style="margin-right: 0.5rem;">{{ingredient?.quantity?.value}}</span>
                             <span class="narrow text-left">{{ingredient?.quantity?.unit}}</span>
                         </div>
+                        <div cdkDragHandle class=""><i class="bi bi-arrow-down-up"></i></div>
                     </span>
                 </a>
+                <div class="placeholder" *cdkDragPlaceholder></div>
             </li>
             <li role="li" role="listitem">
                 <a mat-button style="text-align:left" class="w-100 add-ingredient" (click)="openCreateDialog()">Lägg

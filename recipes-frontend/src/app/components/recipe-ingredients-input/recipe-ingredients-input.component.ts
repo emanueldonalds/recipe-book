@@ -5,7 +5,7 @@ import { Ingredient } from 'src/app/models/ingredient';
 import { Quantity } from 'src/app/models/quantity';
 import { IngredientDialogResponse } from 'src/app/components/recipe-ingredients-input/ingredient-dialog/ingredient-dialog-response';
 import { IngredientDialogComponent } from 'src/app/components/recipe-ingredients-input/ingredient-dialog/ingredient-dialog.component';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CDK_DRAG_CONFIG, DragRefConfig, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-recipe-ingredients-input',
@@ -14,8 +14,14 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class RecipeIngredientsInputComponent implements OnInit {
   @Input()  ingredients!: Ingredient[];
+  
+  dragConfig: DragRefConfig = {
+    dragStartThreshold: 1000,
+    pointerDirectionChangeThreshold: 0
+  };
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) { 
+  }
 
   ngOnInit(): void {
 

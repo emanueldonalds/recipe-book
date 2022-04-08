@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./material-custom-theme.scss";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
-
+@import "bootstrap-icons/font/bootstrap-icons.scss";
 .remove {
   color: #f44336;
 }
@@ -74,4 +74,8 @@ h2 {
 
 .content {
   margin-bottom: 1rem;
+}
+
+a {
+  color: white;
 }
