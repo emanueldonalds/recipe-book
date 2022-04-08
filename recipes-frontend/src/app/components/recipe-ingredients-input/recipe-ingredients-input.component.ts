@@ -5,6 +5,7 @@ import { Ingredient } from 'src/app/models/ingredient';
 import { Quantity } from 'src/app/models/quantity';
 import { IngredientDialogResponse } from 'src/app/components/recipe-ingredients-input/ingredient-dialog/ingredient-dialog-response';
 import { IngredientDialogComponent } from 'src/app/components/recipe-ingredients-input/ingredient-dialog/ingredient-dialog.component';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-recipe-ingredients-input',
@@ -57,5 +58,9 @@ export class RecipeIngredientsInputComponent implements OnInit {
         this.ingredients.push(dialogResponse.ingredient);
       }
     });
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.ingredients, event.previousIndex, event.currentIndex);
   }
 }
