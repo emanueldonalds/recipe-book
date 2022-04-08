@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-@Profile("aws")
+@Profile("prod")
 @Slf4j
 public class AWSDynamoDBRecipeRepository implements RecipeRepository {
 

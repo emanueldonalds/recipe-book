@@ -2,7 +2,7 @@
 Description=Recipes API service
 
 [Service]
-ExecStart=/home/pi/.sdkman/candidates/java/current/bin/java -jar /home/pi/recipes-api-server/recipes-api.jar
+ExecStart=/home/pi/.sdkman/candidates/java/current/bin/java -jar -Dspring.profiles.active=prod /home/pi/recipes-api-server/recipes-api.jar
 User=pi
 
 [Install]
