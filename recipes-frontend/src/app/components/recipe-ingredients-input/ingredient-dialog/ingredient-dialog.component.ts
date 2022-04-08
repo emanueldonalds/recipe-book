@@ -34,6 +34,7 @@ export class IngredientDialogComponent implements OnInit {
   ingredientToEdit: Ingredient | undefined;
 
   constructor(public dialogRef: MatDialogRef<IngredientDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private unitService: UnitService) {
+    dialogRef.disableClose = true;
     this.ingredientToEdit = data?.ingredient;
     if (this.ingredientToEdit) {
       this.editMode = true;
