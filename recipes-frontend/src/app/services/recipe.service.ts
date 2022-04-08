@@ -11,7 +11,7 @@ import { UnitService } from './unit.service';
 })
 export class RecipeService {
 
-  private recipesUrl = "http://localhost:8555/recipes"; //TODO this must be configured based on environment
+  private recipesUrl = "http://192.168.0.126:8555/recipes"; //TODO this must be configured based on environment
 
   constructor(private http: HttpClient, private unitService: UnitService) { }
 
