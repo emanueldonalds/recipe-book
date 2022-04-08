@@ -92,6 +92,25 @@ else
     info "Recipes frontend Git project already initialized"
 fi
 
+if [[ ! -d "/home/pi/.aws" ]]
+then
+    info "Setting up AWS credentials"
+    mkdir /home/pi/.aws
+    touch /home/pi/.aws/config
+    echo "[default]" > /home/pi/.aws/config
+    echo "region=eu-north-1" > /home/pi/.aws/config
+    touch /home/pi/.aws/credentials
+    echo "[default]" > /home/pi/.aws/credentials
+    echo "Enter AWS_ACCESS_KEY_ID"
+    read access_key_id
+    echo access_key_id > /home/pi/.aws/credentials
+    echo "Enter AWS_ACCESS_KEY"
+    read access_key
+    echo access_key_id > /home/pi/.aws/credentials
+else
+    info "AWS credentials already set up"
+fi
+
 info "Copying post-recieve files"
 cp recipes-api/post-receive /home/pi/recipes-api.git/hooks/post-receive
 chmod +x /home/pi/recipes-api.git/hooks/post-receive
