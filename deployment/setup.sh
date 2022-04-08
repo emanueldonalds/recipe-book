@@ -10,17 +10,25 @@ info() {
 
 if [ ! "$1" = "s" ]
 then
+    info "Installing Git"
     sudo apt install -y git
+
+    info "Installing zip"
     sudo apt install zip
+
+    info "Installing SDK Man"
     curl -s "https://get.sdkman.io" | bash
     source "$HOME/.sdkman/bin/sdkman-init.sh"
     sdk version
+
+    info "Installing Java 17"
     sdk install java 17.0.1-librca
+
+    info "Installing Gradle 7.4.2"
     sdk install gradle 7.4.2
 
-
-     Install NodeJS https://github.com/nodesource/distributions/blob/master/README.md#debinstall
-
+    # Install NodeJS https://github.com/nodesource/distributions/blob/master/README.md#debinstall
+    info "Installing NodeJS"
     KEYRING=/usr/share/keyrings/nodesource.gpg
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | sudo tee "$KEYRING" >/dev/null
     gpg --no-default-keyring --keyring "$KEYRING" --list-keys
@@ -36,7 +44,10 @@ then
     sudo npm install -g n
     sudo n stable
 
+    info "Installing Angular"
     sudo npm install -g @angular/cli
+else
+    info "Quick setup"
 fi
 
 if [[ ! -f "/home/pi/.ssh/authorized_keys" ]]

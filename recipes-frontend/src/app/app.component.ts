@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,4 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AppComponent {
   title = 'recipes-frontend';
 
+  ngOnInit() {
+    if (isDevMode()) {
+      console.log ("Development server")
+    }
+    else {
+      console.log("Prod server")
+    }
+  }
 }

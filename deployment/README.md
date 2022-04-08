@@ -33,6 +33,8 @@ chmod +x setup.sh
 
 Paste the public key when prompted.
 
+Enter yes if prompted.
+
 Reboot the RPI.
 
 The RPI now requires SSH authentication to connect.

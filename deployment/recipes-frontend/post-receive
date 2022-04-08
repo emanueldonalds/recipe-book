@@ -25,7 +25,7 @@ while read oldrev newrev ref; do
 
         stage "Build"
         npm install
-        ng build
+        ng build --configuration=production
 
         stage "Deploy"
         info "Stopping old process"
