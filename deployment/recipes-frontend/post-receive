@@ -33,7 +33,6 @@ while read oldrev newrev ref; do
 
         info "Starting new process"
         sudo systemctl start recipes-frontend.service
-        sudo systemctl status recipes-frontend.service
 
         stage "Deploy done!"
     else
