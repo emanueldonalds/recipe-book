@@ -3,7 +3,7 @@ TARGET="/home/pi/recipes-frontend-deploy-folder"
 GIT_DIR="/home/pi/recipes-frontend.git"
 BRANCH="master"
 
-blue="\e[0;94m"
+blue="\e[0;36m"
 green="\e[0;92m"
 yellow="\e[1;33m"
 purple="\e[35m"
