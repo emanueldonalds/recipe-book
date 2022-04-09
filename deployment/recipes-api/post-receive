@@ -2,7 +2,6 @@
 TARGET="/home/pi/recipes-api-deploy-folder"
 GIT_DIR="/home/pi/recipes-api.git"
 BRANCH="master"
-#GRADLE="/home/pi/.sdkman/candidates/gradle/7.4.2/bin/gradle"
 
 blue="\e[0;36m"
 green="\e[0;92m"

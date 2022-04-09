@@ -1,0 +1,9 @@
+[Unit]
+Description=Recipes KeyCloak service
+
+[Service]
+ExecStart=docker run keycloak
+User=pi
+
+[Install]
+WantedBy=multi-user.target
