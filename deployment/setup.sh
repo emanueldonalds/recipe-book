@@ -32,7 +32,7 @@ then
     KEYRING=/usr/share/keyrings/nodesource.gpg
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | sudo tee "$KEYRING" >/dev/null
     gpg --no-default-keyring --keyring "$KEYRING" --list-keys
-    VERSION=node_17.8.0
+    VERSION=node_17.x
     KEYRING=/usr/share/keyrings/nodesource.gpg
     DISTRO="$(lsb_release -s -c)"
     echo "deb [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee /etc/apt/sources.list.d/nodesource.list
@@ -46,6 +46,11 @@ then
 
     info "Installing Angular"
     sudo npm install -g @angular/cli
+
+    info "Installing Docker"
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+    rm get-docker.sh
 else
     info "Quick setup"
 fi
