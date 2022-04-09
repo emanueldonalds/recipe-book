@@ -97,16 +97,20 @@ then
     info "Setting up AWS credentials"
     mkdir /home/pi/.aws
     touch /home/pi/.aws/config
-    echo "[default]" > /home/pi/.aws/config
-    echo "region=eu-north-1" > /home/pi/.aws/config
+
+    echo "[default]" >> /home/pi/.aws/config
+    echo "region=eu-north-1" >> /home/pi/.aws/config
+
     touch /home/pi/.aws/credentials
-    echo "[default]" > /home/pi/.aws/credentials
+    echo "[default]" >> /home/pi/.aws/credentials
+
     echo "Enter AWS_ACCESS_KEY_ID"
     read access_key_id
-    echo access_key_id > /home/pi/.aws/credentials
+    echo "aws_access_key_id="$access_key_id >> /home/pi/.aws/credentials
+
     echo "Enter AWS_ACCESS_KEY"
     read access_key
-    echo access_key_id > /home/pi/.aws/credentials
+    echo "aws_secret_access_key="$access_key >> /home/pi/.aws/credentials
 else
     info "AWS credentials already set up"
 fi
