@@ -34,16 +34,16 @@ then
     else
         # Install NodeJS https://github.com/nodesource/distributions/blob/master/README.md#debinstall
         info "Installing NodeJS"
-        KEYRING=/usr/share/keyrings/nodesource.gpg
-        curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | sudo tee "$KEYRING" >/dev/null
-        gpg --no-default-keyring --keyring "$KEYRING" --list-keys
-        VERSION=node_17.x
-        KEYRING=/usr/share/keyrings/nodesource.gpg
-        DISTRO="$(lsb_release -s -c)"
-        echo "deb [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-        echo "deb-src [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
-        sudo apt-get update
-        sudo apt-get install -y nodejs
+        #KEYRING=/usr/share/keyrings/nodesource.gpg
+        #curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | sudo tee "$KEYRING" >/dev/null
+        #gpg --no-default-keyring --keyring "$KEYRING" --list-keys
+        #VERSION=node_17.x
+        #KEYRING=/usr/share/keyrings/nodesource.gpg
+        #DISTRO="$(lsb_release -s -c)"
+        #echo "deb [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+        #echo "deb-src [signed-by=$KEYRING] https://deb.nodesource.com/$VERSION $DISTRO main" | sudo tee -a /etc/apt/sources.list.d/nodesource.list
+        #sudo apt-get update
+        #sudo apt-get install -y nodejs
         sudo apt-get install -y npm
         sudo npm cache clean -f
         sudo npm install -g n
