@@ -26,7 +26,7 @@ do
 
         cd /home/pi/keycloak-deploy-folder/keycloak
 
-        stage "Install"
+        stage "Build"
         chmod +x ./build.sh
         ./build.sh
 
