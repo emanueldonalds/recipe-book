@@ -47,13 +47,10 @@ then
     info "Installing Angular"
     sudo npm install -g @angular/cli
 
-    info "Installing Docker"
-    sudo npm install -y docker
-    
     info "Installing MariaDB"
     sudo apt install -y mariadb-server
     sudo mysql_secure_installation
-    
+
 else
     info "Quick setup"
 fi
