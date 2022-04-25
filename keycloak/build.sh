@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ ! -d "./rm -r keycloak-18.0.0.tar.gz" ]]
+if [[ ! -d "./keycloak-18.0.0" ]]
 then
     wget https://github.com/keycloak/keycloak/releases/download/18.0.0/keycloak-18.0.0.tar.gz
     tar -xvzf keycloak-18.0.0.tar.gz
