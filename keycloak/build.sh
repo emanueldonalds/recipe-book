@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# MariaDB
-sudo apt install -y mariadb-server
-sudo mysql_secure_installation
-
-# KeyCloak
 if [[ ! -d "./rm -r keycloak-18.0.0.tar.gz" ]]
 then
     rm -r keycloak-18.0.0.tar.gz

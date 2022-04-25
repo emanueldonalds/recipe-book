@@ -27,8 +27,8 @@ do
         cd /home/pi/keycloak-deploy-folder/keycloak
 
         stage "Install"
-        chmod +x ./install.sh
-        ./install.sh
+        chmod +x ./build.sh
+        ./build.sh
 
         stage "Deploy"
         info "Stopping old process"
