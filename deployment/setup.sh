@@ -11,13 +11,8 @@ info() {
 if [ ! "$1" = "s" ]
 then
 
-    if [ -x /path/to/programname ];
-    then
-        info "Installing Git"
-        sudo apt install -y git
-    else
-        info "Git already installed"
-    fi
+    info "Installing Git"
+    sudo apt install -y git
 
     info "Installing zip"
     sudo apt install zip
@@ -53,7 +48,7 @@ then
     info "Installing Angular"
     sudo npm install -g @angular/cli
 
-    if [ -x mariadb-server ];
+    if [ which mariadb ];
     then
         info "Installing MariaDB"
         sudo apt install -y mariadb-server
