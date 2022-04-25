@@ -2,7 +2,7 @@
 Description=KeyCloak service
 
 [Service]
-ExecStart=/pi/home/keycloak-deploy-folder/keycloak-18.0.0/bin/kc.sh
+ExecStart=/home/pi/keycloak-deploy-folder/keycloak-18.0.0/bin/kc.sh
 User=pi
 
 [Install]
