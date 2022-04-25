@@ -94,7 +94,7 @@ then
     mkdir /home/pi/keycloak-deploy-folder
     git init --bare /home/pi/recipes-frontend.git
 else
-    info "Recipes frontend Git project already initialized"
+    info "Keycloak Git project already initialized"
 fi
 
 if [[ ! -d "/home/pi/.aws" ]]
