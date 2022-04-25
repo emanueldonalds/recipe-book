@@ -43,9 +43,11 @@ The setup script creates bare Git repositories in the RPI home folder. On your p
 
 `git remote add prod-recipes-api pi@<your-public-ip>:recipes-api.git`
 `git remote add prod-recipes-frontend pi@<your-public-ip>:recipes-frontend.git`
+`git remote add prod-keycloak pi@<your-public-ip>:keycloak.git`
 
 # How to deploy
 Deploy by pushing master to the prod remotes
 
 `git push prod-recipes-api master`
 `git push prod-recipes-frontend master`
+`git push prod-keycloak master`

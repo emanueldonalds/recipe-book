@@ -97,6 +97,19 @@ else
     info "Keycloak Git project already initialized"
 fi
 
+info "Copying post-recieve files"
+cp recipes-api/post-receive /home/pi/recipes-api.git/hooks/post-receive
+cp recipes-frontend/post-receive /home/pi/recipes-frontend.git/hooks/post-receive
+cp keycloak/post-receive /home/pi/keycloak.git/hooks/keycloak
+chmod +x /home/pi/recipes-api.git/hooks/post-receive
+chmod +x /home/pi/recipes-frontend.git/hooks/post-receive
+chmod +x /home/pi/keycloak.git/hooks/post-receive
+
+info "Copying systemd service files"
+sudo cp recipes-api/recipes-api.service /usr/lib/systemd/system
+sudo cp recipes-frontend/recipes-frontend.service /usr/lib/systemd/system
+sudo cp keycloak/keycloak.service /usr/lib/systemd/system
+
 if [[ ! -d "/home/pi/.aws" ]]
 then
     info "Setting up AWS credentials"
@@ -119,16 +132,6 @@ then
 else
     info "AWS credentials already set up"
 fi
-
-info "Copying post-recieve files"
-cp recipes-api/post-receive /home/pi/recipes-api.git/hooks/post-receive
-chmod +x /home/pi/recipes-api.git/hooks/post-receive
-sudo cp recipes-api/recipes-api.service /usr/lib/systemd/system
-
-info "Copying systemd service files"
-cp recipes-frontend/post-receive /home/pi/recipes-frontend.git/hooks/post-receive
-chmod +x /home/pi/recipes-frontend.git/hooks/post-receive
-sudo cp recipes-frontend/recipes-frontend.service /usr/lib/systemd/system
 
 sudo systemctl daemon-reload
 
