@@ -28,7 +28,7 @@ then
     info "Installing Gradle 7.4.2"
     sdk install gradle 7.4.2
 
-    if [ which npm ];
+    if [ which node ];
     then
         info "NodeJS and NPM already installed"
     else
