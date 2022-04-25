@@ -92,7 +92,7 @@ if [[ ! -d "/home/pi/keycloak.git" ]]
 then
     info "Initializing Keycloak Git project"
     mkdir /home/pi/keycloak-deploy-folder
-    git init --bare /home/pi/recipes-frontend.git
+    git init --bare /home/pi/keycloak.git
 else
     info "Keycloak Git project already initialized"
 fi
