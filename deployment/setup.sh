@@ -74,22 +74,24 @@ then
     info "Initializing Recipes API Git project"
     mkdir /home/pi/recipes-api-deploy-folder
     git init --bare /home/pi/recipes-api.git
-else
-    info "Recipes API Git project already initialized"
-fi
-
-if [[ ! -d "/home/pi/recipes-api-server" ]]
-then
-    info "Creating recipes-api-server directory"
 	mkdir /home/pi/recipes-api-server
 else
-    info "Directory recipes-api-server already exists"
+    info "Recipes API Git project already initialized"
 fi
 
 if [[ ! -d "/home/pi/recipes-frontend.git" ]]
 then
     info "Initializing Recipes frontend Git project"
     mkdir /home/pi/recipes-frontend-deploy-folder
+    git init --bare /home/pi/recipes-frontend.git
+else
+    info "Recipes frontend Git project already initialized"
+fi
+
+if [[ ! -d "/home/pi/keycloak.git" ]]
+then
+    info "Initializing Keycloak Git project"
+    mkdir /home/pi/keycloak-deploy-folder
     git init --bare /home/pi/recipes-frontend.git
 else
     info "Recipes frontend Git project already initialized"
