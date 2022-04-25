@@ -28,7 +28,7 @@ then
     info "Installing Gradle 7.4.2"
     sdk install gradle 7.4.2
 
-    if [ which node ];
+    if command -v node &>/dev/null
     then
         info "NodeJS and NPM already installed"
     else
@@ -53,13 +53,13 @@ then
         sudo npm install -g @angular/cli
     fi
 
-    if [ which mariadb ];
+    if command -v mariadb &>/dev/null
     then
+        info "MariaDB already installed"
+    else
         info "Installing MariaDB"
         sudo apt install -y mariadb-server
         sudo mysql_secure_installation
-    else
-        info "MariaDB already installed"
     fi
 
 else
