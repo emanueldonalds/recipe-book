@@ -100,7 +100,7 @@ fi
 info "Copying post-recieve files"
 cp recipes-api/post-receive /home/pi/recipes-api.git/hooks/post-receive
 cp recipes-frontend/post-receive /home/pi/recipes-frontend.git/hooks/post-receive
-cp keycloak/post-receive /home/pi/keycloak.git/hooks/keycloak
+cp keycloak/post-receive /home/pi/keycloak.git/hooks/post-receive
 chmod +x /home/pi/recipes-api.git/hooks/post-receive
 chmod +x /home/pi/recipes-frontend.git/hooks/post-receive
 chmod +x /home/pi/keycloak.git/hooks/post-receive
