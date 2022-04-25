@@ -1,8 +1,8 @@
 [Unit]
-Description=Recipes KeyCloak service
+Description=KeyCloak service
 
 [Service]
-ExecStart=docker run keycloak
+ExecStart=/pi/home/keycloak-deploy-folder/keycloak-18.0.0/bin/kc.sh
 User=pi
 
 [Install]
