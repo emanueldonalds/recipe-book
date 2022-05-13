@@ -52,16 +52,6 @@ then
         info "Installing Angular"
         sudo npm install -g @angular/cli
     fi
-
-    if command -v mariadb &>/dev/null
-    then
-        info "MariaDB already installed"
-    else
-        info "Installing MariaDB"
-        sudo apt install -y mariadb-server
-        sudo mysql_secure_installation
-    fi
-
 else
     info "Quick setup"
 fi
@@ -101,27 +91,15 @@ else
     info "Recipes frontend Git project already initialized"
 fi
 
-if [[ ! -d "/home/pi/keycloak.git" ]]
-then
-    info "Initializing Keycloak Git project"
-    mkdir /home/pi/keycloak-deploy-folder
-    git init --bare /home/pi/keycloak.git
-else
-    info "Keycloak Git project already initialized"
-fi
-
 info "Copying post-recieve files"
 cp recipes-api/post-receive /home/pi/recipes-api.git/hooks/post-receive
 cp recipes-frontend/post-receive /home/pi/recipes-frontend.git/hooks/post-receive
-cp keycloak/post-receive /home/pi/keycloak.git/hooks/post-receive
 chmod +x /home/pi/recipes-api.git/hooks/post-receive
 chmod +x /home/pi/recipes-frontend.git/hooks/post-receive
-chmod +x /home/pi/keycloak.git/hooks/post-receive
 
 info "Copying systemd service files"
 sudo cp recipes-api/recipes-api.service /usr/lib/systemd/system
 sudo cp recipes-frontend/recipes-frontend.service /usr/lib/systemd/system
-sudo cp keycloak/keycloak.service /usr/lib/systemd/system
 
 if [[ ! -d "/home/pi/.aws" ]]
 then

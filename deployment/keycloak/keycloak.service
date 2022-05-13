@@ -1,9 +1,0 @@
-[Unit]
-Description=KeyCloak service
-
-[Service]
-ExecStart=/home/pi/keycloak-deploy-folder/keycloak/keycloak-18.0.0/bin/kc.sh
-User=pi
-
-[Install]
-WantedBy=multi-user.target
