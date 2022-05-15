@@ -5,6 +5,8 @@
     <div [hidden]="recipes.length > 0">
         <app-spinner></app-spinner>
     </div>
+</div>
+<div class="content">
     <div *ngFor="let recipe of filteredRecipes | orderBy:'name'">
         <a type="button" class="btn btn-dark d-flex" routerLink="{{recipe.id}}">{{recipe.name}}</a>
     </div>

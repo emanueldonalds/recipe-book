@@ -25,4 +25,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onEdit() {
+    this.keycloakService.getKeycloakInstance().accountManagement();
+  }
+
 }

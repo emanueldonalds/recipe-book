@@ -11,7 +11,7 @@
     </div>
 
     <div *ngIf="!isLoggedIn">
-        <button mat-button>Skapa konto</button>
+        <button mat-button (click)="onRegister()">Skapa konto</button>
         <button mat-stroked-button color="primary" (click)="onLogin()">Logga in</button>
     </div>
 </div>

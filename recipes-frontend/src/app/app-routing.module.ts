@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'new-recipe', component: NewRecipeComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: ':id', component: RecipeDetailsComponent },
-  { path: ':id/edit', component: EditRecipeComponent },
+  { path: ':id/edit', component: EditRecipeComponent, canActivate: [AuthGuard] },
   { path: '**', pathMatch: 'full', component: NotFoundComponent }
 ];
 
