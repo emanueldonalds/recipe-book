@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { getRecipeForm, getRecipeFormPopulated } from '../components/forms/recipe-form';
 import { Ingredient } from '../models/ingredient';
 import { copyOf, Recipe } from '../models/recipe';
-import { RecipeFormService } from '../services/recipe-form.service';
 import { RecipeService } from '../services/recipe.service';
 import { DeleteRecipeDialog } from './delete-recipe-dialog/delete-recipe-dialog.component';
 
@@ -22,15 +22,14 @@ export class EditRecipeComponent implements OnInit {
     private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute,
-    private recipeFormService: RecipeFormService,
     private dialog: MatDialog) {
-      this.form = recipeFormService.getRecipeForm();
+      this.form = getRecipeForm();
   }
 
   ngOnInit(): void {
     this.id = String(this.route.snapshot.paramMap.get('id'));
     this.recipeService.getRecipe(this.id).subscribe(recipe => {
-      this.form = this.recipeFormService.getRecipeFormPopulated(
+      this.form = getRecipeFormPopulated(
         recipe.name, recipe.instructions, recipe.servings);
       recipe.ingredients.forEach(ingredient => {
         this.ingredients.push(ingredient);

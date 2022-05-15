@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { getRecipeForm } from '../components/forms/recipe-form';
 import { Ingredient } from '../models/ingredient';
-import { Quantity } from '../models/quantity';
 import { copyOf, Recipe } from '../models/recipe';
-import { RecipeFormService } from '../services/recipe-form.service';
 import { RecipeService } from '../services/recipe.service';
 
 @Component({
@@ -17,10 +16,8 @@ export class NewRecipeComponent implements OnInit {
   ingredients: Ingredient[] = [];
   loading: boolean = false;
 
-  constructor(private recipeService: RecipeService,
-     private router: Router, 
-     private recipeFormService: RecipeFormService) {
-    this.form = recipeFormService.getRecipeForm();
+  constructor(private recipeService: RecipeService, private router: Router) {
+    this.form = getRecipeForm();
   }
 
   ngOnInit(): void {

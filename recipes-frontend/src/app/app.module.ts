@@ -52,7 +52,8 @@ import { ConfigInitService } from './init/config-init.service';
     ServingsInputComponent,
     SearchBarComponent,
     OrderByPipe,
-    NotFoundComponent  ],
+    NotFoundComponent,
+    ],
   imports: [
     BrowserModule,
     HttpClientModule,
