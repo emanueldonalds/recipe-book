@@ -35,6 +35,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { initializeKeycloak } from './authentication/keycloak-init.factory';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { ConfigInitService } from './init/config-init.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import {MatMenuModule} from '@angular/material/menu'; 
 
 @NgModule({
   declarations: [
@@ -53,6 +55,7 @@ import { ConfigInitService } from './init/config-init.service';
     SearchBarComponent,
     OrderByPipe,
     NotFoundComponent,
+    NavbarComponent,
     ],
   imports: [
     BrowserModule,
@@ -67,11 +70,12 @@ import { ConfigInitService } from './init/config-init.service';
     MatListModule,
     MatButtonModule,
     MatDialogModule,
-    FlexLayoutModule,
+    MatMenuModule,
     MatIconModule,
     MatCardModule,
+    FlexLayoutModule,
     DragDropModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
     ],
   providers: [
     ConfigInitService,
