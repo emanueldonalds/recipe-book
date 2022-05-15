@@ -1,0 +1,5 @@
+{
+    "KEYCLOAK_URL": "https://authenticate.edonalds.com",
+    "KEYCLOAK_REALM": "receptboken",
+    "KEYCLOAK_CLIENT_ID": "frontend-app-local"
+}

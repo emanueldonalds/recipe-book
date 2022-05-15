@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { RecipesComponent } from './recipes/recipes.component';
@@ -32,6 +32,9 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { OrderByPipe } from './pipes/order-by-pipe';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { initializeKeycloak } from './authentication/keycloak-init.factory';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { ConfigInitService } from './init/config-init.service';
 
 @NgModule({
   declarations: [
@@ -66,9 +69,18 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FlexLayoutModule,
     MatIconModule,
     MatCardModule,
-    DragDropModule
+    DragDropModule,
+    KeycloakAngularModule
     ],
-  providers: [],
+  providers: [
+    ConfigInitService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService, ConfigInitService],
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,10 +5,11 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthGuard } from './authentication/auth.guard';
 
 const routes: Routes = [
   { path: '', component: RecipesComponent },
-  { path: 'new-recipe', component: NewRecipeComponent },
+  { path: 'new-recipe', component: NewRecipeComponent, canActivate: [AuthGuard] },
   { path: ':id', component: RecipeDetailsComponent },
   { path: ':id/edit', component: EditRecipeComponent },
   { path: '**', pathMatch: 'full', component: NotFoundComponent }
