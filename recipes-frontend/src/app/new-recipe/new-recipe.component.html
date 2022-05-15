@@ -1,4 +1,4 @@
-<app-search-bar [immediate]="false"></app-search-bar>
+<app-search-bar [immediateSearch]="false"></app-search-bar>
 
 <div class="content">
 
@@ -7,7 +7,7 @@
     </div>
 
     <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <button class="btn-search input-group-text btn-dark" routerLink="/">Alla recept</button>
+        <button class="btn-search input-group-text btn-dark" routerLink="/">Tillbaka</button>
         <div class="col-md-4 centered">
 
             <h1 class="mat-h1">Nytt recept</h1>

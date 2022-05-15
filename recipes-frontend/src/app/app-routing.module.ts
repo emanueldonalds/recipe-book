@@ -6,10 +6,12 @@ import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './authentication/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: RecipesComponent },
   { path: 'new-recipe', component: NewRecipeComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: ':id', component: RecipeDetailsComponent },
   { path: ':id/edit', component: EditRecipeComponent },
   { path: '**', pathMatch: 'full', component: NotFoundComponent }

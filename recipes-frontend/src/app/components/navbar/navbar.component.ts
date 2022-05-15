@@ -16,13 +16,13 @@ export class NavbarComponent implements OnInit {
     this.keycloakService = keycloakService;
   }
 
-  ngOnInit(): void {
-    this.keycloakService.isLoggedIn().then(isLoggedIn => {
-      this.isLoggedIn = isLoggedIn;
-      if (isLoggedIn) {
-        this.keycloakService.loadUserProfile().then(userProfile => this.username = userProfile.username!);
-      }
-    })
+  async ngOnInit() {
+    this.isLoggedIn = await this.keycloakService.isLoggedIn();
+    console.log("Logged in: " + this.isLoggedIn);
+    if (this.isLoggedIn) {
+      this.keycloakService.loadUserProfile().then(userProfile => this.username = userProfile.username!);
+    }
+    console.log(JSON.stringify(this.keycloakService.getKeycloakInstance()));
   }
 
   onLogin(): void {

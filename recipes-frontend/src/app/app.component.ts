@@ -1,5 +1,5 @@
 import { Component, isDevMode } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'recipes-frontend';
+
+  private(keycloakService: KeycloakService) {
+    keycloakService.isLoggedIn().then(isLoggedIn => console.log("Is logged in: " + isLoggedIn));
+  }
 
   ngOnInit() {
     if (isDevMode()) {

@@ -4,7 +4,7 @@
     
         <button mat-button [matMenuTriggerFor]="menu">{{username}} <i class="bi bi-chevron-down"></i></button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>Profil</button>
+            <button mat-menu-item routerLink="/profile">Profil</button>
             <button mat-menu-item (click)="onLogout()">Logga ut</button>
         </mat-menu>
     

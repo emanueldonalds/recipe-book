@@ -19,7 +19,8 @@ export function initializeKeycloak(
                 clientId: config['KEYCLOAK_CLIENT_ID'],
               },
               initOptions: {
-                checkLoginIframe: false
+                checkLoginIframe: false,
+                onLoad: "check-sso"
               }
             }))
               
