@@ -2,20 +2,13 @@
 @import "./material-custom-theme.scss";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "bootstrap-icons/font/bootstrap-icons.scss";
-.remove {
-  color: #f44336;
-}
 
-.remove:hover {
-  color: #ff6f65;
+* {
+  font-family: "Helvetica";
 }
 
 html {
   word-wrap: break-word;
-}
-
-a:hover {
-  color: #f44336;
 }
 
 .narrow {
@@ -29,7 +22,7 @@ a:hover {
 }
 
 .text-left {
-  text-align: left;
+  text-align: left !important;
 }
 
 .bg {
@@ -43,6 +36,10 @@ a:hover {
 .centered {
   margin: 0 auto;
   float: none;
+}
+
+.align-right {
+  float: right;
 }
 
 .btn-search {
@@ -78,4 +75,8 @@ h2 {
 
 a {
   color: white;
+}
+
+a:hover {
+  color: #f87543;
 }

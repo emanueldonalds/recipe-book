@@ -7,7 +7,7 @@
     </div>
 
     <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <button class="btn-search input-group-text btn-dark" routerLink="/">Tillbaka</button>
+        <button mat-stroked-button routerLink="/">Tillbaka</button>
         <div class="col-md-4 centered">
 
             <h1 class="mat-h1">Nytt recept</h1>
@@ -18,6 +18,8 @@
             <app-recipe-instructions-input [form]="form"></app-recipe-instructions-input>
 
         </div>
-        <button class="ms-auto btn-search input-group-text btn-dark" type="submit">Spara nytt recept</button>
+        <div class="row" class="align-right">
+            <button mat-stroked-button type="submit">Spara nytt recept</button>
+        </div>
     </form>
 </div>

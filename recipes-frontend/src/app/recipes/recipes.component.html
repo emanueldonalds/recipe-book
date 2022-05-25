@@ -1,13 +1,21 @@
 <app-search-bar [immediateSearch]="true"></app-search-bar>
 
 <div class="content">
-    <button class="ms-auto btn-search input-group-text btn-dark" routerLink="/new-recipe">Nytt recept</button>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="align-right">
+                <button mat-stroked-button routerLink="/new-recipe">Nytt recept</button>
+            </div>
+        </div>
+    </div>
     <div [hidden]="recipes.length > 0">
         <app-spinner></app-spinner>
     </div>
 </div>
 <div class="content">
     <div *ngFor="let recipe of filteredRecipes | orderBy:'name'">
-        <a type="button" class="btn btn-dark d-flex" routerLink="{{recipe.id}}">{{recipe.name}}</a>
+        <div class="row">
+            <button mat-button class="text-left" routerLink="{{recipe.id}}">{{recipe.name}}</button>
+        </div>
     </div>
 </div>
