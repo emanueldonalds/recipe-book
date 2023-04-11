@@ -29,6 +29,11 @@ Run:
 `sudo systemctl enable recipes-api.service`
 `sudo systemctl enable recipes-frontend.service`
 
+
+### Add AWS credentials
+Enter the AWS credentials into the .aws/credentials file and copy the .aws folder to /home/recipes/.aws
+
+
 ## TODO
 
 Creat git hooks and adjust post-receive files
