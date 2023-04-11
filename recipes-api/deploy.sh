@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e # Exit immediately if any command below fails.
+
 ./gradlew clean
 ./gradlew assemble
 ./gradlew test
