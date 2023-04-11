@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUri: "https://192.168.0.145:8555",
+  apiUri: "https://recipes-api.edonalds.com",
   configFile: 'assets/config/config.prod.json'
 };
