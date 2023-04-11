@@ -11,12 +11,16 @@ export class UnitService {
   private unitsUrl = environment.apiUri + "/units";
 
   private unitsMap: Map<string, string> = new Map([
+    ["NONE", "Ingen"],
     ["LITER", "l"],
-    ["MILLILITER", "ml"],
     ["DECILITER", "dl"],
+    ["MILLILITER", "ml"],
+    ["TABLESPOON", "Matsked"],
+    ["TEASPOON", "Tesked"],
+    ["PINCH", "Krydmått"],
     ["GRAM", "g"],
-    ["MILLIGRAM", "mg"],
     ["KILOGRAM", "kg"],
+    ["MILLIGRAM", "mg"],
     ["PIECES", "st"],
   ]);
 
