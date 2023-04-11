@@ -28,3 +28,7 @@ Run:
 `sudo systemctl daemon-reload`
 `sudo systemctl enable recipes-api.service`
 `sudo systemctl enable recipes-frontend.service`
+
+## TODO
+
+Creat git hooks and adjust post-receive files
