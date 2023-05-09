@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from '../models/recipe'
 import { RecipeService } from '../services/recipe.service';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-recipe-details',
@@ -10,6 +11,7 @@ import { RecipeService } from '../services/recipe.service';
   styleUrls: ['./recipe-details.component.scss']
 })
 export class RecipeDetailsComponent implements OnInit {
+  isLoggedIn: boolean = false;
   recipe: Recipe = {
     id: '',
     name: '',
@@ -20,10 +22,12 @@ export class RecipeDetailsComponent implements OnInit {
 
   servingOptions = Array.from(Array(10).keys()).map(x => x + 1);
 
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService) {
+  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private keycloakService: KeycloakService) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.isLoggedIn = await this.keycloakService.isLoggedIn();
+
     const id = String(this.route.snapshot.paramMap.get('id'));
     this.recipeService.getRecipe(id).subscribe(recipe => {
       this.recipe = recipe;

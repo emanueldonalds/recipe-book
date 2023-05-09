@@ -7,6 +7,7 @@ import { Ingredient } from '../models/ingredient';
 import { copyOf, Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
 import { DeleteRecipeDialog } from './delete-recipe-dialog/delete-recipe-dialog.component';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -17,16 +18,20 @@ export class EditRecipeComponent implements OnInit {
   form: FormGroup;
   ingredients: Ingredient[] = [];
   id!: string;
+  isLoggedIn: boolean = false;
 
   constructor(
     private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private keycloakService: KeycloakService) {
       this.form = getRecipeForm();
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.isLoggedIn = await this.keycloakService.isLoggedIn();
+
     this.id = String(this.route.snapshot.paramMap.get('id'));
     this.recipeService.getRecipe(this.id).subscribe(recipe => {
       this.form = getRecipeFormPopulated(

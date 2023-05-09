@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit {
 
   async ngOnInit() {
     this.isLoggedIn = await this.keycloakService.isLoggedIn();
-    console.log("Logged in: " + this.isLoggedIn);
     if (this.isLoggedIn) {
       this.username = (await this.keycloakService.loadUserProfile()).username!;
     }

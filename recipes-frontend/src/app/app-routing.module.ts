@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: RecipesComponent },
+  //{ path: 'new-recipe', component: NewRecipeComponent, canActivate: [AuthGuard]  },
   { path: 'new-recipe', component: NewRecipeComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: ':id', component: RecipeDetailsComponent },

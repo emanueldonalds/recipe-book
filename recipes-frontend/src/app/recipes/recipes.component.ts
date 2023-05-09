@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-recipes',
@@ -12,10 +13,14 @@ export class RecipesComponent implements OnInit {
   recipes: Recipe[] = [];
   filteredRecipes: Recipe[] = []
   search: string = "";
+  isLoggedIn: boolean = false;
 
-  constructor(private recipeService: RecipeService, private route: ActivatedRoute) { }
+  constructor(private recipeService: RecipeService, private route: ActivatedRoute, private keycloakService: KeycloakService) { 
+  }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.isLoggedIn = await this.keycloakService.isLoggedIn();
+
     this.route.queryParams
       .subscribe(params => {
         if (params.search) {
