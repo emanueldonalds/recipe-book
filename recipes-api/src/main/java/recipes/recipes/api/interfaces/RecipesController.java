@@ -36,7 +36,6 @@ public class RecipesController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('SCOPE_write')")
     public ResponseEntity<RecipeDTO> createRecipe(@RequestBody final RecipeDTO recipeDTO) {
         return new ResponseEntity<>(recipeService.addRecipe(recipeDTO), HttpStatus.CREATED);
     }
