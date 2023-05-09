@@ -2,8 +2,8 @@
 Description=Recipes API service
 
 [Service]
-ExecStart=/home/pi/.sdkman/candidates/java/current/bin/java -jar -Dspring.profiles.active=prod /home/pi/recipes-api-server/recipes-api.jar
-User=pi
+ExecStart=/home/recipes/.sdkman/candidates/java/current/bin/java -jar -Dspring.profiles.active=prod /home/recipes/artefacts/recipes-api/recipes-api.jar
+User=recipes
 
 [Install]
 WantedBy=multi-user.target

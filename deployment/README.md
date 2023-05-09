@@ -1,51 +1,39 @@
+# Deployment on linux server
 
-# Deployment
+## Requirements
+### Install dependencies
+A separate user must be created with user name "recipes".
+The recipes user must have sudo rights on systemctl
 
-Contains scripts that sets up a Raspberry PI as a production server, using Git's post-recieve hook to test and deploy the application.
+These must be installed on the server:
+- SDKMan
+- Java 17 installed with SDKMan
+- NPM
+- Node
+- Angular 
 
-## Pre-requisites
+Some node dependencies in app.js must be added globally:
+- npm install -g express
+- npm install -g morgan
+- npm install -g cookie-parser
+- npm install -g body-parser
 
-A RPI running Raspbian
 
-Port 22 forwarded to the RPI
+### Create systemd services
+Make sure the paths are OK in the .service files
 
-## Initial setup on RPI
+Copy the .service files to /etc/systemd/system
 
-Copy the files in this folder to the RPI's home folder.
+Run:
+`sudo systemctl daemon-reload`
+`sudo systemctl enable recipes-api.service`
+`sudo systemctl enable recipes-frontend.service`
 
-On your Windows PC, make sure you have a ssh-agent session running.
 
-Create a new ssh key on your windows device using an elevated powershell:
+### Add AWS credentials
+Enter the AWS credentials into the .aws/credentials file and copy the .aws folder to /home/recipes/.aws
 
-First run
 
-`ssh-keygen`
+## TODO
 
-Then
-
-`ssh-add <path-to-private-key>`
-
-Copy the contents of the public key.
-
-On the RPI, run
-chmod +x setup.sh
-./setup.sh
-
-Paste the public key when prompted.
-
-Enter yes if prompted.
-
-Reboot the RPI.
-
-The RPI now requires SSH authentication to connect.
-
-The setup script creates bare Git repositories in the RPI home folder. On your project repo, add the RPI bare Git repositories as new remotes.
-
-`git remote add prod-recipes-api pi@<your-public-ip>:recipes-api.git`
-`git remote add prod-recipes-frontend pi@<your-public-ip>:recipes-frontend.git`
-
-# How to deploy
-Deploy by pushing master to the prod remotes
-
-`git push prod-recipes-api master`
-`git push prod-recipes-frontend master`
+Creat git hooks and adjust post-receive files

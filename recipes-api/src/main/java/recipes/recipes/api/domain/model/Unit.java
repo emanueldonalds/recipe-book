@@ -2,11 +2,14 @@ package recipes.recipes.api.domain.model;
 
 public enum Unit {
     LITER,
-    MILLILITER,
     DECILITER,
+    MILLILITER,
+    TABLESPOON,
+    TEASPOON,
+    PINCH,
     GRAM,
-    MILLIGRAM,
     KILOGRAM,
+    MILLIGRAM,
     PIECES,
     NONE;
 

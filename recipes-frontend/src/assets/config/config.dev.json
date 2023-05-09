@@ -1,5 +1,5 @@
 {
-    "KEYCLOAK_URL": "https://authenticate.edonalds.com",
-    "KEYCLOAK_REALM": "receptboken",
-    "KEYCLOAK_CLIENT_ID": "frontend-app-local"
+    "KEYCLOAK_URL": "https://authenticate.edonalds.com/auth",
+    "KEYCLOAK_REALM": "recipe-book",
+    "KEYCLOAK_CLIENT_ID": "recipes-frontend-local"
 }
