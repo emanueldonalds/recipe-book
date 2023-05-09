@@ -3,6 +3,7 @@ package recipes.recipes.api.interfaces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import recipes.recipes.api.domain.model.RecipeService;
 import recipes.recipes.api.domain.model.dto.RecipeDTO;
@@ -35,6 +36,7 @@ public class RecipesController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('SCOPE_write')")
     public ResponseEntity<RecipeDTO> createRecipe(@RequestBody final RecipeDTO recipeDTO) {
         return new ResponseEntity<>(recipeService.addRecipe(recipeDTO), HttpStatus.CREATED);
     }
