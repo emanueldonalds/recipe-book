@@ -2,7 +2,9 @@
 Simple recipe web app available at [https://recipes.edonalds.com/](https://recipes.edonalds.com/)
 
 ## Tech
-Back end is a Spring Boot app exposing a REST API that is consumed by an Angular front end all secured with OAuth2 / OIDC using KeyCloak.
+- Backend: Spring Boot REST API 
+- Frontent: Angular
+Secured with OAuth2 / OIDC using KeyCloak.
 
 ## Images
 ![image](https://user-images.githubusercontent.com/40231134/195871075-f25dc790-79ec-4004-9891-a9dcce83f898.png)
