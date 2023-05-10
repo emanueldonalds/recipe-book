@@ -5,7 +5,7 @@
     <div class="row">
         <div fxLayout="row" fxLayoutAlign="space-between center">
             <button mat-stroked-button routerLink="/">Tillbaka</button>
-            <button *ngIf="isLoggedIn" mat-stroked-button routerLink="/{{recipe.id}}/edit">Redigera</button>
+            <button *ngIf="isLoggedIn && writeRights" mat-stroked-button routerLink="/{{recipe.id}}/edit">Redigera</button>
         </div>
     </div>
 
