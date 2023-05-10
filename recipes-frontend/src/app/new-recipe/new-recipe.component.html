@@ -1,4 +1,4 @@
-<app-search-bar [immediate]="false"></app-search-bar>
+<app-search-bar [immediateSearch]="false"></app-search-bar>
 
 <div class="content">
 
@@ -7,7 +7,7 @@
     </div>
 
     <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <button class="btn-search input-group-text btn-dark" routerLink="/">Alla recept</button>
+        <button mat-stroked-button routerLink="/">Tillbaka</button>
         <div class="col-md-4 centered">
 
             <h1 class="mat-h1">Nytt recept</h1>
@@ -18,6 +18,9 @@
             <app-recipe-instructions-input [form]="form"></app-recipe-instructions-input>
 
         </div>
-        <button class="ms-auto btn-search input-group-text btn-dark" type="submit">Spara nytt recept</button>
+        <div class="align-right">
+            <label for="save" class="error-message" *ngIf="errorMessage">{{errorMessage}}</label>
+            <button mat-stroked-button type="submit">Spara nytt recept</button>
+        </div>
     </form>
 </div>

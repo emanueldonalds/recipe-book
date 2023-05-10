@@ -29,12 +29,15 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { DeleteRecipeDialog } from './edit-recipe/delete-recipe-dialog/delete-recipe-dialog.component';
 import { ServingsInputComponent } from './components/servings-input/servings-input.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
-import { OrderByPipe } from './pipes/order-by-pipe';
+import { OrderByPipe } from './components/pipes/order-by-pipe';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { initializeKeycloak } from './authentication/keycloak-init.factory';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { ConfigInitService } from './init/config-init.service';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { ProfileComponent } from './profile/profile.component'; 
 
 @NgModule({
   declarations: [
@@ -53,6 +56,8 @@ import { ConfigInitService } from './init/config-init.service';
     SearchBarComponent,
     OrderByPipe,
     NotFoundComponent,
+    NavbarComponent,
+    ProfileComponent,
     ],
   imports: [
     BrowserModule,
@@ -67,11 +72,12 @@ import { ConfigInitService } from './init/config-init.service';
     MatListModule,
     MatButtonModule,
     MatDialogModule,
-    FlexLayoutModule,
+    MatMenuModule,
     MatIconModule,
     MatCardModule,
+    FlexLayoutModule,
     DragDropModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
     ],
   providers: [
     ConfigInitService,

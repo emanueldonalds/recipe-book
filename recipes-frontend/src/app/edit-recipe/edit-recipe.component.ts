@@ -7,6 +7,7 @@ import { Ingredient } from '../models/ingredient';
 import { copyOf, Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
 import { DeleteRecipeDialog } from './delete-recipe-dialog/delete-recipe-dialog.component';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -17,6 +18,8 @@ export class EditRecipeComponent implements OnInit {
   form: FormGroup;
   ingredients: Ingredient[] = [];
   id!: string;
+  isLoggedIn: boolean = false;
+  errorMessage: string = "";
 
   constructor(
     private recipeService: RecipeService,
@@ -26,7 +29,7 @@ export class EditRecipeComponent implements OnInit {
       this.form = getRecipeForm();
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.id = String(this.route.snapshot.paramMap.get('id'));
     this.recipeService.getRecipe(this.id).subscribe(recipe => {
       this.form = getRecipeFormPopulated(
@@ -51,7 +54,7 @@ export class EditRecipeComponent implements OnInit {
     }
     this.recipeService.updateRecipe(copyOf(recipe)).subscribe(() => {
       this.router.navigate(['/', this.id]);
-    });
+    }, error => this.errorMessage = error());
   }
 
   openDeleteDialog(): void {

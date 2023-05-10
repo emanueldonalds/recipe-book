@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import { Recipe } from '../models/recipe';
@@ -45,7 +45,10 @@ export class RecipeService {
     })
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(newRecipe);
-    return this.http.post(this.recipesUrl, body, { 'headers': headers });
+    return this.http.post(this.recipesUrl, body, { 'headers': headers })
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   updateRecipe(recipeToUpdate: Recipe): Observable<any> {
@@ -56,12 +59,18 @@ export class RecipeService {
     })
     const headers = { 'content-type': 'application/json' }
     const body = JSON.stringify(recipeToUpdate);
-    return this.http.put(this.recipesUrl + '/' + recipeToUpdate.id, body, { 'headers': headers });
+    return this.http.put(this.recipesUrl + '/' + recipeToUpdate.id, body, { 'headers': headers })
+      .pipe(
+        catchError(this.handleError)
+      );;
   }
 
   deleteRecipe(id: string): Observable<any> {
     const headers = { 'content-type': 'application/json' }
-    return this.http.delete(this.recipesUrl + '/' + id, { 'headers': headers });
+    return this.http.delete(this.recipesUrl + '/' + id, { 'headers': headers })
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   mapRecipe(recipe: Recipe): Recipe {
@@ -72,5 +81,21 @@ export class RecipeService {
       }
     })
     return recipe;
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.error('An error occurred:', error.error);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    if (error.status === 401) {
+      return throwError(() => new Error('Unauthorized'));
+    }
+    if (error.status === 403) {
+      return throwError(() => new Error('You lack the privileges required to perform this action'));
+    }
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }

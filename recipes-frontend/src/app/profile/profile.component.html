@@ -1,0 +1,42 @@
+<app-search-bar [immediateSearch]="false"></app-search-bar>
+
+<div class="content">
+    <button mat-stroked-button routerLink="/">Tillbaka</button>
+
+    <div class="user-info-container">
+
+        <div class="user-info thin-solid-border col-md-6">
+            <div class="user-info-inner">
+                <h1>{{username}}</h1>
+                <hr>
+                <h5>{{firstName}} {{lastName}}</h5>
+                <h5>{{email}}</h5>
+                <span class="permissions">
+                    <table class="permissions-table">
+                        <thead>
+                            <th colspan="2">Rättigheter:</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Se recept</td>
+                                <td>Ja</td>
+                            </tr>
+                            <tr>
+                                <td>Skapa och redigera</td>
+                                <td *ngIf="writeRights">Ja</td>
+                                <td *ngIf="!writeRights">Nej</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </span>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="align-right">
+                            <button mat-stroked-button (click)="onEdit()">Redigera</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

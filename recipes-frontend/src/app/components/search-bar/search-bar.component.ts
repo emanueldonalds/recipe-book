@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
-  @Input() immediate: boolean = false;
+  @Input() immediateSearch: boolean = false;
   
   searchValue: string = "";
   
@@ -23,7 +23,7 @@ export class SearchBarComponent implements OnInit {
     });
   }
 
-  search() {
+  onSearch() {
     if (this.searchValue) {
       this.router.navigate(['/'], { queryParams: { search: this.searchValue } });
     }
@@ -32,9 +32,9 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
-  immediateSearch() {
-    if (this.immediate) {
-      this.search();
+  onImmediateSearch() {
+    if (this.immediateSearch) {
+      this.onSearch();
     }
   }
 }

@@ -1,11 +1,11 @@
-<app-search-bar [immediate]="false"></app-search-bar>
+<app-search-bar [immediateSearch]="false"></app-search-bar>
 
 <div class="content">
 
     <div class="row">
         <div fxLayout="row" fxLayoutAlign="space-between center">
-            <button class="btn-search input-group-text btn-dark" routerLink="/">Alla recept</button>
-            <button class="btn-search input-group-text btn-dark" routerLink="/{{recipe.id}}/edit">Redigera</button>
+            <button mat-stroked-button routerLink="/">Tillbaka</button>
+            <button *ngIf="isLoggedIn" mat-stroked-button routerLink="/{{recipe.id}}/edit">Redigera</button>
         </div>
     </div>
 
@@ -38,7 +38,7 @@
                                     <div class="right-align" fxLayout="row">
                                         <span class="narrow text-right" style="margin-right: 0.5rem;">
                                             <span
-                                                *ngIf="ingredient && ingredient.quantity && ingredient.quantity.value && ingredient.quantity.value     > 0">
+                                                *ngIf="ingredient && ingredient.quantity && ingredient.quantity.value && ingredient.quantity.value > 0">
                                                 {{ingredient?.quantity?.value}}
                                             </span>
                                         </span>

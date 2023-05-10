@@ -6,14 +6,114 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+$orange-ape: (
+    50 : #feeee8,
+    100 : #fdd6c7,
+    200 : #fcbaa1,
+    300 : #fa9e7b,
+    400 : #f98a5f,
+    500 : #f87543,
+    600 : #f76d3d,
+    700 : #f66234,
+    800 : #f5582c,
+    900 : #f3451e,
+    A100 : #ffffff,
+    A200 : #fff6f5,
+    A400 : #ffccc2,
+    A700 : #ffb6a8,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$orange-ape-warn: (
+    50 : #fce6e4,
+    100 : #f8c1bc,
+    200 : #f3988f,
+    300 : #ee6f62,
+    400 : #eb5041,
+    500 : #e7311f,
+    600 : #e42c1b,
+    700 : #e02517,
+    800 : #dd1f12,
+    900 : #d7130a,
+    A100 : #ffffff,
+    A200 : #ffcfce,
+    A400 : #ff9e9b,
+    A700 : #ff8581,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$orange-ape-accent: (
+
+50 : #efeefc,
+100 : #d7d4f9,
+200 : #bcb8f5,
+300 : #a19cf0,
+400 : #8c86ed,
+500 : #7871ea,
+600 : #7069e7,
+700 : #655ee4,
+800 : #5b54e1,
+900 : #4842db,
+A100 : #ffffff,
+A200 : #fafaff,
+A400 : #c9c7ff,
+A700 : #b0adff,
+contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+)
+);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://www.google.com/design/spec/style/color.html
-$custom-app-primary: mat-palette($mat-red);
-$custom-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$custom-app-primary: mat-palette($orange-ape, 500);
+$custom-app-accent:  mat-palette($mat-green, 300);
 
 // The warn palette is optional (defaults to red).
-$custom-app-warn:    mat-palette($mat-red);
+$custom-app-warn:    mat-palette($orange-ape-warn);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $custom-app-theme: mat-dark-theme($custom-app-primary, $custom-app-accent, $custom-app-warn);

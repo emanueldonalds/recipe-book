@@ -10,12 +10,15 @@ repositories {
     mavenCentral()
 }
 
-def springVersion = "2.5.2"
-def lombokVersion = "1.18.22"
+def springVersion = "3.0.6"
+def lombokVersion = "1.18.26"
 
 dependencies {
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.12.464'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: "${springVersion}"
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springVersion}"
-    implementation group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.12.78'
+    implementation group: 'org.springframework.security', name: 'spring-security-oauth2-jose', version: '6.0.3'
+    implementation group: 'org.springframework.security', name: 'spring-security-oauth2-resource-server', version: '6.0.3'
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"

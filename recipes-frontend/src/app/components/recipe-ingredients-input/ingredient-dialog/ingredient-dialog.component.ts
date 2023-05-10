@@ -50,8 +50,7 @@ export class IngredientDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.unitService.getUnits().subscribe(units => { this.units = units });
-
+    this.unitService.getUnits().subscribe(units => this.units = units);
   }
 
   add() {
