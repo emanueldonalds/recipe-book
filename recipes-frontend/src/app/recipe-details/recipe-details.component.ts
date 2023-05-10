@@ -38,7 +38,6 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   onServingsChange() {
-    console.log("Servings: " + this.recipe.servings)
     this.recipeService.getRecipeForServings(
       this.recipe.id as string, this.recipe.servings).subscribe(recipe => {
         this.recipe = recipe;

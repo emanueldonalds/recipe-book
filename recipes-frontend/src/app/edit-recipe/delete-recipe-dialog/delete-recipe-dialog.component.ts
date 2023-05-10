@@ -11,6 +11,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 export class DeleteRecipeDialog implements OnInit {
   id: string;
   name: string;
+  errorMessage: string = "";
 
   constructor(public dialogRef: MatDialogRef<DeleteRecipeDialog>, @Inject(MAT_DIALOG_DATA) public data: any, private recipeService: RecipeService, private router: Router) {
     this.id = data.id;
@@ -24,7 +25,7 @@ export class DeleteRecipeDialog implements OnInit {
     this.recipeService.deleteRecipe(this.id).subscribe(() => {
       this.dialogRef.close();  
       this.router.navigate(['/']);
-    })
+    }, error => this.errorMessage = error());
   }
 
 }

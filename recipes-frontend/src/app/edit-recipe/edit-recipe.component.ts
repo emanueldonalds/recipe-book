@@ -19,19 +19,17 @@ export class EditRecipeComponent implements OnInit {
   ingredients: Ingredient[] = [];
   id!: string;
   isLoggedIn: boolean = false;
+  errorMessage: string = "";
 
   constructor(
     private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute,
-    private dialog: MatDialog,
-    private keycloakService: KeycloakService) {
+    private dialog: MatDialog) {
       this.form = getRecipeForm();
   }
 
   async ngOnInit() {
-    this.isLoggedIn = await this.keycloakService.isLoggedIn();
-
     this.id = String(this.route.snapshot.paramMap.get('id'));
     this.recipeService.getRecipe(this.id).subscribe(recipe => {
       this.form = getRecipeFormPopulated(
@@ -56,7 +54,7 @@ export class EditRecipeComponent implements OnInit {
     }
     this.recipeService.updateRecipe(copyOf(recipe)).subscribe(() => {
       this.router.navigate(['/', this.id]);
-    });
+    }, error => this.errorMessage = error());
   }
 
   openDeleteDialog(): void {

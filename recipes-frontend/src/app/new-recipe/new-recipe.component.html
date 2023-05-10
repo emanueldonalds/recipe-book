@@ -18,7 +18,8 @@
             <app-recipe-instructions-input [form]="form"></app-recipe-instructions-input>
 
         </div>
-        <div class="row" class="align-right">
+        <div class="align-right">
+            <label for="save" class="error-message" *ngIf="errorMessage">{{errorMessage}}</label>
             <button mat-stroked-button type="submit">Spara nytt recept</button>
         </div>
     </form>

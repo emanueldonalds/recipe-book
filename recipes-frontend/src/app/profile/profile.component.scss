@@ -1,15 +1,32 @@
 .user-info {
-    margin-top: 3rem;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
-    border-color: #3b3b3b;
+  margin-top: 3rem;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: #3b3b3b;
 }
 
 .user-info-inner {
   margin: 2rem;
 }
 
-.user-info-inner > h1 {
-    padding-top: 0;
+.user-info-inner>h1 {
+  padding-top: 0;
+}
+
+.permissions {
+  width: 50%;
+  display: block;
+margin-top: 1rem;
+  
+}
+
+.permissions-table {
+  width: 100%;
+}
+
+.user-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

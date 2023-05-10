@@ -15,6 +15,7 @@ export class NewRecipeComponent implements OnInit {
   form: FormGroup;
   ingredients: Ingredient[] = [];
   loading: boolean = false;
+  errorMessage: string = "";
 
   constructor(private recipeService: RecipeService, private router: Router) {
     this.form = getRecipeForm();
@@ -38,6 +39,9 @@ export class NewRecipeComponent implements OnInit {
     }
     this.recipeService.createRecipe(copyOf(recipe)).subscribe(createdRecipe => {
       this.router.navigate(['/', createdRecipe.id]);
+    }, error => {
+      this.errorMessage = error();
+      this.loading = false;
     });
   }
 }

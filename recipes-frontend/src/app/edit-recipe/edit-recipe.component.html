@@ -3,7 +3,7 @@
 <div class="content">
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <button mat-stroked-button routerLink="/{{id}}">Tillbaka</button>
-        <button mat-stroked-button color="warn" (click)="openDeleteDialog()">Ta bort recept</button>
+        <button id="delete" mat-stroked-button color="warn" (click)="openDeleteDialog()">Ta bort recept</button>
     </div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="col-md-4 centered">
@@ -13,8 +13,9 @@
             <app-recipe-ingredients-input [ingredients]="ingredients"></app-recipe-ingredients-input>
             <app-recipe-instructions-input [form]="form"></app-recipe-instructions-input>
         </div>
-        <div class="row" class="align-right">
-            <button mat-stroked-button type="submit">Spara</button>
+        <div class="align-right">
+            <label for="save" class="error-message" *ngIf="errorMessage">{{errorMessage}}</label>
+            <button id="save" mat-stroked-button type="submit">Spara</button>
         </div>
     </form>
 </div>

@@ -7,11 +7,12 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  
   username = "";
   firstName = "";
   lastName = "";
   email = "";
+  readRights = true;
+  writeRights = false;
 
   constructor(private keycloakService: KeycloakService) { 
     keycloakService.loadUserProfile().then(userProfile => {
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit {
       this.firstName = userProfile.firstName!;
       this.lastName = userProfile.lastName!;
       this.email = userProfile.email!
+      this.writeRights = keycloakService.getUserRoles().includes('editor');
     })
   }
 

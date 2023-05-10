@@ -1,6 +1,10 @@
 <p>Vill du ta bort {{name}}?</p>
 
 <div fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-button (click)="this.dialogRef.close()">Avbryt</button>
-    <button mat-button color="warn" (click)="delete()">Ta bort</button>
-  </div>
+  <button mat-button (click)="this.dialogRef.close()">Avbryt</button>
+  <button mat-button color="warn" (click)="delete()">Ta bort</button>
+</div>
+
+<div fxLayout="row">
+  <p *ngIf="errorMessage" class="error-message">{{errorMessage}}</p>
+</div>
