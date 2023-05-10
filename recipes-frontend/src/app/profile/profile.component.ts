@@ -15,16 +15,16 @@ export class ProfileComponent implements OnInit {
   writeRights = false;
 
   constructor(private keycloakService: KeycloakService) { 
-    keycloakService.loadUserProfile().then(userProfile => {
+  }
+
+  ngOnInit(): void {
+    this.keycloakService.loadUserProfile().then(userProfile => {
       this.username = userProfile.username!;
       this.firstName = userProfile.firstName!;
       this.lastName = userProfile.lastName!;
       this.email = userProfile.email!
-      this.writeRights = keycloakService.getUserRoles().includes('editor');
-    })
-  }
-
-  ngOnInit(): void {
+      this.writeRights = this.keycloakService.getUserRoles().includes('editor');
+    });
   }
 
   onEdit() {

@@ -14,12 +14,19 @@ export class RecipesComponent implements OnInit {
   filteredRecipes: Recipe[] = []
   search: string = "";
   isLoggedIn: boolean = false;
+  writeRights: boolean = false;
 
   constructor(private recipeService: RecipeService, private route: ActivatedRoute, private keycloakService: KeycloakService) { 
   }
 
   async ngOnInit() {
     this.isLoggedIn = await this.keycloakService.isLoggedIn();
+
+    if (this.isLoggedIn) {
+      this.keycloakService.loadUserProfile().then(() => {
+        this.writeRights = this.keycloakService.getUserRoles().includes('editor');
+      });
+    }
 
     this.route.queryParams
       .subscribe(params => {
