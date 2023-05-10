@@ -4,6 +4,7 @@ Simple recipe web app available at [https://recipes.edonalds.com/](https://recip
 ## Tech
 - Backend: Spring Boot REST API 
 - Frontent: Angular
+
 Secured with OAuth2 / OIDC using KeyCloak.
 
 ## Images
