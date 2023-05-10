@@ -1,5 +1,5 @@
 # Recipe book
-Simple recipe web app
+Simple recipe web app available at [https://recipes.edonalds.com/](https://recipes.edonalds.com/)
 
 ## Tech
 Back end is a Spring Boot app exposing a REST API that is consumed by an Angular front end all secured with OAuth2 / OIDC using KeyCloak.
