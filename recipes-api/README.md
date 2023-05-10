@@ -2,10 +2,9 @@
 
 Recipe REST API.
 
-# Local
+## Local environment
 Set active profile to local to use a mock database.
 
-# Deployment
-Deploy by pushing master to the prod remote.
-
-`git push prod-recipes-api master`
+## Access control
+All POST, PUT and DELETE requests requires an authenticated user JWT with the 'editor' role.
+GET, HEAD and OPTIONS are allowed for anyone.
