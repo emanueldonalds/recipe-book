@@ -13,10 +13,7 @@ import org.springframework.stereotype.Repository;
 import recipes.recipes.api.domain.model.RecipeRepository;
 import recipes.recipes.api.domain.model.dto.RecipeDTO;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Repository
 @Profile("prod")
@@ -38,6 +35,9 @@ public class AWSDynamoDBRecipeRepository implements RecipeRepository {
         } catch (AmazonClientException e) {
             log.error(e.getMessage(), e);
         }
+
+        recipes.sort(Comparator.comparing(RecipeDTO::getName));
+
         return recipes;
     }
 

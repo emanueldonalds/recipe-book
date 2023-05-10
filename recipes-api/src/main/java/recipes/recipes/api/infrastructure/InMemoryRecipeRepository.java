@@ -48,7 +48,7 @@ public class InMemoryRecipeRepository implements RecipeRepository {
         ingredients.add(new IngredientDTO("Kyckling", new QuantityDTO(23.3f, Unit.LITER)));
 
         Random rnd = new Random();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 25; i++) {
             recipes.add(RecipeDTO.builder()
                     .id(UUID.randomUUID())
                             .instructions(instructions)
