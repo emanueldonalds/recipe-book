@@ -12,7 +12,7 @@ import { UnitService } from './unit.service';
 })
 export class RecipeService {
 
-  private recipesUrl = environment.apiUri + "/recipes"; //TODO this must be configured based on environment
+  private recipesUrl = environment.apiUri + "/recipes";
 
   constructor(private http: HttpClient, private unitService: UnitService) { }
 
