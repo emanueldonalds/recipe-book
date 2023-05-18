@@ -1,5 +1,5 @@
 # Recipe book
-Simple recipe web app available at [https://recipes.edonalds.com/](https://recipes.edonalds.com/)
+Simple recipe web app available at [https://recept.ax/](https://recept.ax/)
 
 ## Tech
 - Backend: Spring Boot REST API 
