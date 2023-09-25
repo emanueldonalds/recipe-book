@@ -7,7 +7,6 @@ import { Ingredient } from '../models/ingredient';
 import { copyOf, Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
 import { DeleteRecipeDialog } from './delete-recipe-dialog/delete-recipe-dialog.component';
-import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-edit-recipe',

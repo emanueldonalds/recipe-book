@@ -26,6 +26,8 @@ public final class RecipeDTO implements Serializable {
 
     private String name;
 
+    private String author;
+
     private String instructions;
 
     private long servings;

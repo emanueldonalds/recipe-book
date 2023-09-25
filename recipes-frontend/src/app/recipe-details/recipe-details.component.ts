@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from '../models/recipe'
 import { RecipeService } from '../services/recipe.service';
@@ -16,6 +15,7 @@ export class RecipeDetailsComponent implements OnInit {
   recipe: Recipe = {
     id: '',
     name: '',
+    author: '',
     instructions: '',
     ingredients: [],
     servings: 0

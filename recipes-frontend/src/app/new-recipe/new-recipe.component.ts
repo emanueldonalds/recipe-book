@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { getRecipeForm } from '../components/forms/recipe-form';
 import { Ingredient } from '../models/ingredient';
 import { copyOf, Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-new-recipe',
@@ -13,12 +14,14 @@ import { RecipeService } from '../services/recipe.service';
 })
 export class NewRecipeComponent implements OnInit {
   form: FormGroup;
+  author: string = "";
   ingredients: Ingredient[] = [];
   loading: boolean = false;
   errorMessage: string = "";
 
-  constructor(private recipeService: RecipeService, private router: Router) {
+  constructor(private recipeService: RecipeService, private router: Router, kcService: KeycloakService) {
     this.form = getRecipeForm();
+    this.author = kcService.getUsername();
   }
 
   ngOnInit(): void {
@@ -33,6 +36,7 @@ export class NewRecipeComponent implements OnInit {
     let recipe: Recipe = {
       id: undefined,
       name: this.form.value.name,
+      author: this.author,
       instructions: this.form.value.instructions,
       ingredients: this.ingredients,
       servings: this.form.value.servings
