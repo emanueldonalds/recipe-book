@@ -18,7 +18,6 @@ import { MatListModule } from '@angular/material/list';
 import { IngredientDialogComponent } from './components/recipe-ingredients-input/ingredient-dialog/ingredient-dialog.component'
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
@@ -37,7 +36,7 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { ConfigInitService } from './init/config-init.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {MatMenuModule} from '@angular/material/menu';
-import { ProfileComponent } from './profile/profile.component'; 
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +74,6 @@ import { ProfileComponent } from './profile/profile.component';
     MatMenuModule,
     MatIconModule,
     MatCardModule,
-    FlexLayoutModule,
     DragDropModule,
     KeycloakAngularModule,
     ],

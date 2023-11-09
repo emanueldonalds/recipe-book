@@ -1,4 +1,4 @@
 export interface Quantity {
-    value: number;
-    unit: string;
+    value?: number;
+    unit?: string;
 }

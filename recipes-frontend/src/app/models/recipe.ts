@@ -21,9 +21,9 @@ export function copyOf(other: Recipe): Recipe {
     other.ingredients.forEach(ingredient => {
         copy.ingredients.push({
             name: ingredient.name,
-            quantity: {
-                value: ingredient.quantity.value,
-                unit: ingredient.quantity.unit
+            quantity: { // Can I copy just the quantity?
+                value: ingredient.quantity?.value,
+                unit: ingredient.quantity?.unit
             }});
     });
     return copy;

@@ -39,8 +39,8 @@ export class IngredientDialogComponent implements OnInit {
     if (this.ingredientToEdit) {
       this.editMode = true;
       this.form.controls.name.setValue(this.ingredientToEdit.name);
-      this.form.controls.quantity.setValue(this.ingredientToEdit.quantity.value);
-      this.form.controls.unit.setValue(this.ingredientToEdit.quantity.unit);
+      this.form.controls.quantity.setValue(this?.ingredientToEdit?.quantity?.value?.toString() ?? null);
+      this.form.controls.unit.setValue(this.ingredientToEdit.quantity?.unit);
       this.ingredients = data.ingredients;
     }
     else {
@@ -60,11 +60,11 @@ export class IngredientDialogComponent implements OnInit {
     }
 
     let quantity: Quantity = {
-      value: this.form.get('quantity')?.value,
+      value: Number(this.form.get('quantity')?.value),
       unit: this.form.get('unit')?.value
     }
     let ingredient: Ingredient = {
-      name: this.form.get('name')?.value,
+      name: this.form.get('name')?.value ?? 'Ny ingrediens',
       quantity: quantity
     }
     this.dialogRef.close(new IngredientDialogResponse(ingredient, false));
@@ -76,9 +76,11 @@ export class IngredientDialogComponent implements OnInit {
       return;
     }
     if (this.ingredientToEdit) {
-      this.ingredientToEdit.name = this.form.controls.name.value;
-      this.ingredientToEdit.quantity.value = this.form.controls.quantity.value;
-      this.ingredientToEdit.quantity.unit = this.form.controls.unit.value;
+      this.ingredientToEdit.name = this.form.controls.name.value ?? '';
+      if (this.ingredientToEdit.quantity) {
+        this.ingredientToEdit.quantity.value = Number(this.form.controls.quantity.value) ?? undefined;
+        this.ingredientToEdit.quantity.unit = this.form.controls.unit.value ?? undefined;
+      }
     }
     this.dialogRef.close();
   }
@@ -108,7 +110,7 @@ export class IngredientDialogComponent implements OnInit {
     if (this.form.controls.quantity.hasError('maxlength')) {
       return "Max 5 characters";
     }
-    return "";  
+    return "";
   }
 
 }
