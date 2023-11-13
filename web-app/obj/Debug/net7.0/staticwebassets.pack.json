@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/home/edonalds/repos/recipe-book/web-app/wwwroot/images/sloth.png",
+      "PackagePath": "staticwebassets/images/sloth.png"
+    },
+    {
       "Id": "/home/edonalds/repos/recipe-book/web-app/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3bp6d+IMIiRyEl2BB2zo/reF79j2yHKRkMYv47xN6uk=",
+  "Hash": "QHG6m1awrWsKfiQv8zRGEDCMn3oASEA1Yb//6otmvdM=",
   "Source": "web-app",
   "BasePath": "_content/web-app",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/home/edonalds/repos/recipe-book/web-app/wwwroot/images/sloth.png",
+      "SourceId": "web-app",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/edonalds/repos/recipe-book/web-app/wwwroot/",
+      "BasePath": "_content/web-app",
+      "RelativePath": "images/sloth.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/sloth.png"
     },
     {
       "Identity": "/home/edonalds/repos/recipe-book/web-app/wwwroot/js/site.js",
