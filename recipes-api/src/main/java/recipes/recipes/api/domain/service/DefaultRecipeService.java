@@ -51,6 +51,7 @@ public class DefaultRecipeService implements RecipeService {
     @Override
     public RecipeDTO updateRecipe(RecipeDTO updatedRecipe) throws RecipeNotFoundException {
         final RecipeDTO currentRecipe = getRecipe(updatedRecipe.getId());
+        updatedRecipe.setAuthor(currentRecipe.getAuthor());
         if (currentRecipe.equals(updatedRecipe)) {
             return currentRecipe;
         }
