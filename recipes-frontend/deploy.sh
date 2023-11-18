@@ -4,6 +4,7 @@ echo Removing dist folder
 rm -r ./dist
 
 echo Building distrobution
+npm install --force
 ng build --configuration=production 
 
 echo Removing old deployment files

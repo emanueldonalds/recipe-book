@@ -30,6 +30,6 @@ class ServingServiceTest {
     private RecipeDTO recipe(int quantityValue, long servings) {
         List<IngredientDTO> ingredients = new ArrayList<>();
         ingredients.add(new IngredientDTO("", new QuantityDTO(quantityValue, Unit.DECILITER)));
-        return new RecipeDTO(UUID.randomUUID(), "", "", servings, ingredients);
+        return new RecipeDTO(UUID.randomUUID(), "", "", "", servings, ingredients);
     }
 }

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUri: "https://recipes-api.edonalds.com",
+  apiUri: "https://api.recept.ax",
   configFile: 'assets/config/config.prod.json'
 };

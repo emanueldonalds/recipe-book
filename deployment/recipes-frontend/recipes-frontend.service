@@ -2,7 +2,7 @@
 Description=Recipes front-end service
 
 [Service]
-ExecStart=/usr/local/bin/node /home/recipes/artefacts/recipes-frontend/app.js
+ExecStart=/home/recipes/.nvm/versions/node/v21.1.0/bin/node /home/recipes/recipe-book/recipes-frontend/dist/app.js
 User=recipes
 
 [Install]
