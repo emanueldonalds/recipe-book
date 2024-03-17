@@ -1,3 +1,5 @@
+logging.file.name: /var/log/app/recipes-api.log
+
 spring:
   profiles:
     active: prod
@@ -8,4 +10,3 @@ spring:
           issuer-uri: https://authenticate.recept.ax/auth/realms/recipe-book
           jwk-set-uri: https://authenticate.recept.ax/auth/realms/recipe-book/protocol/openid-connect/certs
 server.port: 8555
-
