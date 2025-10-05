@@ -1,9 +1,0 @@
-[Unit]
-Description=Recipes front-end service
-
-[Service]
-ExecStart=/home/recipes/.nvm/versions/node/v21.1.0/bin/node /home/recipes/recipe-book/recipes-frontend/dist/app.js
-User=recipes
-
-[Install]
-WantedBy=multi-user.target

@@ -34,6 +34,7 @@ export class ConfigInitService {
   }
 
   private getConfigFile(): string {
+    console.log("ENVIRONMENT " + JSON.stringify(environment))
     return environment.configFile
   }
 }

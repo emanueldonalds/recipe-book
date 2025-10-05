@@ -1,0 +1,19 @@
+services:
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./recipes-frontend
+    restart: unless-stopped
+    environment:
+      - KEYCLOAK_URL=authenticate.edonalds.com
+    ports:
+      - 8090:8090
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./recipes-api
+    env_file: /etc/envs/recipe-api.env
+    restart: unless-stopped
+    ports:
+      - 8555:8555
