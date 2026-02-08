@@ -39,7 +39,7 @@ export class IngredientDialogComponent implements OnInit {
     if (this.ingredientToEdit) {
       this.editMode = true;
       this.form.controls.name.setValue(this.ingredientToEdit.name);
-      this.form.controls.quantity.setValue(this.ingredientToEdit.quantity.value);
+      this.form.controls.quantity.setValue(this.ingredientToEdit.quantity.value.toString());
       this.form.controls.unit.setValue(this.ingredientToEdit.quantity.unit);
       this.ingredients = data.ingredients;
     }
@@ -60,11 +60,11 @@ export class IngredientDialogComponent implements OnInit {
     }
 
     let quantity: Quantity = {
-      value: this.form.get('quantity')?.value,
-      unit: this.form.get('unit')?.value
+      value: parseFloat(this.form.get('quantity')?.value || '0'),
+      unit: this.form.get('unit')?.value || ''
     }
     let ingredient: Ingredient = {
-      name: this.form.get('name')?.value,
+      name: this.form.get('name')?.value || '',
       quantity: quantity
     }
     this.dialogRef.close(new IngredientDialogResponse(ingredient, false));
@@ -76,9 +76,9 @@ export class IngredientDialogComponent implements OnInit {
       return;
     }
     if (this.ingredientToEdit) {
-      this.ingredientToEdit.name = this.form.controls.name.value;
-      this.ingredientToEdit.quantity.value = this.form.controls.quantity.value;
-      this.ingredientToEdit.quantity.unit = this.form.controls.unit.value;
+      this.ingredientToEdit.name = this.form.controls.name.value || '';
+      this.ingredientToEdit.quantity.value = parseFloat(this.form.controls.quantity.value || '0');
+      this.ingredientToEdit.quantity.unit = this.form.controls.unit.value || '';
     }
     this.dialogRef.close();
   }

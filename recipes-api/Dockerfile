@@ -8,7 +8,7 @@ RUN gradle dependencies
 COPY src/ ./src
 RUN gradle bootJar --no-daemon
 
-FROM openjdk:17-jdk-slim AS final
+FROM eclipse-temurin:17-jre-alpine AS final
 
 COPY --from=build /app/build/libs/*.jar /app/app.jar
 ENTRYPOINT ["java", "-XX:-UseContainerSupport", "-jar", "/app/app.jar"]

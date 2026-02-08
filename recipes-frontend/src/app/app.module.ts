@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { RecipesComponent } from './recipes/recipes.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -86,6 +86,10 @@ import { ProfileComponent } from './profile/profile.component';
       useFactory: initializeKeycloak,
       multi: true,
       deps: [KeycloakService, ConfigInitService],
+    },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' }
     }
   ],
   bootstrap: [AppComponent]

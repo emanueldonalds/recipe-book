@@ -1,11 +1,11 @@
-FROM node:16.10
+FROM node:18.20
 
-RUN npm install -g @angular/cli@13.3.11
+RUN npm install -g @angular/cli@15.2.10
 
 WORKDIR /app
 
 COPY *.json .
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 COPY src src
 RUN ng build --configuration=production
