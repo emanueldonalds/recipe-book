@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./material-custom-theme.scss";
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+$bootstrap-icons-font-dir: "/assets/bootstrap-icons";
 @import "bootstrap-icons/font/bootstrap-icons.scss";
 
 * {
@@ -60,6 +61,10 @@ html {
 .btn-search {
   background-color: $gray-900;
   border-color: $gray-700;
+}
+
+.btn-search i {
+  color: white;
 }
 
 .form-control,

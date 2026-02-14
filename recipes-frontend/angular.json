@@ -29,7 +29,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/app.js"
+              "src/app.js",
+              {
+                "glob": "**/*",
+                "input": "node_modules/bootstrap-icons/font/fonts",
+                "output": "/assets/bootstrap-icons"
+              }
             ],
             "styles": [
               "src/styles.scss",
