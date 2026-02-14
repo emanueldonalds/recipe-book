@@ -31,6 +31,11 @@
               "src/assets",
               "src/app.js",
               {
+                "glob": "robots.txt",
+                "input": "src/assets",
+                "output": "/"
+              },
+              {
                 "glob": "**/*",
                 "input": "node_modules/bootstrap-icons/font/fonts",
                 "output": "/assets/bootstrap-icons"
