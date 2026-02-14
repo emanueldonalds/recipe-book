@@ -1,6 +1,6 @@
 <form [formGroup]="form">
-  <div fxLayout="row">
-    <mat-form-field>
+  <div fxLayout="row" fxLayoutAlign="space-between" class="fields-row">
+    <mat-form-field fxFlex>
       <mat-label>Ingrediens</mat-label>
       <input matInput formControlName="name" required>
       <mat-error *ngIf="form.controls.name.invalid && (form.controls.name.dirty || form.controls.name.touched)">

@@ -1,13 +1,18 @@
-mat-form-field {
-    min-width: 1em !important;
+:host {
+  display: block;
+  padding: 16px;
 }
 
-.close-button{
-    float: right;
-    top:-24px;
-    right:-24px;
-  }
+mat-form-field {
+  min-width: 1em !important;
+}
 
-  .empty-option {
-    opacity: 50%;
-  }
+.close-button {
+  float: right;
+  top: -24px;
+  right: -24px;
+}
+
+.empty-option {
+  opacity: 50%;
+}
