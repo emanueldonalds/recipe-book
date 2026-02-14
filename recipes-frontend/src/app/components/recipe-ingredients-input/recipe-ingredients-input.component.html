@@ -4,14 +4,14 @@
         <ul cdkDropList (cdkDropListDropped)="drop($event)" role="list">
             <li cdkDrag dragRefConfig="dragConfig" cdkDragLockAxis="y" *ngFor="let ingredient of ingredients" class="li mat-h3" role="listitem">
                 <a class="list-button w-100" (click)="openEditDialog(ingredient)">
-                    <span fxLayout="row">
+                    <span fxLayout="row" style="margin-left: 0.5rem;">
                         {{ingredient.name}}
                         <div class="right-align">
                             <span class="narrow text-right"
                                 style="margin-right: 0.5rem;">{{ingredient?.quantity?.value}}</span>
                             <span class="narrow text-left">{{ingredient?.quantity?.unit}}</span>
                         </div>
-                        <div cdkDragHandle class=""><i class="bi bi-arrow-down-up"></i></div>
+                        <div cdkDragHandle style="margin-left: 1rem;"  class=""><i class="bi bi-arrow-down-up"></i></div>
                     </span>
                 </a>
                 <div class="placeholder" *cdkDragPlaceholder></div>
