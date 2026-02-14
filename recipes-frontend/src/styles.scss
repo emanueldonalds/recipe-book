@@ -42,6 +42,22 @@ html {
   float: right;
 }
 
+.list-button {
+  background: transparent;
+  color: white;
+  border: none;
+  text-align: left;
+  border-radius: 2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.list-button:hover {
+  background: $gray-800;
+}
+
 .btn-search {
   background-color: $gray-900;
   border-color: $gray-700;
@@ -56,15 +72,10 @@ html {
   color: white;
 }
 
-
 h1,
 h2 {
   padding-top: 1em;
 }
-
-//.mat-form-field {
-//  width: 100%;
-//}
 
 .content {
   margin-bottom: 1rem;

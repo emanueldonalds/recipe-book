@@ -3,7 +3,7 @@
     <div class="list">
         <ul cdkDropList (cdkDropListDropped)="drop($event)" role="list">
             <li cdkDrag dragRefConfig="dragConfig" cdkDragLockAxis="y" *ngFor="let ingredient of ingredients" class="li mat-h3" role="listitem">
-                <a mat-button class="w-100" (click)="openEditDialog(ingredient)">
+                <a class="list-button w-100" (click)="openEditDialog(ingredient)">
                     <span fxLayout="row">
                         {{ingredient.name}}
                         <div class="right-align">
