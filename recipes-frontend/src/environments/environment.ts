@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUri: "http://localhost:8555",
+  apiUri: "https://api.recept.ax",
   configFile: 'assets/config/config.dev.json'
 };

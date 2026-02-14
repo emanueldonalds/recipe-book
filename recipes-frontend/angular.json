@@ -109,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "recipes-frontend"
+  "defaultProject": "recipes-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
